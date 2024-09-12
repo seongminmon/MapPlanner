@@ -13,6 +13,8 @@
 		241A58902C91BBD300232D8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 241A588F2C91BBD300232D8B /* Preview Assets.xcassets */; };
 		241A58972C91BC3F00232D8B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 241A58962C91BC3F00232D8B /* .gitignore */; };
 		241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A589A2C91BE5400232D8B /* APIInfo.swift */; };
+		241A58B12C92CC5700232D8B /* UIMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A58B02C92CC5700232D8B /* UIMapView.swift */; };
+		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,11 @@
 		241A588F2C91BBD300232D8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		241A58962C91BC3F00232D8B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		241A589A2C91BE5400232D8B /* APIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInfo.swift; sourceTree = "<group>"; };
+		241A58AF2C92C87200232D8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		241A58B02C92CC5700232D8B /* UIMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapView.swift; sourceTree = "<group>"; };
+		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +50,8 @@
 				241A58962C91BC3F00232D8B /* .gitignore */,
 				241A58872C91BBD200232D8B /* MapPlanner */,
 				241A58862C91BBD200232D8B /* Products */,
+				EFECFC5F23DE218648D46279 /* Pods */,
+				F6C64BA618963A308F0CA7EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,9 +66,11 @@
 		241A58872C91BBD200232D8B /* MapPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				241A58AF2C92C87200232D8B /* Info.plist */,
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
 				241A588A2C91BBD200232D8B /* ContentView.swift */,
+				241A58B02C92CC5700232D8B /* UIMapView.swift */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A588E2C91BBD300232D8B /* Preview Content */,
 			);
@@ -73,6 +85,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		EFECFC5F23DE218648D46279 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */,
+				827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F6C64BA618963A308F0CA7EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +109,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 241A58932C91BBD300232D8B /* Build configuration list for PBXNativeTarget "MapPlanner" */;
 			buildPhases = (
+				634B82ECB289F35A305BFDB4 /* [CP] Check Pods Manifest.lock */,
 				241A58812C91BBD200232D8B /* Sources */,
 				241A58822C91BBD200232D8B /* Frameworks */,
 				241A58832C91BBD200232D8B /* Resources */,
+				047286953D29E516DBA8F5ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,12 +170,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		047286953D29E516DBA8F5ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapPlanner/Pods-MapPlanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapPlanner/Pods-MapPlanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapPlanner/Pods-MapPlanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		634B82ECB289F35A305BFDB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MapPlanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		241A58812C91BBD200232D8B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				241A588B2C91BBD200232D8B /* ContentView.swift in Sources */,
+				241A58B12C92CC5700232D8B /* UIMapView.swift in Sources */,
 				241A58892C91BBD200232D8B /* MapPlannerApp.swift in Sources */,
 				241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */,
 			);
@@ -274,6 +348,7 @@
 		};
 		241A58942C91BBD300232D8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -282,12 +357,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MapPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6H2JVV9PA;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MapPlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -295,14 +372,19 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksm.MapPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		241A58952C91BBD300232D8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,12 +393,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MapPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6H2JVV9PA;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MapPlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,9 +408,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksm.MapPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
