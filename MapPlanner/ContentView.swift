@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        UIMapView(coord: (126.9784147, 37.5666805))
+        NaverMapView()
     }
 }
 
