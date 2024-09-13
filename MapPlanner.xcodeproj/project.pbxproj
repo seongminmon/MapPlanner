@@ -51,7 +51,6 @@
 		241A587C2C91BBD200232D8B = {
 			isa = PBXGroup;
 			children = (
-				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				241A58962C91BC3F00232D8B /* .gitignore */,
 				241A58872C91BBD200232D8B /* MapPlanner */,
 				241A58862C91BBD200232D8B /* Products */,
@@ -71,13 +70,14 @@
 		241A58872C91BBD200232D8B /* MapPlanner */ = {
 			isa = PBXGroup;
 			children = (
-				241A58AF2C92C87200232D8B /* Info.plist */,
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
 				241A588A2C91BBD200232D8B /* ContentView.swift */,
 				241A58B02C92CC5700232D8B /* NaverMapView.swift */,
-				241A588C2C91BBD300232D8B /* Assets.xcassets */,
+				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
+				241A588C2C91BBD300232D8B /* Assets.xcassets */,
+				241A58AF2C92C87200232D8B /* Info.plist */,
 				241A588E2C91BBD300232D8B /* Preview Content */,
 			);
 			path = MapPlanner;
