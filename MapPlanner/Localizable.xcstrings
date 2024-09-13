@@ -1,7 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld" : {
+
+    },
+    "Camera" : {
+
+    },
+    "Mimicking showing camera" : {
 
     },
     "ProfileView" : {
@@ -11,6 +20,15 @@
 
     },
     "User's" : {
+
+    },
+    "앨범" : {
+
+    },
+    "취소" : {
+
+    },
+    "카메라" : {
 
     },
     "타임라인 View" : {

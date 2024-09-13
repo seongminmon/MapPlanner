@@ -24,8 +24,26 @@
 		24CA384D2C9414D500B873E7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA384C2C9414D500B873E7 /* MainView.swift */; };
 		24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38522C942F9100B873E7 /* ProfileView.swift */; };
 		24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38542C942F9B00B873E7 /* SearchView.swift */; };
+		24CA38572C94359200B873E7 /* AddPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38562C94359200B873E7 /* AddPlanView.swift */; };
+		24CA385A2C944E7100B873E7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; };
+		24CA385C2C944EA600B873E7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA385B2C944EA600B873E7 /* Plan.swift */; };
+		24CA385D2C94587300B873E7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		24CA385E2C94587300B873E7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				24CA385D2C94587300B873E7 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		241A58852C91BBD200232D8B /* MapPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +64,8 @@
 		24CA384C2C9414D500B873E7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		24CA38522C942F9100B873E7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		24CA38542C942F9B00B873E7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		24CA38562C94359200B873E7 /* AddPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanView.swift; sourceTree = "<group>"; };
+		24CA385B2C944EA600B873E7 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CA385A2C944E7100B873E7 /* RealmSwift in Frameworks */,
 				24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */,
 				76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */,
 			);
@@ -88,6 +109,7 @@
 			children = (
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
+				24CA385F2C9459DE00B873E7 /* Model */,
 				24CA384B2C94113700B873E7 /* Extension */,
 				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */,
@@ -130,6 +152,7 @@
 			children = (
 				241A588A2C91BBD200232D8B /* ContentView.swift */,
 				24CA384C2C9414D500B873E7 /* MainView.swift */,
+				24CA38562C94359200B873E7 /* AddPlanView.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
 				24CA38462C9409DD00B873E7 /* Map */,
 				24CA38502C942F7A00B873E7 /* Search */,
@@ -162,6 +185,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		24CA385F2C9459DE00B873E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24CA385B2C944EA600B873E7 /* Plan.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +222,7 @@
 				241A58822C91BBD200232D8B /* Frameworks */,
 				241A58832C91BBD200232D8B /* Resources */,
 				047286953D29E516DBA8F5ED /* [CP] Embed Pods Frameworks */,
+				24CA385E2C94587300B873E7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +231,7 @@
 			name = MapPlanner;
 			packageProductDependencies = (
 				24CA38442C94067B00B873E7 /* HorizonCalendar */,
+				24CA38592C944E7100B873E7 /* RealmSwift */,
 			);
 			productName = MapPlanner;
 			productReference = 241A58852C91BBD200232D8B /* MapPlanner.app */;
@@ -231,6 +264,7 @@
 			mainGroup = 241A587C2C91BBD200232D8B;
 			packageReferences = (
 				24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 241A58862C91BBD200232D8B /* Products */;
 			projectDirPath = "";
@@ -304,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CA38572C94359200B873E7 /* AddPlanView.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24CA384D2C9414D500B873E7 /* MainView.swift in Sources */,
 				24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */,
@@ -311,6 +346,7 @@
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
 				24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
+				24CA385C2C944EA600B873E7 /* Plan.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				241A58892C91BBD200232D8B /* MapPlannerApp.swift in Sources */,
 				241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */,
@@ -545,6 +581,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 20.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -552,6 +596,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
+		};
+		24CA38592C944E7100B873E7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

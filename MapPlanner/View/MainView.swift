@@ -30,14 +30,14 @@ struct CustomTabBar: View {
                             Rectangle()
                                 .frame(height: selectedTab == tab ? 2 : 1)
                         }
-                        .foregroundColor(selectedTab == tab ? .primary: .secondary)
+                        .foregroundColor(selectedTab == tab ? Color(.primary): Color(.secondary))
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(alignment: .bottom) {
             Rectangle()
-                .fill(.secondary)
+                .fill(Color(.secondary))
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
         }
@@ -59,8 +59,6 @@ struct CustomTabView: View {
             
             Text("타임라인 View")
                 .tag(TabInfo.timeline)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.orange)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }

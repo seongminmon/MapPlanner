@@ -12,4 +12,6 @@ extension Image {
     static let leftTriangle = Image(systemName: "arrowtriangle.backward.fill")
     static let search = Image(systemName: "magnifyingglass")
     static let person = Image(systemName: "person")
+    static let plus = Image(systemName: "plus")
+    static let camera = Image(systemName: "camera.fill")
 }

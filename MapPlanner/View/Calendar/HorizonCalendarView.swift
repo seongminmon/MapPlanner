@@ -10,6 +10,10 @@ import HorizonCalendar
 
 struct HorizonCalendarView: UIViewRepresentable {
     
+    // TODO: - 일정 있는 날짜는 숫자 대신 다르게 표시하기
+    // TODO: - 일정 없는 날짜는 일정 추가하기
+    // TODO: - 일정 CRUD
+    
     private let content: CalendarViewContent
     
     init() {
@@ -25,7 +29,7 @@ struct HorizonCalendarView: UIViewRepresentable {
             .dayItemProvider { day in
                 Text("\(day.day)")
                     .font(.system(size: 18))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color(.secondary))
                     .calendarItemModel
             }
             .monthHeaderItemProvider { value in
@@ -54,7 +58,7 @@ struct HorizonCalendarView: UIViewRepresentable {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(.primary)
+                .foregroundStyle(Color(.primary))
                 .calendarItemModel
             }
         
