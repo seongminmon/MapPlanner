@@ -18,7 +18,7 @@ struct CustomTabBar: View {
     @Binding var selectedTab: TabInfo
     
     var body: some View {
-        HStack {
+        HStack(spacing: 20) {
             ForEach(TabInfo.allCases, id: \.self) { tab in
                 Button {
                     selectedTab = tab
@@ -31,11 +31,17 @@ struct CustomTabBar: View {
                                 .frame(height: selectedTab == tab ? 2 : 1)
                         }
                         .foregroundColor(selectedTab == tab ? .primary: .secondary)
-                        .padding()
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .fill(.secondary)
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
+        }
+        .padding()
     }
 }
 
