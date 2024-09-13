@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>지도에 사용자 위치를 표시하고, 근처에 내가 남긴 일정을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>지도에 사용자 위치를 표시하고, 근처에 내가 남긴 일정을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.</string>
 	<key>NMFClientId</key>
