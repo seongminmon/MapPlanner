@@ -22,6 +22,8 @@
 		24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38442C94067B00B873E7 /* HorizonCalendar */; };
 		24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38492C9410EB00B873E7 /* Image+.swift */; };
 		24CA384D2C9414D500B873E7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA384C2C9414D500B873E7 /* MainView.swift */; };
+		24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38522C942F9100B873E7 /* ProfileView.swift */; };
+		24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38542C942F9B00B873E7 /* SearchView.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		24CA38412C94027800B873E7 /* HorizonCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonCalendarView.swift; sourceTree = "<group>"; };
 		24CA38492C9410EB00B873E7 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		24CA384C2C9414D500B873E7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		24CA38522C942F9100B873E7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		24CA38542C942F9B00B873E7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				24CA384C2C9414D500B873E7 /* MainView.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
 				24CA38462C9409DD00B873E7 /* Map */,
+				24CA38502C942F7A00B873E7 /* Search */,
+				24CA38512C942F8200B873E7 /* Profile */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +144,22 @@
 				24CA38492C9410EB00B873E7 /* Image+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		24CA38502C942F7A00B873E7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38542C942F9B00B873E7 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		24CA38512C942F8200B873E7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38522C942F9100B873E7 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
@@ -282,7 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24CA384D2C9414D500B873E7 /* MainView.swift in Sources */,
+				24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */,
 				241A588B2C91BBD200232D8B /* ContentView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
 				24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */,

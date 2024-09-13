@@ -18,15 +18,15 @@ struct ContentView: View {
                             .bold()
                     }
                     ToolbarItemGroup(placement: .topBarTrailing) {
-                        Button {
-                            print("search")
+                        NavigationLink {
+                            SearchView()
                         } label: {
                             Image.search
                         }
                         .buttonStyle(PlainButtonStyle())
-                        
-                        Button {
-                            print("profile")
+                        Spacer()
+                        NavigationLink {
+                            ProfileView()
                         } label: {
                             Image.person
                         }
