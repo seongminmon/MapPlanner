@@ -27,18 +27,17 @@ final class Coordinator: NSObject, ObservableObject {
     private let view = NMFNaverMapView(frame: .zero)
     private var locationManager: CLLocationManager?
     
-    typealias Coord = (lat: Double, lon: Double)
-    @Published private var coord: Coord = (0.0, 0.0)
-    @Published private var userLocation: Coord = (0.0, 0.0)
+    typealias Coord = (lat: Double, lng: Double)
+    @Published private var coord = Coord(lat: 0.0, lng: 0.0)
+    @Published private var userLocation = Coord(lat: 0.0, lng: 0.0)
     
     private override init() {
         super.init()
-        
         view.mapView.positionMode = .direction
         view.mapView.isNightModeEnabled = true
         view.mapView.zoomLevel = 15
-        //        view.mapView.minZoomLevel = 10 // 최소 줌 레벨
-        //        view.mapView.maxZoomLevel = 17 // 최대 줌 레벨
+        view.mapView.minZoomLevel = 5
+        view.mapView.maxZoomLevel = 18
         view.showLocationButton = true
         view.showZoomControls = true
         view.showCompass = false
@@ -111,10 +110,10 @@ extension Coordinator: CLLocationManagerDelegate {
             print("위치 정보 접근을 거절했습니다. 설정에 가서 변경하세요.")
         case .authorizedAlways, .authorizedWhenInUse:
             print("위치 정보 권한 O")
-            
-            coord = (Double(locationManager.location?.coordinate.latitude ?? 0.0), Double(locationManager.location?.coordinate.longitude ?? 0.0))
-            userLocation = (Double(locationManager.location?.coordinate.latitude ?? 0.0), Double(locationManager.location?.coordinate.longitude ?? 0.0))
-            
+            let lat = locationManager.location?.coordinate.latitude ?? 0.0
+            let lng = locationManager.location?.coordinate.longitude ?? 0.0
+            coord = (lat, lng)
+            userLocation = (lat, lng)
             fetchUserLocation()
             
         @unknown default:
@@ -125,20 +124,17 @@ extension Coordinator: CLLocationManagerDelegate {
     private func fetchUserLocation() {
         guard let locationManager = locationManager else { return }
         
-        let lat = locationManager.location?.coordinate.latitude
-        let lng = locationManager.location?.coordinate.longitude
+        let lat = locationManager.location?.coordinate.latitude ?? 0.0
+        let lng = locationManager.location?.coordinate.longitude ?? 0.0
         let cameraUpdate = NMFCameraUpdate(
-            scrollTo: NMGLatLng(lat: lat ?? 0.0, lng: lng ?? 0.0),
+            scrollTo: NMGLatLng(lat: lat, lng: lng),
             zoomTo: 15
         )
         cameraUpdate.animation = .easeIn
         cameraUpdate.animationDuration = 1
         
         let locationOverlay = view.mapView.locationOverlay
-        locationOverlay.location = NMGLatLng(
-            lat: lat ?? 0.0,
-            lng: lng ?? 0.0
-        )
+        locationOverlay.location = NMGLatLng(lat: lat, lng: lng)
         locationOverlay.hidden = false
         
         locationOverlay.icon = NMFOverlayImage(name: "location_overlay_icon")

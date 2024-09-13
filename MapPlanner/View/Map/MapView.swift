@@ -14,7 +14,7 @@ struct MapView: View {
     var body: some View {
         VStack {
             NaverMapView()
-                .ignoresSafeArea(.all, edges: .top)
+                .ignoresSafeArea(.all, edges: .bottom)
         }
         .onAppear {
             Coordinator.shared.checkIfLocationServiceIsEnabled()

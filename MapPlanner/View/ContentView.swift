@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MapView()
+        NavigationStack {
+            MainView()
+                .navigationTitle("User's")
+        }
     }
 }
 

@@ -18,6 +18,10 @@
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
 		24CA38402C93FF0B00B873E7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */; };
+		24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38412C94027800B873E7 /* HorizonCalendarView.swift */; };
+		24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38442C94067B00B873E7 /* HorizonCalendar */; };
+		24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38492C9410EB00B873E7 /* Image+.swift */; };
+		24CA384D2C9414D500B873E7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA384C2C9414D500B873E7 /* MainView.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,9 @@
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		24CA38412C94027800B873E7 /* HorizonCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonCalendarView.swift; sourceTree = "<group>"; };
+		24CA38492C9410EB00B873E7 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		24CA384C2C9414D500B873E7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -45,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */,
 				76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,14 +84,13 @@
 			children = (
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
-				241A588A2C91BBD200232D8B /* ContentView.swift */,
-				24CA383D2C93F77000B873E7 /* MapView.swift */,
-				241A58B02C92CC5700232D8B /* NaverMapView.swift */,
+				24CA384B2C94113700B873E7 /* Extension */,
 				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */,
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A58AF2C92C87200232D8B /* Info.plist */,
+				24CA38482C9409F500B873E7 /* View */,
 				241A588E2C91BBD300232D8B /* Preview Content */,
 			);
 			path = MapPlanner;
@@ -95,6 +102,42 @@
 				241A588F2C91BBD300232D8B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		24CA38462C9409DD00B873E7 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				24CA383D2C93F77000B873E7 /* MapView.swift */,
+				241A58B02C92CC5700232D8B /* NaverMapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		24CA38472C9409E200B873E7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38412C94027800B873E7 /* HorizonCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		24CA38482C9409F500B873E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				241A588A2C91BBD200232D8B /* ContentView.swift */,
+				24CA384C2C9414D500B873E7 /* MainView.swift */,
+				24CA38472C9409E200B873E7 /* Calendar */,
+				24CA38462C9409DD00B873E7 /* Map */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24CA384B2C94113700B873E7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38492C9410EB00B873E7 /* Image+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
@@ -132,6 +175,9 @@
 			dependencies = (
 			);
 			name = MapPlanner;
+			packageProductDependencies = (
+				24CA38442C94067B00B873E7 /* HorizonCalendar */,
+			);
 			productName = MapPlanner;
 			productReference = 241A58852C91BBD200232D8B /* MapPlanner.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +207,9 @@
 				ko,
 			);
 			mainGroup = 241A587C2C91BBD200232D8B;
+			packageReferences = (
+				24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+			);
 			productRefGroup = 241A58862C91BBD200232D8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,9 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CA384D2C9414D500B873E7 /* MainView.swift in Sources */,
 				241A588B2C91BBD200232D8B /* ContentView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
+				24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
+				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				241A58892C91BBD200232D8B /* MapPlannerApp.swift in Sources */,
 				241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */,
 			);
@@ -459,6 +511,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24CA38442C94067B00B873E7 /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 241A587D2C91BBD200232D8B /* Project object */;
 }
