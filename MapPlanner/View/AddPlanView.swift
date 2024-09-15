@@ -10,6 +10,9 @@ import PhotosUI
 
 struct AddPlanView: View {
     
+    // TODO: - 사진 ✅ / 제목 / 날짜 / 장소 / 내용 정하기
+    // TODO: - DatePicker 커스텀
+    
     @Environment(\.realm) var realm
     @Environment(\.dismiss) private var dismiss
     
@@ -19,7 +22,6 @@ struct AddPlanView: View {
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var image: Image?
     
-    // TODO: - 사진 ✅ / 제목 / 날짜 / 장소 / 내용 정하기
     @State private var title = ""
     @State private var date: Date = Date()
 //    @State private var contents = ""
