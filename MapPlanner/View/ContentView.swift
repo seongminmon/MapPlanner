@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var path = NavigationPath()
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack {
                 MainView()
                 NavigationLink {
@@ -17,10 +20,10 @@ struct ContentView: View {
                 } label: {
                     // TODO: - plus 키우기
                     Image.plus
-                        .foregroundStyle(Color(.customBackground))
+                        .foregroundStyle(Color(.background))
                         .padding()
                         .frame(width: 60, height: 60)
-                        .background(Color(.primary))
+                        .background(Color(.appPrimary))
                         .clipShape(Circle())
                         .shadow(radius: 5)
                 }
@@ -28,7 +31,7 @@ struct ContentView: View {
                 .padding()
             }
             .toolbar {
-                ToolbarItemGroup(placement: .topBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     Text("User's")
                         .font(.title)
                         .bold()

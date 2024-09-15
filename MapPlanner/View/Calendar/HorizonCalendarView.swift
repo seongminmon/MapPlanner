@@ -29,7 +29,7 @@ struct HorizonCalendarView: UIViewRepresentable {
             .dayItemProvider { day in
                 Text("\(day.day)")
                     .font(.system(size: 18))
-                    .foregroundColor(Color(.secondary))
+                    .foregroundColor(Color(.appSecondary))
                     .calendarItemModel
             }
             .monthHeaderItemProvider { value in
@@ -58,7 +58,7 @@ struct HorizonCalendarView: UIViewRepresentable {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color(.primary))
+                .foregroundStyle(Color(.appPrimary))
                 .calendarItemModel
             }
         

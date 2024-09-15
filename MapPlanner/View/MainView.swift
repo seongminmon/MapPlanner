@@ -30,14 +30,14 @@ struct CustomTabBar: View {
                             Rectangle()
                                 .frame(height: selectedTab == tab ? 2 : 1)
                         }
-                        .foregroundColor(selectedTab == tab ? Color(.primary): Color(.secondary))
+                        .foregroundColor(selectedTab == tab ? Color(.appPrimary): Color(.appSecondary))
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(alignment: .bottom) {
             Rectangle()
-                .fill(Color(.secondary))
+                .fill(Color(.appSecondary))
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
         }
