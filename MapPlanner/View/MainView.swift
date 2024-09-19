@@ -13,6 +13,18 @@ enum TabInfo : String, CaseIterable {
     case timeline = "타임라인"
 }
 
+struct MainView: View {
+    
+    @State private var selectedTab: TabInfo = .calendar
+    
+    var body: some View {
+        VStack {
+            CustomTabBar(selectedTab: $selectedTab)
+            CustomTabView(selectedTab: $selectedTab)
+        }
+    }
+}
+
 struct CustomTabBar: View {
     
     @Binding var selectedTab: TabInfo
@@ -61,18 +73,6 @@ struct CustomTabView: View {
                 .tag(TabInfo.timeline)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-    }
-}
-
-struct MainView: View {
-    
-    @State private var selectedTab: TabInfo = .calendar
-    
-    var body: some View {
-        VStack {
-            CustomTabBar(selectedTab: $selectedTab)
-            CustomTabView(selectedTab: $selectedTab)
-        }
     }
 }
 

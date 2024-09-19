@@ -17,4 +17,5 @@ extension Image {
     static let back = Image(systemName: "chevron.backward")
     static let location = Image(systemName: "location.fill")
     static let list = Image(systemName: "list.bullet")
+    static let refresh = Image(systemName: "arrow.clockwise")
 }

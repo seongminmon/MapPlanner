@@ -8,13 +8,10 @@
 import Foundation
 
 extension Date {
-    static let calendarDayDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy dd"
-        return formatter
-    }()
+    static let dateFormatter = DateFormatter()
     
-    var formattedCalendarDayDate: String {
-        return Date.calendarDayDateFormatter.string(from: self)
+    func toString(_ dateFormat: String) -> String {
+        Date.dateFormatter.dateFormat = dateFormat
+        return Date.dateFormatter.string(from: self)
     }
 }
