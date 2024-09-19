@@ -4,16 +4,10 @@
     "" : {
 
     },
-    "%lld" : {
-
-    },
-    "Camera" : {
+    "AddLocationView" : {
 
     },
     "LocationSearchView" : {
-
-    },
-    "Mimicking showing camera" : {
 
     },
     "ProfileView" : {
@@ -26,6 +20,9 @@
 
     },
     "날짜" : {
+
+    },
+    "내용" : {
 
     },
     "앨범" : {

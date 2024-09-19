@@ -15,9 +15,9 @@ final class Plan: Object, ObjectKeyIdentifiable {
     @Persisted var lat: Double?
     @Persisted var lng: Double?
     @Persisted var contents: String?
-    @Persisted var photo: String?
+    @Persisted var photo: Bool
     
-    convenience init(title: String, date: Date, lat: Double? = nil, lng: Double? = nil, contents: String? = nil, photo: String? = nil) {
+    convenience init(title: String, date: Date, lat: Double? = nil, lng: Double? = nil, contents: String? = nil, photo: Bool) {
         self.init()
         self.title = title
         self.date = date
@@ -27,3 +27,22 @@ final class Plan: Object, ObjectKeyIdentifiable {
         self.photo = photo
     }
 }
+
+//final class PlanManager {
+//    static let shared = PlanManager()
+//    private init() {}
+//    
+//    @ObservedResults(Plan.self) var plans
+//    
+//    func add(_ plan: Plan) {
+//        $plans.append(plan)
+//    }
+//    
+//    func update() {
+//        //
+//    }
+//    
+//    func remove(_ plan: Plan) {
+//        $plans.remove(plan)
+//    }
+//}

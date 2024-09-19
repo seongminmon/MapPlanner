@@ -14,12 +14,14 @@
 		241A58972C91BC3F00232D8B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 241A58962C91BC3F00232D8B /* .gitignore */; };
 		241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A589A2C91BE5400232D8B /* APIInfo.swift */; };
 		241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A58B02C92CC5700232D8B /* NaverMapView.swift */; };
+		2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */; };
+		2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */; };
+		2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78F2C9C07BF00A4E607 /* CalenderView.swift */; };
+		2421E7922C9C080F00A4E607 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E7912C9C080F00A4E607 /* Date+.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
 		24CA38402C93FF0B00B873E7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */; };
-		24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38412C94027800B873E7 /* HorizonCalendarView.swift */; };
-		24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38442C94067B00B873E7 /* HorizonCalendar */; };
 		24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38492C9410EB00B873E7 /* Image+.swift */; };
 		24CA384D2C9414D500B873E7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA384C2C9414D500B873E7 /* MainView.swift */; };
 		24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38522C942F9100B873E7 /* ProfileView.swift */; };
@@ -56,11 +58,14 @@
 		241A589A2C91BE5400232D8B /* APIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInfo.swift; sourceTree = "<group>"; };
 		241A58AF2C92C87200232D8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		241A58B02C92CC5700232D8B /* NaverMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapView.swift; sourceTree = "<group>"; };
+		2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
+		2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		2421E78F2C9C07BF00A4E607 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		2421E7912C9C080F00A4E607 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
-		24CA38412C94027800B873E7 /* HorizonCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonCalendarView.swift; sourceTree = "<group>"; };
 		24CA38492C9410EB00B873E7 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		24CA384C2C9414D500B873E7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		24CA38522C942F9100B873E7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -79,7 +84,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24CA385A2C944E7100B873E7 /* RealmSwift in Frameworks */,
-				24CA38452C94067B00B873E7 /* HorizonCalendar in Frameworks */,
 				76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,13 +115,14 @@
 			children = (
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
-				24CA385F2C9459DE00B873E7 /* Model */,
-				24CA384B2C94113700B873E7 /* Extension */,
 				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */,
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A58AF2C92C87200232D8B /* Info.plist */,
+				24CA385F2C9459DE00B873E7 /* Model */,
+				24CA384B2C94113700B873E7 /* Extension */,
+				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
 				24CA38482C9409F500B873E7 /* View */,
 				241A588E2C91BBD300232D8B /* Preview Content */,
 			);
@@ -144,7 +149,7 @@
 		24CA38472C9409E200B873E7 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				24CA38412C94027800B873E7 /* HorizonCalendarView.swift */,
+				2421E78F2C9C07BF00A4E607 /* CalenderView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				241A588A2C91BBD200232D8B /* ContentView.swift */,
 				24CA384C2C9414D500B873E7 /* MainView.swift */,
 				24CA38562C94359200B873E7 /* AddPlanView.swift */,
+				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
 				24CA38622C96ECED00B873E7 /* LocationSearchView.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
 				24CA38462C9409DD00B873E7 /* Map */,
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				24CA38492C9410EB00B873E7 /* Image+.swift */,
+				2421E7912C9C080F00A4E607 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -233,7 +240,6 @@
 			);
 			name = MapPlanner;
 			packageProductDependencies = (
-				24CA38442C94067B00B873E7 /* HorizonCalendar */,
 				24CA38592C944E7100B873E7 /* RealmSwift */,
 			);
 			productName = MapPlanner;
@@ -266,7 +272,6 @@
 			);
 			mainGroup = 241A587C2C91BBD200232D8B;
 			packageReferences = (
-				24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 				24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 241A58862C91BBD200232D8B /* Products */;
@@ -347,11 +352,14 @@
 				24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */,
 				241A588B2C91BBD200232D8B /* ContentView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
-				24CA38422C94027900B873E7 /* HorizonCalendarView.swift in Sources */,
+				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,
 				24CA38632C96ECED00B873E7 /* LocationSearchView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
 				24CA385C2C944EA600B873E7 /* Plan.swift in Sources */,
+				2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */,
+				2421E7922C9C080F00A4E607 /* Date+.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
+				2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */,
 				241A58892C91BBD200232D8B /* MapPlannerApp.swift in Sources */,
 				241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */,
 			);
@@ -579,14 +587,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -598,11 +598,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		24CA38442C94067B00B873E7 /* HorizonCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24CA38432C94067B00B873E7 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
-			productName = HorizonCalendar;
-		};
 		24CA38592C944E7100B873E7 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24CA38582C944E7100B873E7 /* XCRemoteSwiftPackageReference "realm-swift" */;

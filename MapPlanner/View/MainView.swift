@@ -51,7 +51,7 @@ struct CustomTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            HorizonCalendarView()
+            CalenderView()
                 .tag(TabInfo.calendar)
             
             MapView()

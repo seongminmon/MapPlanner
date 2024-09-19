@@ -16,4 +16,5 @@ extension Image {
     static let camera = Image(systemName: "camera.fill")
     static let back = Image(systemName: "chevron.backward")
     static let location = Image(systemName: "location.fill")
+    static let list = Image(systemName: "list.bullet")
 }

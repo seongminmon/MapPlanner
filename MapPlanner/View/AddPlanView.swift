@@ -7,31 +7,32 @@
 
 import SwiftUI
 import PhotosUI
+import RealmSwift
 
 struct AddPlanView: View {
     
-    // TODO: - 사진 ✅ / 제목 / 날짜 / 장소 / 내용 정하기
+    // TODO: - 사진 ✅ / 제목 ✅ / 날짜 ✅ / 장소 / 내용 ✅
     // TODO: - DatePicker 커스텀
     
-    @Environment(\.realm) var realm
+    @ObservedResults(Plan.self) var plans
     @Environment(\.dismiss) private var dismiss
     
     @State private var showActionSheet = false
     @State private var showPhotosPicker = false
-    @State private var showCamera = false
+    
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var image: Image?
+    @State private var uiImage: UIImage?
     
     @State private var title = ""
-    @State private var date: Date = Date()
-//    @State private var contents = ""
+    @State private var date = Date()
+    @State private var lat: Double?
+    @State private var lng: Double?
+    @State private var contents = ""
     
-    var plan: Plan? {
-        return Plan(title: title, date: date)
-    }
-    
+    // 유효성 검사 제목 / 날짜 필수
     var disabled: Bool {
-        return plan == nil
+        return title.isEmpty
     }
     
     var body: some View {
@@ -49,13 +50,13 @@ struct AddPlanView: View {
             Text("날짜")
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-            DatePicker("날짜", selection: $date)
+            DatePicker("", selection: $date)
             
             Text("장소")
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
             NavigationLink {
-                LocationSearchView()
+                AddLocationView()
             } label: {
                 HStack {
                     Image.location
@@ -68,6 +69,9 @@ struct AddPlanView: View {
             .foregroundStyle(Color(.background))
             .background(Color(.button))
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
+            
+            TextField("내용", text: $contents)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
         }
         .navigationTitle("일정 추가")
         .navigationBarBackButtonHidden(true)
@@ -82,8 +86,15 @@ struct AddPlanView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    // TODO: - 필수값 채워졌는지 유효성 체크
-                    // TODO: - Realm에 저장 + 첫 화면으로 돌아가기
+                    // TODO: - Realm에 저장 + image파일 저장
+                    let plan = Plan(title: title, date: date, lat: lat, lng: lng, contents: contents, photo: false)
+                    if let uiImage {
+                        ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
+                        plan.photo = true
+                    }
+                    $plans.append(plan)
+                    
+                    dismiss()
                 } label: {
                     Text("저장")
                 }
@@ -95,17 +106,18 @@ struct AddPlanView: View {
             Button("앨범") {
                 showPhotosPicker.toggle()
             }
-//            Button("카메라") {
-//                showCamera.toggle()
-//            }
             Button("취소", role: .cancel) {}
         }
         .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhoto)
-        .alert("Camera", isPresented: $showCamera) {
-            Text("Mimicking showing camera")
-        }
         .task(id: selectedPhoto) {
-            image = try? await selectedPhoto?.loadTransferable(type: Image.self)
+            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
+               let uiImage = UIImage(data: data) {
+                self.uiImage = uiImage
+                image = Image(uiImage: uiImage)
+            }
+        }
+        .onAppear {
+            debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         }
         .padding()
     }
