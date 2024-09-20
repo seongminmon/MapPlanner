@@ -9,8 +9,8 @@ import SwiftUI
 
 enum TabInfo : String, CaseIterable {
     case calendar = "캘린더"
-    case map = "지도"
     case timeline = "타임라인"
+    case map = "지도"
 }
 
 struct MainView: View {
@@ -63,14 +63,14 @@ struct CustomTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            CalenderView()
+            CalendarView()
                 .tag(TabInfo.calendar)
-            
-            MapView()
-                .tag(TabInfo.map)
             
             Text("타임라인 View")
                 .tag(TabInfo.timeline)
+            
+            MapView()
+                .tag(TabInfo.map)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }

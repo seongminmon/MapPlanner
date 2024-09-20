@@ -14,4 +14,8 @@ extension Date {
         Date.dateFormatter.dateFormat = dateFormat
         return Date.dateFormatter.string(from: self)
     }
+    
+    func isEqual(_ target: Date) -> Bool {
+        return Calendar.current.isDate(self, inSameDayAs: target)
+    }
 }
