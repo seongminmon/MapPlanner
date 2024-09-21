@@ -12,7 +12,7 @@ import RealmSwift
 struct AddPlanView: View {
     
     // TODO: - 사진 ✅ / 제목 ✅ / 날짜 ✅ / 장소 / 내용 ✅
-    // TODO: - DatePicker 커스텀
+    // TODO: - 키보드 핸들링 - 비활성화 시키기 / 활성화 시 높이 조절
     
     @ObservedResults(Plan.self) var plans
     @Environment(\.dismiss) private var dismiss
@@ -42,69 +42,30 @@ struct AddPlanView: View {
     // 내용
     @State private var contents = ""
     
-    // 유효성 검사 제목 / 날짜 필수
+    // 유효성 검사: 제목 + 날짜 필수
     var disabled: Bool {
         return title.isEmpty
     }
     
     var body: some View {
-        VStack(spacing: 30) {
-            // 사진
-            Button {
-                showImageActionSheet.toggle()
-            } label: {
+        ScrollView {
+            VStack(spacing: 30) {
+                // 사진
                 imageButton()
-            }
-            
-            // 제목
-            titleTextField()
-            
-            // 날짜
-            Button {
-                datePickerDate = selectedDate
-                showDatePicker.toggle()
-            } label: {
-                Text(selectedDate.toString("yyyy.MM.dd (E)"))
-                    .font(.title3)
-                    .bold()
+                // 제목
+                titleTextField()
+                // 날짜
+                showDatePickerButton()
+                // 시간
+                showTimePickerButton()
+                // 장소
+                addLocationButton()
+                // contents
+                contentsTextField()
                 Spacer()
-                Image.rightChevron
-                    .bold()
             }
-            .foregroundStyle(Color(.appPrimary))
-            
-            // 시간
-            Button {
-                showTimePicker.toggle()
-            } label: {
-                if isTimeIncluded {
-                    Text(selectedDate.toString("a hh:mm"))
-                        .font(.title3)
-                        .bold()
-                    Button {
-                        isTimeIncluded = false
-                    } label: {
-                        Image.xmark
-                    }
-                } else {
-                    Text("종일")
-                        .font(.title3)
-                        .bold()
-                }
-                Spacer()
-                Image.rightChevron
-                    .bold()
-            }
-            .foregroundStyle(Color(.appPrimary))
-            
-            // 장소
-            addLocationButton()
-            
-            // contents
-            // TODO: - 여러 줄 입력
-            TextField("내용", text: $contents)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
         }
+        .scrollIndicators(.never)
         // 네비게이션
         .navigationTitle("일정 추가")
         .navigationBarBackButtonHidden(true)
@@ -119,13 +80,8 @@ struct AddPlanView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    // TODO: - Realm에 저장 + image파일 저장
-                    let plan = Plan(title: title, date: selectedDate, lat: lat, lng: lng, contents: contents, photo: false)
-                    if let uiImage {
-                        ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
-                        plan.photo = true
-                    }
-                    $plans.append(plan)
+                    // Realm + image파일 저장
+                    savePlan()
                     dismiss()
                 } label: {
                     Text("저장")
@@ -159,27 +115,34 @@ struct AddPlanView: View {
             timePickerSheetView()
         }
         .padding()
-//        .onAppear {
-//            debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
-//        }
+        // 키보드 내리기
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
     
-    @ViewBuilder
+    // MARK: - View Components
+    
     func imageButton() -> some View {
-        if let image {
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .foregroundStyle(Color(.appPrimary))
-                .background(Color(.appSecondary))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        } else {
-            Image.camera
-                .frame(width: 100, height: 100)
-                .foregroundStyle(Color(.appPrimary))
-                .background(Color(.appSecondary))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+        Button {
+            showImageActionSheet.toggle()
+        } label: {
+            if let image {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .foregroundStyle(Color(.appPrimary))
+                    .background(Color(.appSecondary))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                Image.camera
+                    .frame(width: 100, height: 100)
+                    .foregroundStyle(Color(.appPrimary))
+                    .background(Color(.appSecondary))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
         }
     }
     
@@ -191,6 +154,21 @@ struct AddPlanView: View {
             TextField("일정 제목", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
+    }
+    
+    func showDatePickerButton() -> some View {
+        Button {
+            datePickerDate = selectedDate
+            showDatePicker.toggle()
+        } label: {
+            Text(selectedDate.toString("yyyy.MM.dd (E)"))
+                .font(.title3)
+                .bold()
+            Spacer()
+            Image.rightChevron
+                .bold()
+        }
+        .foregroundStyle(Color(.appPrimary))
     }
     
     func datePickerSheetView() -> some View {
@@ -223,6 +201,31 @@ struct AddPlanView: View {
         }
         .background(Color.clear)
         .presentationDetents([.fraction(0.4)])
+    }
+    
+    func showTimePickerButton() -> some View {
+        Button {
+            showTimePicker.toggle()
+        } label: {
+            if isTimeIncluded {
+                Text(selectedDate.toString("a hh:mm"))
+                    .font(.title3)
+                    .bold()
+                Button {
+                    isTimeIncluded = false
+                } label: {
+                    Image.xmark
+                }
+            } else {
+                Text("종일")
+                    .font(.title3)
+                    .bold()
+            }
+            Spacer()
+            Image.rightChevron
+                .bold()
+        }
+        .foregroundStyle(Color(.appPrimary))
     }
     
     func timePickerSheetView() -> some View {
@@ -281,6 +284,26 @@ struct AddPlanView: View {
             .background(Color(.button))
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
         }
+    }
+    
+    func contentsTextField() -> some View {
+        VStack {
+            Text("내용")
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+            TextField("내용을 입력해주세요", text: $contents, axis: .vertical)
+                .textFieldStyle(.roundedBorder)
+        }
+    }
+    
+    // MARK: - Action
+    
+    private func savePlan() {
+        let plan = Plan(title: title, date: selectedDate, lat: lat, lng: lng, contents: contents, photo: uiImage != nil)
+        if let uiImage {
+            ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
+        }
+        $plans.append(plan)
     }
 }
 
