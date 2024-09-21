@@ -10,10 +10,6 @@ import RealmSwift
 
 struct CalendarView: View {
     
-    // 시작 ~ 끝 날짜 (2020-01-01 ~ 2050-12-31)
-    static let startDate = Calendar.current.date(from: DateComponents(year: 2020, month: 01, day: 01))!
-    static let endDate = Calendar.current.date(from: DateComponents(year: 2050, month: 12, day: 31))!
-    
     // 달력 표시되고 있는 달 (연/월까지 유효)
     @State private var currentDate = Date().getFirstDate()!
     // 유저가 선택한 날짜 (연/월/일까지 유효)
@@ -38,6 +34,7 @@ struct CalendarView: View {
         .sheet(isPresented: $showDatePicker) {
             datePickerSheetView()
         }
+        .padding(.horizontal)
     }
     
     func headerView() -> some View {
@@ -81,7 +78,6 @@ struct CalendarView: View {
                     }
                 }
             }
-            .padding(.horizontal)
             
             // 요일 표시
             weekView()
@@ -113,9 +109,8 @@ struct CalendarView: View {
             Spacer()
             HStack {
                 // TODO: - Picker 디자인 변경
-                
-                // 연도 선택기
                 // TODO: - 자동으로 연도에 formatting이 들어가는 문제
+                // 연도 선택기
                 Picker("연도", selection: $selectedYear) {
                     ForEach(2020...2050, id: \.self) { year in
                         Text("\(year)년")
@@ -133,7 +128,6 @@ struct CalendarView: View {
                 }
                 .pickerStyle(.wheel)
             }
-            .padding()
             
             // 이동 버튼
             Button {
@@ -148,8 +142,8 @@ struct CalendarView: View {
                     .foregroundColor(Color(.background))
                     .background(Color(.button))
                     .clipShape(.capsule)
+                    .padding()
             }
-            .padding(.horizontal)
         }
         .background(Color.clear)
         .presentationDetents([.fraction(0.4)])
@@ -165,8 +159,6 @@ struct CalendarView: View {
         
         // 이번달 날짜수
         let numberOfDaysInCurrentMonth = currentDate.numberOfDaysInMonth()
-        // 저번달 날짜수
-//        let numberOfDaysInPrevMonth = numberOfDaysInMonth(in: firstDayOfPrevMonth())
         // 표시할 열의 수
         let numberOfRows = Int(ceil(Double(firstWeekday + numberOfDaysInCurrentMonth) / 7.0))
         // 표시할 다음달 날짜 갯수
@@ -174,15 +166,18 @@ struct CalendarView: View {
         
         return LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: 7)) {
             ForEach(-firstWeekday..<numberOfDaysInCurrentMonth + numberOfDaysInNextMonth, id: \.self) { index in
-                let _ = print(index, terminator: " ")
-                Group {
-                    let date = getDate(for: index)
-                    let day = calendar.component(.day, from: date)
-                    let clicked = clickedDate == date
-                    let isToday = date.compareYearMonthDay(Date())
-                    let isCurrentMonth = date.compareYearMonth(currentDate)
-                    DayCell(day: day, clicked: clicked, isToday: isToday, isCurrentMonth: isCurrentMonth)
-                }
+                let date = getDate(for: index)
+                let day = calendar.component(.day, from: date)
+                let clicked = clickedDate == date
+                let isToday = date.compareYearMonthDay(Date())
+                let isCurrentMonth = date.compareYearMonth(currentDate)
+                
+                DayCell(
+                    day: day,
+                    clicked: clicked,
+                    isToday: isToday,
+                    isCurrentMonth: isCurrentMonth
+                )
                 .onTapGesture {
                     clickedDate = getDate(for: index)
                 }
@@ -196,12 +191,6 @@ struct CalendarView: View {
         return calendar.date(byAdding: .day, value: index, to: startDate)!
     }
     
-    /// 저번 달 첫번째 날짜
-    func firstDayOfPrevMonth() -> Date {
-        let startDate = currentDate.getFirstDate()!
-        return calendar.date(byAdding: .month, value: -1, to: startDate)!
-    }
-    
     /// 달력 이동
     func changeMonth(by value: Int) {
         currentDate = currentDate.byAddingMonth(value)!
@@ -209,12 +198,12 @@ struct CalendarView: View {
     
     /// 이전 월로 이동 가능 여부
     func canMoveToPreviousMonth() -> Bool {
-        return currentDate.byAddingMonth(-1)! >= Self.startDate
+        return currentDate.byAddingMonth(-1)! >= Date.startDate
     }
     
     /// 다음 월로 이동 가능 여부
     func canMoveToNextMonth() -> Bool {
-        return currentDate.byAddingMonth(1)! <= Self.endDate
+        return currentDate.byAddingMonth(1)! <= Date.endDate
     }
     
     /// 데이트 피커 초기값 세팅

@@ -9,6 +9,8 @@ import Foundation
 
 extension Date {
     static let dateFormatter = DateFormatter()
+    static let startDate = Calendar.current.date(from: DateComponents(year: 2020, month: 01, day: 01))!
+    static let endDate = Calendar.current.date(from: DateComponents(year: 2050, month: 12, day: 31))!
     
     func toString(_ dateFormat: String) -> String {
         Self.dateFormatter.dateFormat = dateFormat

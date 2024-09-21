@@ -14,8 +14,11 @@ extension Image {
     static let person = Image(systemName: "person")
     static let plus = Image(systemName: "plus")
     static let camera = Image(systemName: "camera.fill")
-    static let back = Image(systemName: "chevron.backward")
+    static let leftChevron = Image(systemName: "chevron.left")
+    static let rightChevron = Image(systemName: "chevron.right")
     static let location = Image(systemName: "location.fill")
     static let list = Image(systemName: "list.bullet")
     static let refresh = Image(systemName: "arrow.clockwise")
+    static let checkmark = Image(systemName: "checkmark")
+    static let xmark = Image(systemName: "xmark.circle")
 }
