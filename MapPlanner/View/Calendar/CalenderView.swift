@@ -13,7 +13,11 @@ struct CalendarView: View {
     // 달력 표시되고 있는 달 (연/월까지 유효)
     @State private var currentDate = Date().getFirstDate()!
     // 유저가 선택한 날짜 (연/월/일까지 유효)
-    @State private var clickedDate: Date?
+    @State private var clickedDate: Date? {
+        didSet {
+            print(clickedDate)
+        }
+    }
     
     // 데이트 피커 관련
     @State private var showDatePicker = false
@@ -172,11 +176,16 @@ struct CalendarView: View {
                 let isToday = date.compareYearMonthDay(Date())
                 let isCurrentMonth = date.compareYearMonth(currentDate)
                 
+                // TODO: - plan 적용하기
+                let temp = Array(plans.filter { plan in
+                    plan.date.compareYearMonthDay(date)
+                })
                 DayCell(
                     day: day,
                     clicked: clicked,
                     isToday: isToday,
-                    isCurrentMonth: isCurrentMonth
+                    isCurrentMonth: isCurrentMonth,
+                    plans: temp
                 )
                 .onTapGesture {
                     clickedDate = getDate(for: index)
@@ -235,6 +244,9 @@ struct DayCell: View {
     var clicked: Bool
     var isToday: Bool
     var isCurrentMonth: Bool
+    var plans = [Plan]()
+    
+    @State private var showPlansSheetView = false
     
     private var textColor: Color {
         if clicked {
@@ -257,10 +269,58 @@ struct DayCell: View {
     }
     
     var body: some View {
-        Circle()
-            .fill(backgroundColor)
-            .overlay(Text(String(day)))
-            .foregroundColor(textColor)
+        if plans.isEmpty {
+            Circle()
+                .fill(backgroundColor)
+                .overlay(Text(String(day)))
+                .foregroundColor(textColor)
+        } else {
+            Button {
+                showPlansSheetView.toggle()
+            } label: {
+                Text("일정 \(plans.count)")
+            }
+            .sheet(isPresented: $showPlansSheetView) {
+                plansSheetView()
+            }
+        }
+    }
+    
+    func plansSheetView() -> some View {
+        ScrollView {
+            LazyVStack(spacing: 10) {
+                ForEach(plans, id: \.id) { item in
+                    planCell(item)
+                }
+            }
+            .padding()
+        }
+        .background(Color.clear)
+        .presentationDetents([.fraction(0.4)])
+    }
+    
+    func planCell(_ item: Plan) -> some View {
+        HStack(alignment: .top) {
+            if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 100, height: 100)
+            }
+            VStack(alignment: .leading) {
+                Text(item.title)
+                    .font(.title3)
+                    .bold()
+                    .foregroundStyle(Color(.appPrimary))
+                Text(item.contents ?? "")
+                    .foregroundStyle(Color(.appSecondary))
+                    .lineLimit(2)
+            }
+            Spacer()
+        }
     }
 }
 
