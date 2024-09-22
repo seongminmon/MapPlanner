@@ -21,8 +21,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("User's")
-                        .font(.title)
-                        .bold()
+                        .font(.boldTitle)
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     NavigationLink {
@@ -47,7 +46,6 @@ struct ContentView: View {
         NavigationLink {
             AddPlanView(selectedDate: clickedDate ?? Date())
         } label: {
-            // TODO: - plus 키우기
             Image.plus
                 .foregroundStyle(Color(.background))
                 .padding()

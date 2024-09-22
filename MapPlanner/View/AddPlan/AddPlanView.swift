@@ -162,8 +162,7 @@ struct AddPlanView: View {
             showDatePicker.toggle()
         } label: {
             Text(selectedDate.toString("yyyy.MM.dd (E)"))
-                .font(.title3)
-                .bold()
+                .font(.bold20)
             Spacer()
             Image.rightChevron
                 .bold()
@@ -189,8 +188,7 @@ struct AddPlanView: View {
                 showDatePicker = false
             } label: {
                 Text("저장")
-                    .font(.system(size: 16))
-                    .bold()
+                    .font(.bold15)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .foregroundColor(Color(.background))
@@ -209,8 +207,7 @@ struct AddPlanView: View {
         } label: {
             if isTimeIncluded {
                 Text(selectedDate.toString("a hh:mm"))
-                    .font(.title3)
-                    .bold()
+                    .font(.bold20)
                 Button {
                     isTimeIncluded = false
                 } label: {
@@ -218,8 +215,7 @@ struct AddPlanView: View {
                 }
             } else {
                 Text("시간 +")
-                    .font(.title3)
-                    .bold()
+                    .font(.bold20)
             }
             Spacer()
             Image.rightChevron
@@ -250,8 +246,7 @@ struct AddPlanView: View {
                 showTimePicker = false
             } label: {
                 Text("저장")
-                    .font(.system(size: 16))
-                    .bold()
+                    .font(.bold15)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .foregroundColor(Color(.background))

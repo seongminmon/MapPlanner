@@ -53,8 +53,7 @@ struct CalendarView: View {
                     showDatePicker.toggle()
                 } label: {
                     Text(currentDate.toString("yyyy.MM"))
-                        .font(.title2)
-                        .bold()
+                        .font(.bold20)
                 }
                 .foregroundStyle(Color(.appPrimary))
                 
@@ -135,8 +134,7 @@ struct CalendarView: View {
                 showDatePicker = false
             } label: {
                 Text("이동")
-                    .font(.system(size: 16))
-                    .bold()
+                    .font(.bold15)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .foregroundColor(Color(.background))
@@ -187,9 +185,9 @@ struct CalendarView: View {
                         print("제스처 감지됨!")
                     }
                 )
-//                .onTapGesture {
-//                    clickedDate = getDate(for: index)
-//                }
+                //                .onTapGesture {
+                //                    clickedDate = getDate(for: index)
+                //                }
             }
         }
     }
@@ -270,13 +268,13 @@ struct DayCell: View {
     
     var body: some View {
         if plans.isEmpty {
-            // 일정 없을 때는 날짜만 표시
+            // 일정 없을 때
             Circle()
                 .fill(backgroundColor)
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
         } else {
-            // 일정 있을 때는
+            // 일정 있을 때
             Button {
                 showPlansSheetView.toggle()
             } label: {
@@ -288,7 +286,7 @@ struct DayCell: View {
                                 .fill(Color(.appPrimary))
                                 .overlay {
                                     Text(displayCount)
-                                        .font(.system(size: 10))
+                                        .font(.regular12)
                                         .foregroundStyle(Color(.background))
                                 }
                                 .frame(width: 18, height: 18)
@@ -349,8 +347,7 @@ struct DayCell: View {
             }
             VStack(alignment: .leading) {
                 Text(item.title)
-                    .font(.title3)
-                    .bold()
+                    .font(.bold20)
                     .foregroundStyle(Color(.appPrimary))
                 Text(item.contents ?? "")
                     .foregroundStyle(Color(.appSecondary))

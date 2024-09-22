@@ -32,6 +32,7 @@
 		24CA385D2C94587300B873E7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		24CA38632C96ECED00B873E7 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38622C96ECED00B873E7 /* LocationSearchView.swift */; };
 		24DD06C02C9EE35E00883F33 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06BF2C9EE35E00883F33 /* View+.swift */; };
+		24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06C32C9FE39B00883F33 /* Font+.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		24CA385B2C944EA600B873E7 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		24CA38622C96ECED00B873E7 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		24DD06BF2C9EE35E00883F33 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		24DD06C32C9FE39B00883F33 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A58AF2C92C87200232D8B /* Info.plist */,
 				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
+				24DD06C22C9FE38B00883F33 /* Design */,
 				24CA385F2C9459DE00B873E7 /* Model */,
 				24CA384B2C94113700B873E7 /* Extension */,
 				24CA38482C9409F500B873E7 /* View */,
@@ -173,7 +176,6 @@
 		24CA384B2C94113700B873E7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				24CA38492C9410EB00B873E7 /* Image+.swift */,
 				2421E7912C9C080F00A4E607 /* Date+.swift */,
 				24DD06BF2C9EE35E00883F33 /* View+.swift */,
 			);
@@ -212,6 +214,15 @@
 				24CA38622C96ECED00B873E7 /* LocationSearchView.swift */,
 			);
 			path = AddPlan;
+			sourceTree = "<group>";
+		};
+		24DD06C22C9FE38B00883F33 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38492C9410EB00B873E7 /* Image+.swift */,
+				24DD06C32C9FE39B00883F33 /* Font+.swift */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
@@ -369,6 +380,7 @@
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
 				24CA385C2C944EA600B873E7 /* Plan.swift in Sources */,
 				2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */,
+				24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */,
 				2421E7922C9C080F00A4E607 /* Date+.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */,
