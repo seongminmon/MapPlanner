@@ -182,12 +182,8 @@ struct CalendarView: View {
                 .simultaneousGesture(
                     TapGesture().onEnded {
                         clickedDate = getDate(for: index)
-                        print("제스처 감지됨!")
                     }
                 )
-                //                .onTapGesture {
-                //                    clickedDate = getDate(for: index)
-                //                }
             }
         }
     }
@@ -225,12 +221,6 @@ struct CalendarView: View {
         currentDate = calendar.date(from: components) ?? Date()
     }
 }
-
-// 날짜 셀이 가져야하는 상태
-// isCurrentMonth
-// isToday
-// isClicked
-// planCount
 
 // 1. Date 기준
 // 이번달 / 저번달 / 다음달
@@ -295,7 +285,7 @@ struct DayCell: View {
                     }
             }
             .sheet(isPresented: $showPlansSheetView) {
-                plansSheetView()
+                plansSheetView(plans: plans)
             }
         }
     }
@@ -320,40 +310,69 @@ struct DayCell: View {
             }
         }
     }
+}
+
+struct plansSheetView: View {
     
-    func plansSheetView() -> some View {
-        ScrollView {
-            LazyVStack(spacing: 10) {
-                ForEach(plans, id: \.id) { item in
-                    planCell(item)
+    var plans = [Plan]()
+    
+    var body: some View {
+        VStack {
+            let date = plans.first?.date ?? Date()
+            Text(date.toString("yyyy.MM.dd"))
+                .font(.bold18)
+                .padding(.top, 10)
+            ScrollView {
+                LazyVStack(spacing: 10) {
+                    ForEach(plans, id: \.id) { item in
+                        planCell(item: item)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
         .background(Color.clear)
         .presentationDetents([.fraction(0.4)])
     }
+}
+
+struct planCell: View {
     
-    func planCell(_ item: Plan) -> some View {
-        HStack(alignment: .top) {
-            if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            } else {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 100, height: 100)
+    var item: Plan
+    @State private var showPlanDetailView = false
+    
+    var body: some View {
+        Button {
+            print("플랜셀 탭 \(item)")
+            showPlanDetailView.toggle()
+        } label: {
+            HStack(alignment: .top) {
+                if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } else {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color(.appSecondary))
+                        .frame(width: 100, height: 100)
+                }
+                VStack(alignment: .leading) {
+                    Text(item.title)
+                        .font(.bold15)
+                        .foregroundStyle(Color(.appPrimary))
+                    Text(item.contents ?? "")
+                        .font(.regular13)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(Color(.appSecondary))
+                        .lineLimit(2)
+                }
+                Spacer()
             }
-            VStack(alignment: .leading) {
-                Text(item.title)
-                    .font(.bold20)
-                    .foregroundStyle(Color(.appPrimary))
-                Text(item.contents ?? "")
-                    .foregroundStyle(Color(.appSecondary))
-                    .lineLimit(2)
-            }
-            Spacer()
+        }
+        .fullScreenCover(isPresented: $showPlanDetailView) {
+            PlanDetailView(plan: item)
+                .transition(.move(edge: .trailing))
         }
     }
 }

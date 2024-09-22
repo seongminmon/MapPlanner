@@ -10,6 +10,7 @@ import SwiftUI
 extension Font {
     static let boldTitle = Font.title.bold()
     static let bold20 = Font.system(size: 20, weight: .bold)
+    static let bold18 = Font.system(size: 18, weight: .bold)
     
     static let bold15 = Font.system(size: 15, weight: .bold)
     static let bold14 = Font.system(size: 14, weight: .bold)

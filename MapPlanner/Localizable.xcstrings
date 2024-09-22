@@ -4,6 +4,16 @@
     "" : {
 
     },
+    "%@\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@\n%2$@"
+          }
+        }
+      }
+    },
     "%lld년" : {
 
     },
@@ -11,6 +21,9 @@
 
     },
     "AddLocationView" : {
+
+    },
+    "EditPlanView" : {
 
     },
     "LocationSearchView" : {
@@ -29,6 +42,9 @@
 
     },
     "내용을 입력해주세요" : {
+
+    },
+    "삭제" : {
 
     },
     "시간 +" : {
@@ -68,6 +84,9 @@
 
     },
     "타임라인 View" : {
+
+    },
+    "편집" : {
 
     }
   },

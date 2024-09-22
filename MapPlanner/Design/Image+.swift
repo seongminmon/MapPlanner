@@ -22,4 +22,5 @@ extension Image {
     static let checkmark = Image(systemName: "checkmark")
     static let xmark = Image(systemName: "xmark.circle")
     static let calendar = Image(systemName: "calendar")
+    static let ellipsis = Image(systemName: "ellipsis")
 }
