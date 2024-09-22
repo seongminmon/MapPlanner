@@ -13,11 +13,7 @@ struct CalendarView: View {
     // 달력 표시되고 있는 달 (연/월까지 유효)
     @State private var currentDate = Date().getFirstDate()!
     // 유저가 선택한 날짜 (연/월/일까지 유효)
-    @State private var clickedDate: Date? {
-        didSet {
-            print(clickedDate)
-        }
-    }
+    @Binding var clickedDate: Date?
     
     // 데이트 피커 관련
     @State private var showDatePicker = false
@@ -175,9 +171,7 @@ struct CalendarView: View {
                 let clicked = clickedDate == date
                 let isToday = date.compareYearMonthDay(Date())
                 let isCurrentMonth = date.compareYearMonth(currentDate)
-                
-                // TODO: - plan 적용하기
-                let temp = Array(plans.filter { plan in
+                let tempPlans = Array(plans.filter { plan in
                     plan.date.compareYearMonthDay(date)
                 })
                 DayCell(
@@ -185,11 +179,17 @@ struct CalendarView: View {
                     clicked: clicked,
                     isToday: isToday,
                     isCurrentMonth: isCurrentMonth,
-                    plans: temp
+                    plans: tempPlans
                 )
-                .onTapGesture {
-                    clickedDate = getDate(for: index)
-                }
+                .simultaneousGesture(
+                    TapGesture().onEnded {
+                        clickedDate = getDate(for: index)
+                        print("제스처 감지됨!")
+                    }
+                )
+//                .onTapGesture {
+//                    clickedDate = getDate(for: index)
+//                }
             }
         }
     }
@@ -270,18 +270,55 @@ struct DayCell: View {
     
     var body: some View {
         if plans.isEmpty {
+            // 일정 없을 때는 날짜만 표시
             Circle()
                 .fill(backgroundColor)
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
         } else {
+            // 일정 있을 때는
             Button {
                 showPlansSheetView.toggle()
             } label: {
-                Text("일정 \(plans.count)")
+                thumbnailView()
+                    .overlay(alignment: .topTrailing) {
+                        if plans.count > 1 {
+                            let displayCount = plans.count > 9 ? "9+" : "\(plans.count)"
+                            Circle()
+                                .fill(Color(.appPrimary))
+                                .overlay {
+                                    Text(displayCount)
+                                        .font(.system(size: 10))
+                                        .foregroundStyle(Color(.background))
+                                }
+                                .frame(width: 18, height: 18)
+                                .padding(4)
+                        }
+                    }
             }
             .sheet(isPresented: $showPlansSheetView) {
                 plansSheetView()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func thumbnailView() -> some View {
+        GeometryReader { geometry in
+            if let item = plans.first,
+               item.photo,
+               let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                Image.calendar
+                    .foregroundStyle(Color(.appPrimary))
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .background(Color(.appSecondary))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
     }
@@ -322,8 +359,4 @@ struct DayCell: View {
             Spacer()
         }
     }
-}
-
-#Preview {
-    CalendarView()
 }

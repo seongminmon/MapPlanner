@@ -161,9 +161,7 @@
 			children = (
 				241A588A2C91BBD200232D8B /* ContentView.swift */,
 				24CA384C2C9414D500B873E7 /* MainView.swift */,
-				24CA38562C94359200B873E7 /* AddPlanView.swift */,
-				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
-				24CA38622C96ECED00B873E7 /* LocationSearchView.swift */,
+				24DD06C12C9FD14D00883F33 /* AddPlan */,
 				24CA38472C9409E200B873E7 /* Calendar */,
 				24CA38462C9409DD00B873E7 /* Map */,
 				24CA38502C942F7A00B873E7 /* Search */,
@@ -204,6 +202,16 @@
 				24CA385B2C944EA600B873E7 /* Plan.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		24DD06C12C9FD14D00883F33 /* AddPlan */ = {
+			isa = PBXGroup;
+			children = (
+				24CA38562C94359200B873E7 /* AddPlanView.swift */,
+				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
+				24CA38622C96ECED00B873E7 /* LocationSearchView.swift */,
+			);
+			path = AddPlan;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {

@@ -28,12 +28,12 @@ struct AddPlanView: View {
     @State private var title = ""
     
     // 날짜 *
-    @State var selectedDate: Date
-    @State private var isTimeIncluded = false
+    @State var selectedDate: Date = Date()
     @State private var showDatePicker = false
-    @State var datePickerDate: Date
+    @State private var datePickerDate: Date = Date()
+    @State private var isTimeIncluded = false
     @State private var showTimePicker = false
-    @State var datePickerTime: Date
+    @State private var datePickerTime: Date = Date()
     
     // 장소
     @State private var lat: Double?
@@ -60,7 +60,7 @@ struct AddPlanView: View {
                 showTimePickerButton()
                 // 장소
                 addLocationButton()
-                // contents
+                // 내용
                 contentsTextField()
                 Spacer()
             }
@@ -217,7 +217,7 @@ struct AddPlanView: View {
                     Image.xmark
                 }
             } else {
-                Text("종일")
+                Text("시간 +")
                     .font(.title3)
                     .bold()
             }
@@ -307,6 +307,6 @@ struct AddPlanView: View {
     }
 }
 
-#Preview {
-    AddPlanView(selectedDate: Date(), datePickerDate: Date(), datePickerTime: Date())
-}
+//#Preview {
+//    AddPlanView(selectedDate: Date())
+//}

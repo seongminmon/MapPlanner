@@ -21,4 +21,5 @@ extension Image {
     static let refresh = Image(systemName: "arrow.clockwise")
     static let checkmark = Image(systemName: "checkmark")
     static let xmark = Image(systemName: "xmark.circle")
+    static let calendar = Image(systemName: "calendar")
 }

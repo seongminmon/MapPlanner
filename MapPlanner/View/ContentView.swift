@@ -10,11 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var path = NavigationPath()
+    @State private var clickedDate: Date?
     
     var body: some View {
         NavigationStack(path: $path) {
             ZStack {
-                MainView()
+                MainView(clickedDate: $clickedDate)
                 addPlanButton()
             }
             .toolbar {
@@ -44,16 +45,15 @@ struct ContentView: View {
     
     func addPlanButton() -> some View {
         NavigationLink {
-            AddPlanView(selectedDate: Date(), datePickerDate: Date(), datePickerTime: Date())
+            AddPlanView(selectedDate: clickedDate ?? Date())
         } label: {
             // TODO: - plus 키우기
             Image.plus
                 .foregroundStyle(Color(.background))
                 .padding()
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
                 .background(Color(.appPrimary))
                 .clipShape(Circle())
-                .shadow(radius: 5)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
         .padding()

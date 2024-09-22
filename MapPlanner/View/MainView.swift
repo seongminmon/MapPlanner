@@ -15,12 +15,13 @@ enum TabInfo : String, CaseIterable {
 
 struct MainView: View {
     
+    @Binding var clickedDate: Date?
     @State private var selectedTab: TabInfo = .calendar
     
     var body: some View {
         VStack {
             CustomTabBar(selectedTab: $selectedTab)
-            CustomTabView(selectedTab: $selectedTab)
+            CustomTabView(selectedTab: $selectedTab, clickedDate: $clickedDate)
         }
     }
 }
@@ -60,10 +61,11 @@ struct CustomTabBar: View {
 struct CustomTabView: View {
     
     @Binding var selectedTab: TabInfo
+    @Binding var clickedDate: Date?
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            CalendarView()
+            CalendarView(clickedDate: $clickedDate)
                 .tag(TabInfo.calendar)
             
             Text("타임라인 View")
@@ -76,6 +78,6 @@ struct CustomTabView: View {
     }
 }
 
-#Preview {
-    MainView()
-}
+//#Preview {
+//    MainView()
+//}
