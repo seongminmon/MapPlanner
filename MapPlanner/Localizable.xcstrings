@@ -23,16 +23,16 @@
     "AddLocationView" : {
 
     },
-    "EditPlanView" : {
-
-    },
-    "LocationSearchView" : {
+    "PlanEditView" : {
 
     },
     "ProfileView" : {
 
     },
     "SearchView" : {
+
+    },
+    "TimeLineView" : {
 
     },
     "User's" : {
@@ -81,9 +81,6 @@
 
     },
     "취소" : {
-
-    },
-    "타임라인 View" : {
 
     },
     "편집" : {

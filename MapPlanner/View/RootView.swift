@@ -1,36 +1,53 @@
 //
-//  MainView.swift
+//  RootView.swift
 //  MapPlanner
 //
-//  Created by 김성민 on 9/13/24.
+//  Created by 김성민 on 9/23/24.
 //
 
 import SwiftUI
 
-enum TabInfo : String, CaseIterable {
-    case calendar = "캘린더"
-    case timeline = "타임라인"
-    case map = "지도"
-}
-
-struct MainView: View {
+struct RootView: View {
     
-    @Binding var clickedDate: Date?
+    private enum TabInfo : String, CaseIterable {
+        case calendar = "캘린더"
+        case map = "지도"
+        case timeline = "타임라인"
+    }
+    
     @State private var selectedTab: TabInfo = .calendar
     
     var body: some View {
-        VStack {
-            CustomTabBar(selectedTab: $selectedTab)
-            CustomTabView(selectedTab: $selectedTab, clickedDate: $clickedDate)
+        NavigationView {
+            VStack {
+                planTabBar()
+                planTabView()
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("User's")
+                        .font(.boldTitle)
+                }
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SearchView()
+                    } label: {
+                        Image.search
+                    }
+                    .foregroundStyle(Color(.appPrimary))
+                    
+                    NavigationLink {
+                        ProfileView()
+                    } label: {
+                        Image.person
+                    }
+                    .foregroundStyle(Color(.appPrimary))
+                }
+            }
         }
     }
-}
-
-struct CustomTabBar: View {
     
-    @Binding var selectedTab: TabInfo
-    
-    var body: some View {
+    private func planTabBar() -> some View {
         HStack(spacing: 20) {
             ForEach(TabInfo.allCases, id: \.self) { tab in
                 Button {
@@ -56,28 +73,20 @@ struct CustomTabBar: View {
         }
         .padding()
     }
-}
-
-struct CustomTabView: View {
     
-    @Binding var selectedTab: TabInfo
-    @Binding var clickedDate: Date?
-    
-    var body: some View {
+    private func planTabView() -> some View {
         TabView(selection: $selectedTab) {
-            CalendarView(clickedDate: $clickedDate)
+            CalendarView()
                 .tag(TabInfo.calendar)
-            
-            Text("타임라인 View")
-                .tag(TabInfo.timeline)
-            
             MapView()
                 .tag(TabInfo.map)
+            TimeLineView()
+                .tag(TabInfo.timeline)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
-//#Preview {
-//    MainView()
-//}
+#Preview {
+    RootView()
+}

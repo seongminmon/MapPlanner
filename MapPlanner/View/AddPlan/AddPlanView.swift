@@ -76,8 +76,9 @@ struct AddPlanView: View {
                 } label: {
                     Image.leftChevron
                 }
-                .buttonStyle(PlainButtonStyle())
+                .foregroundStyle(Color(.appPrimary))
             }
+            
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     // Realm + image파일 저장

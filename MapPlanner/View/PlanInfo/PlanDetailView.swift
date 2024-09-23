@@ -18,7 +18,6 @@ struct PlanDetailView: View {
             VStack {
                 Text("\(plan.title)\n\(plan.date)")
             }
-            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -28,9 +27,10 @@ struct PlanDetailView: View {
                     }
                     .foregroundStyle(Color(.appPrimary))
                 }
+                
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     NavigationLink {
-                        EditPlanView()
+                        PlanEditView()
                     } label: {
                         Text("편집")
                     }

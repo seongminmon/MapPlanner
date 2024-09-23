@@ -13,7 +13,7 @@ struct CalendarView: View {
     // 달력 표시되고 있는 달 (연/월까지 유효)
     @State private var currentDate = Date().getFirstDate()!
     // 유저가 선택한 날짜 (연/월/일까지 유효)
-    @Binding var clickedDate: Date?
+    @State private var clickedDate: Date?
     
     // 데이트 피커 관련
     @State private var showDatePicker = false
@@ -22,7 +22,6 @@ struct CalendarView: View {
     
     private let calendar = Calendar.current
     
-    // Realm에 저장된 일정 데이터
     @ObservedResults(Plan.self) var plans
     
     var body: some View {
@@ -37,7 +36,9 @@ struct CalendarView: View {
         .padding(.horizontal)
     }
     
-    func headerView() -> some View {
+    // MARK: - View Components
+    
+    private func headerView() -> some View {
         VStack(spacing: 20) {
             HStack {
                 // 저번 달 이동 버튼
@@ -83,7 +84,7 @@ struct CalendarView: View {
         }
     }
     
-    func changeMonthButton(direction: Int, canMove: Bool, image: Image) -> some View {
+    private func changeMonthButton(direction: Int, canMove: Bool, image: Image) -> some View {
         Button {
             changeMonth(by: direction)
         } label: {
@@ -93,7 +94,7 @@ struct CalendarView: View {
         .disabled(!canMove)
     }
     
-    func weekView() -> some View {
+    private func weekView() -> some View {
         HStack {
             ForEach(calendar.shortWeekdaySymbols, id: \.self) { symbol in
                 Text(symbol.uppercased())
@@ -103,7 +104,7 @@ struct CalendarView: View {
         }
     }
     
-    func datePickerSheetView() -> some View {
+    private func datePickerSheetView() -> some View {
         VStack {
             Spacer()
             HStack {
@@ -147,14 +148,9 @@ struct CalendarView: View {
         .presentationDetents([.fraction(0.4)])
     }
     
-    func calendarGridView() -> some View {
+    private func calendarGridView() -> some View {
         // 이번달의 첫요일(== 표시할 저번달 날짜 갯수)
-        let firstWeekday: Int = {
-            // 해당 월의 첫 날짜가 갖는 요일을 Int 값으로 리턴: 일요일(1)~토요일(7)
-            // 인덱스로 쓰기 위해 -1 처리
-            return calendar.component(.weekday, from: currentDate) - 1
-        }()
-        
+        let firstWeekday = calendar.component(.weekday, from: currentDate) - 1
         // 이번달 날짜수
         let numberOfDaysInCurrentMonth = currentDate.numberOfDaysInMonth()
         // 표시할 열의 수
@@ -165,108 +161,55 @@ struct CalendarView: View {
         return LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: 7)) {
             ForEach(-firstWeekday..<numberOfDaysInCurrentMonth + numberOfDaysInNextMonth, id: \.self) { index in
                 let date = getDate(for: index)
-                let day = calendar.component(.day, from: date)
-                let clicked = clickedDate == date
-                let isToday = date.compareYearMonthDay(Date())
-                let isCurrentMonth = date.compareYearMonth(currentDate)
-                let tempPlans = Array(plans.filter { plan in
-                    plan.date.compareYearMonthDay(date)
-                })
-                DayCell(
-                    day: day,
-                    clicked: clicked,
-                    isToday: isToday,
-                    isCurrentMonth: isCurrentMonth,
-                    plans: tempPlans
-                )
-                .simultaneousGesture(
-                    TapGesture().onEnded {
-                        clickedDate = getDate(for: index)
-                    }
-                )
+                dayCell(date)
+                    .simultaneousGesture(
+                        TapGesture().onEnded {
+                            clickedDate = getDate(for: index)
+                        }
+                    )
             }
         }
     }
     
-    /// 인덱스로 date 구하기
-    func getDate(for index: Int) -> Date {
-        let startDate = currentDate.getFirstDate()!
-        return calendar.date(byAdding: .day, value: index, to: startDate)!
-    }
+    @State var showPlanListView = false
     
-    /// 달력 이동
-    func changeMonth(by value: Int) {
-        currentDate = currentDate.byAddingMonth(value)!
-    }
-    
-    /// 이전 월로 이동 가능 여부
-    func canMoveToPreviousMonth() -> Bool {
-        return currentDate.byAddingMonth(-1)! >= Date.startDate
-    }
-    
-    /// 다음 월로 이동 가능 여부
-    func canMoveToNextMonth() -> Bool {
-        return currentDate.byAddingMonth(1)! <= Date.endDate
-    }
-    
-    /// 데이트 피커 초기값 세팅
-    func setDatePicker() {
-        selectedYear = calendar.component(.year, from: currentDate)
-        selectedMonth = calendar.component(.month, from: currentDate)
-    }
-    
-    /// 현재 날짜를 데이트 피커로 지정한 날짜로 변경
-    func setCurrentDateToDatePickerDate() {
-        let components = DateComponents(year: selectedYear, month: selectedMonth)
-        currentDate = calendar.date(from: components) ?? Date()
-    }
-}
-
-// 1. Date 기준
-// 이번달 / 저번달 / 다음달
-// 투데이인지
-// 2. 일정 기준
-// 0개 / 1개 / 여러개
-struct DayCell: View {
-    var day: Int
-    var clicked: Bool
-    var isToday: Bool
-    var isCurrentMonth: Bool
-    var plans = [Plan]()
-    
-    @State private var showPlansSheetView = false
-    
-    private var textColor: Color {
-        if clicked {
-            return Color(.background)
-        } else if isCurrentMonth {
-            return Color(.appPrimary)
-        } else {
-            return Color(.appSecondary)
+    @ViewBuilder
+    private func dayCell(_ date: Date) -> some View {
+        let clicked = date == clickedDate
+        let isCurrentMonth = date.compareYearMonth(currentDate)
+        let isToday = date.compareYearMonthDay(Date())
+        let day = calendar.component(.day, from: date)
+        
+        let filteredPlans = plans.filter { $0.date.compareYearMonthDay(date) }
+        
+        var textColor: Color {
+            if clicked {
+                return Color(.background)
+            } else if isCurrentMonth {
+                return Color(.appPrimary)
+            } else {
+                return Color(.appSecondary)
+            }
         }
-    }
-    
-    private var backgroundColor: Color {
-        if clicked {
-            return Color(.appPrimary)
-        } else if isToday {
-            return Color(.appSecondary)
-        } else {
-            return Color(.background)
+        
+        var backgroundColor: Color {
+            if clicked {
+                return Color(.appPrimary)
+            } else if isToday {
+                return Color(.appSecondary)
+            } else {
+                return Color(.background)
+            }
         }
-    }
-    
-    var body: some View {
+        
         if plans.isEmpty {
-            // 일정 없을 때
             Circle()
                 .fill(backgroundColor)
                 .overlay(Text(String(day)))
                 .foregroundColor(textColor)
         } else {
-            // 일정 있을 때
             Button {
-                showPlansSheetView.toggle()
+                showPlanListView.toggle()
             } label: {
                 thumbnailView()
                     .overlay(alignment: .topTrailing) {
@@ -284,17 +227,16 @@ struct DayCell: View {
                         }
                     }
             }
-            .sheet(isPresented: $showPlansSheetView) {
-                plansSheetView(plans: plans)
+            .sheet(isPresented: $showPlanListView) {
+                PlanListView(date: date)
             }
         }
     }
     
     @ViewBuilder
-    func thumbnailView() -> some View {
+    private func thumbnailView() -> some View {
         GeometryReader { geometry in
-            if let item = plans.first,
-               item.photo,
+            if let item = plans.first, item.photo,
                let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
                 Image(uiImage: image)
                     .resizable()
@@ -310,69 +252,39 @@ struct DayCell: View {
             }
         }
     }
-}
-
-struct plansSheetView: View {
     
-    var plans = [Plan]()
+    // MARK: - Actions
     
-    var body: some View {
-        VStack {
-            let date = plans.first?.date ?? Date()
-            Text(date.toString("yyyy.MM.dd"))
-                .font(.bold18)
-                .padding(.top, 10)
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(plans, id: \.id) { item in
-                        planCell(item: item)
-                    }
-                }
-                .padding()
-            }
-        }
-        .background(Color.clear)
-        .presentationDetents([.fraction(0.4)])
+    // 인덱스로 date 구하기
+    private func getDate(for index: Int) -> Date {
+        let startDate = currentDate.getFirstDate()!
+        return calendar.date(byAdding: .day, value: index, to: startDate)!
     }
-}
-
-struct planCell: View {
     
-    var item: Plan
-    @State private var showPlanDetailView = false
+    // 달력 이동
+    private func changeMonth(by value: Int) {
+        currentDate = currentDate.byAddingMonth(value)!
+    }
     
-    var body: some View {
-        Button {
-            print("플랜셀 탭 \(item)")
-            showPlanDetailView.toggle()
-        } label: {
-            HStack(alignment: .top) {
-                if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                } else {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.appSecondary))
-                        .frame(width: 100, height: 100)
-                }
-                VStack(alignment: .leading) {
-                    Text(item.title)
-                        .font(.bold15)
-                        .foregroundStyle(Color(.appPrimary))
-                    Text(item.contents ?? "")
-                        .font(.regular13)
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(Color(.appSecondary))
-                        .lineLimit(2)
-                }
-                Spacer()
-            }
-        }
-        .fullScreenCover(isPresented: $showPlanDetailView) {
-            PlanDetailView(plan: item)
-                .transition(.move(edge: .trailing))
-        }
+    // 이전 월로 이동 가능 여부
+    private func canMoveToPreviousMonth() -> Bool {
+        return currentDate.byAddingMonth(-1)! >= Date.startDate
+    }
+    
+    // 다음 월로 이동 가능 여부
+    private func canMoveToNextMonth() -> Bool {
+        return currentDate.byAddingMonth(1)! <= Date.endDate
+    }
+    
+    // 데이트 피커 초기값 세팅
+    private func setDatePicker() {
+        selectedYear = calendar.component(.year, from: currentDate)
+        selectedMonth = calendar.component(.month, from: currentDate)
+    }
+    
+    // 현재 날짜를 데이트 피커로 지정한 날짜로 변경
+    private func setCurrentDateToDatePickerDate() {
+        let components = DateComponents(year: selectedYear, month: selectedMonth)
+        currentDate = calendar.date(from: components) ?? Date()
     }
 }
