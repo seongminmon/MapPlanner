@@ -6,25 +6,10 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct CalendarView: View {
     
-    // 달력 표시되고 있는 달 (연/월까지 유효)
-    @State private var currentDate = Date().getFirstDate()!
-    // 유저가 선택한 날짜 (연/월/일까지 유효)
-    @State private var clickedDate: Date?
-    
-    // 데이트 피커 관련
-    @State private var showDatePicker = false
-    @State private var selectedYear = Calendar.current.component(.year, from: Date())
-    @State private var selectedMonth = Calendar.current.component(.month, from: Date())
-    
-    private let calendar = Calendar.current
-    
-    @ObservedResults(Plan.self) var plans
-     
-    @State var showPlanListView = false
+    @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
         ZStack {
@@ -33,9 +18,9 @@ struct CalendarView: View {
                 calendarGridView()
                 Spacer()
             }
-            AddPlanButton(date: clickedDate ?? Date())
+            AddPlanButton(date: viewModel.output.clickedDate ?? Date())
         }
-        .sheet(isPresented: $showDatePicker) {
+        .sheet(isPresented: $viewModel.output.showDatePicker) {
             datePickerSheetView()
         }
         .padding(.horizontal)
@@ -49,16 +34,15 @@ struct CalendarView: View {
                 // 저번 달 이동 버튼
                 changeMonthButton(
                     direction: -1,
-                    canMove: canMoveToPreviousMonth(),
+                    canMove: viewModel.canMoveMonth(-1),
                     image: Image.leftTriangle
                 )
                 
                 // 선택된 연월 표시 + 데이트 피커 띄워주는 버튼
                 Button {
-                    setDatePicker()
-                    showDatePicker.toggle()
+                    viewModel.input.showDatePickerButtonTap.send(())
                 } label: {
-                    Text(currentDate.toString("yyyy.MM"))
+                    Text(viewModel.output.currentDate.toString("yyyy.MM"))
                         .font(.bold20)
                 }
                 .foregroundStyle(Color(.appPrimary))
@@ -66,16 +50,16 @@ struct CalendarView: View {
                 // 다음 달 이동 버튼
                 changeMonthButton(
                     direction: 1,
-                    canMove: canMoveToNextMonth(),
+                    canMove: viewModel.canMoveMonth(1),
                     image: Image.rightTriangle
                 )
                 
                 Spacer()
                 
                 // 이번 달로 돌아오는 버튼
-                if !currentDate.compareYearMonth(Date()) {
+                if !viewModel.output.currentDate.compareYearMonth(Date()) {
                     Button {
-                        currentDate = Date()
+                        viewModel.input.refreshButtonTap.send(())
                     } label: {
                         Image.refresh
                             .bold()
@@ -91,7 +75,7 @@ struct CalendarView: View {
     
     private func changeMonthButton(direction: Int, canMove: Bool, image: Image) -> some View {
         Button {
-            changeMonth(by: direction)
+            viewModel.input.changeMonthButtonTap.send(direction)
         } label: {
             image
                 .foregroundColor(canMove ? Color(.appPrimary) : Color(.appSecondary))
@@ -101,7 +85,7 @@ struct CalendarView: View {
     
     private func weekView() -> some View {
         HStack {
-            ForEach(calendar.shortWeekdaySymbols, id: \.self) { symbol in
+            ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { symbol in
                 Text(symbol.uppercased())
                     .foregroundColor(Color(.appSecondary))
                     .frame(maxWidth: .infinity)
@@ -116,7 +100,7 @@ struct CalendarView: View {
                 // TODO: - Picker 디자인 변경
                 // TODO: - 자동으로 연도에 formatting이 들어가는 문제
                 // 연도 선택기
-                Picker("연도", selection: $selectedYear) {
+                Picker("연도", selection: $viewModel.output.selectedYear) {
                     ForEach(2020...2050, id: \.self) { year in
                         Text("\(year)년")
                             .tag(year)
@@ -125,7 +109,7 @@ struct CalendarView: View {
                 .pickerStyle(.wheel)
                 
                 // 월 선택기
-                Picker("월", selection: $selectedMonth) {
+                Picker("월", selection: $viewModel.output.selectedMonth) {
                     ForEach(1...12, id: \.self) { month in
                         Text("\(month)월")
                             .tag(month)
@@ -136,8 +120,7 @@ struct CalendarView: View {
             
             // 이동 버튼
             Button {
-                setCurrentDateToDatePickerDate()
-                showDatePicker = false
+                viewModel.input.moveDateButtonTap.send(())
             } label: {
                 Text("이동")
                     .font(.bold15)
@@ -155,9 +138,9 @@ struct CalendarView: View {
     
     private func calendarGridView() -> some View {
         // 이번달의 첫요일(== 표시할 저번달 날짜 갯수)
-        let firstWeekday = calendar.component(.weekday, from: currentDate) - 1
+        let firstWeekday = Calendar.current.component(.weekday, from: viewModel.output.currentDate) - 1
         // 이번달 날짜수
-        let numberOfDaysInCurrentMonth = currentDate.numberOfDaysInMonth()
+        let numberOfDaysInCurrentMonth = viewModel.output.currentDate.numberOfDaysInMonth()
         // 표시할 열의 수
         let numberOfRows = Int(ceil(Double(firstWeekday + numberOfDaysInCurrentMonth) / 7.0))
         // 표시할 다음달 날짜 갯수
@@ -165,11 +148,10 @@ struct CalendarView: View {
         
         return LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: 7)) {
             ForEach(-firstWeekday..<numberOfDaysInCurrentMonth + numberOfDaysInNextMonth, id: \.self) { index in
-                let date = getDate(for: index)
-                dayCell(date)
+                dayCell(viewModel.getDate(for: index))
                     .simultaneousGesture(
                         TapGesture().onEnded {
-                            clickedDate = getDate(for: index)
+                            viewModel.input.dayCellTap.send(index)
                         }
                     )
             }
@@ -178,12 +160,12 @@ struct CalendarView: View {
     
     @ViewBuilder
     private func dayCell(_ date: Date) -> some View {
-        let clicked = date == clickedDate
-        let isCurrentMonth = date.compareYearMonth(currentDate)
+        let clicked = date == viewModel.output.clickedDate
+        let isCurrentMonth = date.compareYearMonth(viewModel.output.currentDate)
         let isToday = date.compareYearMonthDay(Date())
-        let day = calendar.component(.day, from: date)
+        let day = Calendar.current.component(.day, from: date)
         
-        let filteredPlans = plans.filter { $0.date.compareYearMonthDay(date) }
+        let filteredPlans = viewModel.plans.filter { $0.date.compareYearMonthDay(date) }
         
         var textColor: Color {
             if clicked {
@@ -207,7 +189,7 @@ struct CalendarView: View {
         
         if let firstItem = filteredPlans.first {
             Button {
-                showPlanListView.toggle()
+                viewModel.output.showPlanListView.toggle()
             } label: {
                 thumbnailView(firstItem)
                     .overlay(alignment: .topTrailing) {
@@ -225,7 +207,7 @@ struct CalendarView: View {
                         }
                     }
             }
-            .sheet(isPresented: $showPlanListView) {
+            .sheet(isPresented: $viewModel.output.showPlanListView) {
                 PlanListView(date: date)
             }
         } else {
@@ -253,40 +235,5 @@ struct CalendarView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
-    }
-    
-    // MARK: - Actions
-    
-    // 인덱스로 date 구하기
-    private func getDate(for index: Int) -> Date {
-        let startDate = currentDate.getFirstDate()!
-        return calendar.date(byAdding: .day, value: index, to: startDate)!
-    }
-    
-    // 달력 이동
-    private func changeMonth(by value: Int) {
-        currentDate = currentDate.byAddingMonth(value)!
-    }
-    
-    // 이전 월로 이동 가능 여부
-    private func canMoveToPreviousMonth() -> Bool {
-        return currentDate.byAddingMonth(-1)! >= Date.startDate
-    }
-    
-    // 다음 월로 이동 가능 여부
-    private func canMoveToNextMonth() -> Bool {
-        return currentDate.byAddingMonth(1)! <= Date.endDate
-    }
-    
-    // 데이트 피커 초기값 세팅
-    private func setDatePicker() {
-        selectedYear = calendar.component(.year, from: currentDate)
-        selectedMonth = calendar.component(.month, from: currentDate)
-    }
-    
-    // 현재 날짜를 데이트 피커로 지정한 날짜로 변경
-    private func setCurrentDateToDatePickerDate() {
-        let components = DateComponents(year: selectedYear, month: selectedMonth)
-        currentDate = calendar.date(from: components) ?? Date()
     }
 }
