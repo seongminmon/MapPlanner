@@ -302,7 +302,3 @@ struct AddPlanView: View {
         $plans.append(plan)
     }
 }
-
-//#Preview {
-//    AddPlanView(selectedDate: Date())
-//}

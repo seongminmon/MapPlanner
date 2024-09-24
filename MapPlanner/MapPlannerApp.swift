@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 @main
 struct MapPlannerApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .onAppear {
+                    debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+                }
         }
     }
 }

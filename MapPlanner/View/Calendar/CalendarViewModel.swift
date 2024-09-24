@@ -7,12 +7,10 @@
 
 import Foundation
 import Combine
-import RealmSwift
 
 final class CalendarViewModel: ViewModelType {
     
     private let calendar = Calendar.current
-    @ObservedResults(Plan.self) var plans
     
     struct Input {
         let changeMonthButtonTap = PassthroughSubject<Int, Never>()
@@ -32,8 +30,6 @@ final class CalendarViewModel: ViewModelType {
         var showDatePicker = false
         var selectedYear = Calendar.current.component(.year, from: Date())
         var selectedMonth = Calendar.current.component(.month, from: Date())
-        
-        var showPlanListView = false
     }
     
     var cancellables = Set<AnyCancellable>()

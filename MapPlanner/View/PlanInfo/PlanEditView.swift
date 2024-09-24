@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct PlanEditView: View {
+    
+    @ObservedRealmObject var plan: Plan
+    
     var body: some View {
         Text("PlanEditView")
     }
-}
-
-#Preview {
-    PlanEditView()
 }

@@ -10,8 +10,9 @@ import RealmSwift
 
 struct PlanDetailView: View {
     
-    @ObservedRealmObject var plan: Plan
+    var plan: Plan
     @Environment(\.dismiss) private var dismiss
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
@@ -30,20 +31,40 @@ struct PlanDetailView: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     NavigationLink {
-                        PlanEditView()
+                        PlanEditView(plan: plan)
                     } label: {
                         Text("편집")
                     }
                     .foregroundStyle(Color(.appPrimary))
                     
                     Button {
-                        print("삭제 탭")
+                        showAlert.toggle()
                     } label: {
                         Text("삭제")
                     }
                     .foregroundStyle(Color(.destructive))
                 }
             }
+            .alert("일정 삭제하기", isPresented: $showAlert) {
+                Button("삭제", role: .destructive) {
+                    print("삭제 탭")
+                    deletePlan()
+                }
+                Button("취소", role: .cancel) {}
+            }
+        }
+    }
+    
+    private func deletePlan() {
+        do {
+            let realm = try Realm()
+            guard let target = realm.object(ofType: Plan.self, forPrimaryKey: plan.id) else { return }
+            try realm.write {
+                realm.delete(target)
+            }
+            dismiss()
+        } catch {
+            print("Realm 삭제 실패: \(error)")
         }
     }
 }

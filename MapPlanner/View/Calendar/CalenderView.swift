@@ -148,91 +148,19 @@ struct CalendarView: View {
         
         return LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: 7)) {
             ForEach(-firstWeekday..<numberOfDaysInCurrentMonth + numberOfDaysInNextMonth, id: \.self) { index in
-                dayCell(viewModel.getDate(for: index))
-                    .simultaneousGesture(
-                        TapGesture().onEnded {
-                            viewModel.input.dayCellTap.send(index)
-                        }
-                    )
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private func dayCell(_ date: Date) -> some View {
-        let clicked = date == viewModel.output.clickedDate
-        let isCurrentMonth = date.compareYearMonth(viewModel.output.currentDate)
-        let isToday = date.compareYearMonthDay(Date())
-        let day = Calendar.current.component(.day, from: date)
-        
-        let filteredPlans = viewModel.plans.filter { $0.date.compareYearMonthDay(date) }
-        
-        var textColor: Color {
-            if clicked {
-                return Color(.background)
-            } else if isCurrentMonth {
-                return Color(.appPrimary)
-            } else {
-                return Color(.appSecondary)
-            }
-        }
-        
-        var backgroundColor: Color {
-            if clicked {
-                return Color(.appPrimary)
-            } else if isToday {
-                return Color(.appSecondary)
-            } else {
-                return Color(.background)
-            }
-        }
-        
-        if let firstItem = filteredPlans.first {
-            Button {
-                viewModel.output.showPlanListView.toggle()
-            } label: {
-                thumbnailView(firstItem)
-                    .overlay(alignment: .topTrailing) {
-                        if filteredPlans.count > 1 {
-                            let displayCount = filteredPlans.count > 9 ? "9+" : "\(filteredPlans.count)"
-                            Circle()
-                                .fill(Color(.appPrimary))
-                                .overlay {
-                                    Text(displayCount)
-                                        .font(.regular12)
-                                        .foregroundStyle(Color(.background))
-                                }
-                                .frame(width: 18, height: 18)
-                                .padding(4)
-                        }
+                let date = viewModel.getDate(for: index)
+                let clicked = date == viewModel.output.clickedDate
+                let isCurrentMonth = date.compareYearMonth(viewModel.output.currentDate)
+                DayCell(
+                    date: date,
+                    clicked: clicked,
+                    isCurrentMonth: isCurrentMonth
+                )
+                .simultaneousGesture(
+                    TapGesture().onEnded {
+                        viewModel.input.dayCellTap.send(index)
                     }
-            }
-            .sheet(isPresented: $viewModel.output.showPlanListView) {
-                PlanListView(date: date)
-            }
-        } else {
-            Circle()
-                .fill(backgroundColor)
-                .overlay(Text(String(day)))
-                .foregroundColor(textColor)
-        }
-    }
-    
-    @ViewBuilder
-    private func thumbnailView(_ item: Plan) -> some View {
-        GeometryReader { geometry in
-            if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            } else {
-                Image.calendar
-                    .foregroundStyle(Color(.appPrimary))
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .background(Color(.appSecondary))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                )
             }
         }
     }

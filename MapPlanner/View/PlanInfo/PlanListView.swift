@@ -13,6 +13,10 @@ struct PlanListView: View {
     var date: Date
     @ObservedResults(Plan.self) var plans
     
+    var filteredPlans: [Plan] {
+        return plans.filter { $0.date.compareYearMonthDay(date) }
+    }
+    
     var body: some View {
         VStack {
             Text(date.toString("yyyy.MM.dd"))
@@ -20,7 +24,6 @@ struct PlanListView: View {
                 .padding(.top, 10)
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    let filteredPlans: [Plan] = plans.filter { $0.date.compareYearMonthDay(date) }
                     ForEach(filteredPlans, id: \.id) { item in
                         PlanCell(plan: item)
                     }
@@ -35,7 +38,7 @@ struct PlanListView: View {
 
 struct PlanCell: View {
     
-    @ObservedRealmObject var plan: Plan
+    var plan: Plan
     @State var showPlanDetailView = false
     
     var body: some View {
