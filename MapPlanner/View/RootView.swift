@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct RootView: View {
-    
-    private enum TabInfo : String, CaseIterable {
-        case calendar = "캘린더"
-        case map = "지도"
-        case timeline = "타임라인"
-    }
-    
-    @State private var selectedTab: TabInfo = .calendar
+
+    @StateObject private var viewModel = RootViewModel()
     
     var body: some View {
         NavigationView {
@@ -51,16 +45,16 @@ struct RootView: View {
         HStack(spacing: 20) {
             ForEach(TabInfo.allCases, id: \.self) { tab in
                 Button {
-                    selectedTab = tab
+                    viewModel.input.tabChangeButtonTap.send(tab)
                 } label: {
                     Text(tab.rawValue)
-                        .fontWeight(selectedTab == tab ? .bold : .regular)
+                        .fontWeight(viewModel.output.selectedTab == tab ? .bold : .regular)
                         .padding(.bottom, 4)
                         .overlay(alignment: .bottom) {
                             Rectangle()
-                                .frame(height: selectedTab == tab ? 2 : 1)
+                                .frame(height: viewModel.output.selectedTab == tab ? 2 : 1)
                         }
-                        .foregroundColor(selectedTab == tab ? Color(.appPrimary): Color(.appSecondary))
+                        .foregroundColor(viewModel.output.selectedTab == tab ? Color(.appPrimary): Color(.appSecondary))
                 }
             }
         }
@@ -75,7 +69,7 @@ struct RootView: View {
     }
     
     private func planTabView() -> some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $viewModel.output.selectedTab) {
             CalendarView()
                 .tag(TabInfo.calendar)
             MapView()
@@ -85,8 +79,4 @@ struct RootView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
-}
-
-#Preview {
-    RootView()
 }

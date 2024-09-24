@@ -13,20 +13,16 @@ struct PlanListView: View {
     var date: Date
     @ObservedResults(Plan.self) var plans
     
-    var filteredPlans: [Plan] {
-        return plans.filter { $0.date.compareYearMonthDay(date) }
-    }
-    
     var body: some View {
         VStack {
-            let date = plans.first?.date ?? Date()
             Text(date.toString("yyyy.MM.dd"))
                 .font(.bold18)
                 .padding(.top, 10)
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    ForEach(plans, id: \.id) { item in
-                        planCell(item: item)
+                    let filteredPlans: [Plan] = plans.filter { $0.date.compareYearMonthDay(date) }
+                    ForEach(filteredPlans, id: \.id) { item in
+                        PlanCell(plan: item)
                     }
                 }
                 .padding()
@@ -35,16 +31,19 @@ struct PlanListView: View {
         .background(Color.clear)
         .presentationDetents([.fraction(0.4)])
     }
+}
+
+struct PlanCell: View {
     
-    private func planCell(item: Plan) -> some View {
-        
-        @State var showPlanDetailView = false
-        
-        return Button {
+    @ObservedRealmObject var plan: Plan
+    @State var showPlanDetailView = false
+    
+    var body: some View {
+        Button {
             showPlanDetailView.toggle()
         } label: {
             HStack(alignment: .top) {
-                if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+                if plan.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 100, height: 100)
@@ -55,10 +54,10 @@ struct PlanListView: View {
                         .frame(width: 100, height: 100)
                 }
                 VStack(alignment: .leading) {
-                    Text(item.title)
+                    Text(plan.title)
                         .font(.bold15)
                         .foregroundStyle(Color(.appPrimary))
-                    Text(item.contents ?? "")
+                    Text(plan.contents ?? "")
                         .font(.regular13)
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color(.appSecondary))
@@ -68,7 +67,7 @@ struct PlanListView: View {
             }
         }
         .fullScreenCover(isPresented: $showPlanDetailView) {
-            PlanDetailView(plan: item)
+            PlanDetailView(plan: plan)
         }
     }
 }

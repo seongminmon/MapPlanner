@@ -23,12 +23,17 @@ struct CalendarView: View {
     private let calendar = Calendar.current
     
     @ObservedResults(Plan.self) var plans
+     
+    @State var showPlanListView = false
     
     var body: some View {
-        VStack {
-            headerView()
-            calendarGridView()
-            Spacer()
+        ZStack {
+            VStack {
+                headerView()
+                calendarGridView()
+                Spacer()
+            }
+            AddPlanButton(date: clickedDate ?? Date())
         }
         .sheet(isPresented: $showDatePicker) {
             datePickerSheetView()
@@ -171,8 +176,6 @@ struct CalendarView: View {
         }
     }
     
-    @State var showPlanListView = false
-    
     @ViewBuilder
     private func dayCell(_ date: Date) -> some View {
         let clicked = date == clickedDate
@@ -202,19 +205,14 @@ struct CalendarView: View {
             }
         }
         
-        if plans.isEmpty {
-            Circle()
-                .fill(backgroundColor)
-                .overlay(Text(String(day)))
-                .foregroundColor(textColor)
-        } else {
+        if let firstItem = filteredPlans.first {
             Button {
                 showPlanListView.toggle()
             } label: {
-                thumbnailView()
+                thumbnailView(firstItem)
                     .overlay(alignment: .topTrailing) {
-                        if plans.count > 1 {
-                            let displayCount = plans.count > 9 ? "9+" : "\(plans.count)"
+                        if filteredPlans.count > 1 {
+                            let displayCount = filteredPlans.count > 9 ? "9+" : "\(filteredPlans.count)"
                             Circle()
                                 .fill(Color(.appPrimary))
                                 .overlay {
@@ -230,14 +228,18 @@ struct CalendarView: View {
             .sheet(isPresented: $showPlanListView) {
                 PlanListView(date: date)
             }
+        } else {
+            Circle()
+                .fill(backgroundColor)
+                .overlay(Text(String(day)))
+                .foregroundColor(textColor)
         }
     }
     
     @ViewBuilder
-    private func thumbnailView() -> some View {
+    private func thumbnailView(_ item: Plan) -> some View {
         GeometryReader { geometry in
-            if let item = plans.first, item.photo,
-               let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+            if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
