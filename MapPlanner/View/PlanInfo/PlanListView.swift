@@ -52,10 +52,13 @@ struct PlanCell: View {
                         .frame(width: 100, height: 100)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 } else {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.appSecondary))
+                    Image.calendar
+                        .foregroundStyle(Color(.appPrimary))
                         .frame(width: 100, height: 100)
+                        .background(Color(.appSecondary))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
+                
                 VStack(alignment: .leading) {
                     Text(plan.title)
                         .font(.bold15)

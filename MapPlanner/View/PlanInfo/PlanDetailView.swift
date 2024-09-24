@@ -10,6 +10,8 @@ import RealmSwift
 
 struct PlanDetailView: View {
     
+    // TODO: - 수정 시 변화 적용하기
+    
     var plan: Plan
     @Environment(\.dismiss) private var dismiss
     @State private var showAlert = false

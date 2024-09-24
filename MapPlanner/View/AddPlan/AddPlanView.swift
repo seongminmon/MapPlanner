@@ -43,7 +43,7 @@ struct AddPlanView: View {
     @State private var contents = ""
     
     // 유효성 검사: 제목 + 날짜 필수
-    var disabled: Bool {
+    private var disabled: Bool {
         return title.isEmpty
     }
     
@@ -125,7 +125,7 @@ struct AddPlanView: View {
     
     // MARK: - View Components
     
-    func imageButton() -> some View {
+    private func imageButton() -> some View {
         Button {
             showImageActionSheet.toggle()
         } label: {
@@ -147,7 +147,7 @@ struct AddPlanView: View {
         }
     }
     
-    func titleTextField() -> some View {
+    private func titleTextField() -> some View {
         VStack {
             Text("제목 *")
                 .bold()
@@ -157,7 +157,7 @@ struct AddPlanView: View {
         }
     }
     
-    func showDatePickerButton() -> some View {
+    private func showDatePickerButton() -> some View {
         Button {
             datePickerDate = selectedDate
             showDatePicker.toggle()
@@ -171,7 +171,7 @@ struct AddPlanView: View {
         .foregroundStyle(Color(.appPrimary))
     }
     
-    func datePickerSheetView() -> some View {
+    private func datePickerSheetView() -> some View {
         VStack(spacing: 20) {
             Spacer()
             DatePicker(
@@ -202,7 +202,7 @@ struct AddPlanView: View {
         .presentationDetents([.fraction(0.4)])
     }
     
-    func showTimePickerButton() -> some View {
+    private func showTimePickerButton() -> some View {
         Button {
             showTimePicker.toggle()
         } label: {
@@ -225,7 +225,7 @@ struct AddPlanView: View {
         .foregroundStyle(Color(.appPrimary))
     }
     
-    func timePickerSheetView() -> some View {
+    private func timePickerSheetView() -> some View {
         VStack(spacing: 20) {
             Spacer()
             DatePicker(
@@ -260,7 +260,7 @@ struct AddPlanView: View {
         .presentationDetents([.fraction(0.4)])
     }
     
-    func addLocationButton() -> some View {
+    private func addLocationButton() -> some View {
         VStack {
             Text("장소")
                 .bold()
@@ -282,7 +282,7 @@ struct AddPlanView: View {
         }
     }
     
-    func contentsTextField() -> some View {
+    private func contentsTextField() -> some View {
         VStack {
             Text("내용")
                 .bold()
