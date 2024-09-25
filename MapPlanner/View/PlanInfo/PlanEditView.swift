@@ -11,8 +11,6 @@ import RealmSwift
 
 struct PlanEditView: View {
     
-    // TODO: - Date에 시간 정보 있으면 초기값 주기
-    
     var plan: Plan
     
     @ObservedResults(Plan.self) var plans

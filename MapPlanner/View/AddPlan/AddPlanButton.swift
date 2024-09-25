@@ -26,7 +26,3 @@ struct AddPlanButton: View {
         .padding()
     }
 }
-
-#Preview {
-    AddPlanButton()
-}
