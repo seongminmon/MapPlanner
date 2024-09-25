@@ -45,6 +45,7 @@
 		24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */; };
 		24DD06EE2CA4125C00883F33 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06ED2CA4125C00883F33 /* Location.swift */; };
 		24DD06F12CA4136B00883F33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F02CA4136B00883F33 /* SearchBar.swift */; };
+		24DD06F32CA42A9800883F33 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F22CA42A9800883F33 /* PlanCell.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResponse.swift; sourceTree = "<group>"; };
 		24DD06ED2CA4125C00883F33 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		24DD06F02CA4136B00883F33 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		24DD06F22CA42A9800883F33 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				24DD06CB2CA1A88400883F33 /* PlanListView.swift */,
+				24DD06F22CA42A9800883F33 /* PlanCell.swift */,
 				24DD06C52C9FECE400883F33 /* PlanDetailView.swift */,
 				24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */,
 			);
@@ -451,6 +454,7 @@
 				24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */,
 				24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
+				24DD06F32CA42A9800883F33 /* PlanCell.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* PlanListView.swift in Sources */,
 				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,
 				24DD06F12CA4136B00883F33 /* SearchBar.swift in Sources */,

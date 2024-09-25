@@ -16,13 +16,10 @@ struct AddLocationView: View {
     @State private var locationList: [Location] = []
     
     var body: some View {
-        VStack {
-            SearchBar(text: $query, placeholder: "장소를 검색해보세요")
-            ScrollView {
-                LazyVStack {
-                    ForEach(locationList, id: \.id) { item in
-                        Text(item.placeName)
-                    }
+        ScrollView {
+            LazyVStack {
+                ForEach(locationList, id: \.id) { item in
+                    Text(item.placeName)
                 }
             }
         }
@@ -39,10 +36,13 @@ struct AddLocationView: View {
                 .foregroundStyle(Color(.appPrimary))
             }
         }
+        // 키보드 내리기
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
             hideKeyboard()
         }
-        .onSubmit {
+        .searchable(text: $query, prompt: "장소를 검색해보세요")
+        .onSubmit(of: .search) {
             Task {
                 do {
                     let result = try await NetworkManager.shared.callRequest(query)
