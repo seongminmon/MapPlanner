@@ -21,7 +21,6 @@ struct AddPlanView: View {
     @State private var showImageActionSheet = false
     @State private var showPhotosPicker = false
     @State private var selectedPhoto: PhotosPickerItem?
-    @State private var image: Image?
     @State private var uiImage: UIImage?
     
     // 제목 *
@@ -35,12 +34,14 @@ struct AddPlanView: View {
     @State private var showTimePicker = false
     @State private var datePickerTime: Date = Date()
     
-    // 장소
-    @State private var lat: Double?
-    @State private var lng: Double?
-    
     // 내용
     @State private var contents = ""
+    
+    // 장소
+    @State private var locationName = ""
+    @State private var addressName = ""
+    @State private var lat: Double?
+    @State private var lng: Double?
     
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {
@@ -82,7 +83,7 @@ struct AddPlanView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     // Realm + image파일 저장
-                    savePlan()
+                    addPlan()
                     dismiss()
                 } label: {
                     Text("저장")
@@ -104,7 +105,6 @@ struct AddPlanView: View {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
                let uiImage = UIImage(data: data) {
                 self.uiImage = uiImage
-                image = Image(uiImage: uiImage)
             }
         }
         // DatePicker
@@ -129,8 +129,8 @@ struct AddPlanView: View {
         Button {
             showImageActionSheet.toggle()
         } label: {
-            if let image {
-                image
+            if let uiImage {
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100)
@@ -292,13 +292,21 @@ struct AddPlanView: View {
         }
     }
     
-    // MARK: - Action
-    
-    private func savePlan() {
-        let plan = Plan(title: title, date: selectedDate, lat: lat, lng: lng, contents: contents, photo: uiImage != nil)
+    private func addPlan() {
+        let plan = Plan(
+            title: title,
+            date: selectedDate, 
+            isTimeIncluded: isTimeIncluded,
+            contents: contents,
+            locationName: locationName,
+            addressName: addressName,
+            lat: lat,
+            lng: lng
+        )
+        $plans.append(plan)
+        print("Realm 추가 성공")
         if let uiImage {
             ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
         }
-        $plans.append(plan)
     }
 }

@@ -71,7 +71,6 @@ struct DayCell: View {
                     }
             }
             .sheet(isPresented: $showPlanListView) {
-                let _ = print(date)
                 PlanListView(date: date)
             }
         } else {
@@ -85,7 +84,7 @@ struct DayCell: View {
     @ViewBuilder
     private func thumbnailView(_ item: Plan) -> some View {
         GeometryReader { geometry in
-            if item.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+            if let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)

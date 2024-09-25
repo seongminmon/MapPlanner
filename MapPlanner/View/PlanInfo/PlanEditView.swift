@@ -11,6 +11,8 @@ import RealmSwift
 
 struct PlanEditView: View {
     
+    // TODO: - Date에 시간 정보 있으면 초기값 주기
+    
     var plan: Plan
     
     @ObservedResults(Plan.self) var plans
@@ -20,7 +22,6 @@ struct PlanEditView: View {
     @State private var showImageActionSheet = false
     @State private var showPhotosPicker = false
     @State private var selectedPhoto: PhotosPickerItem?
-    @State private var image: Image?
     @State private var uiImage: UIImage?
     
     // 제목 *
@@ -34,15 +35,17 @@ struct PlanEditView: View {
     @State private var showTimePicker = false
     @State private var datePickerTime: Date = Date()
     
-    // 장소
-    @State private var lat: Double?
-    @State private var lng: Double?
-    
     // 내용
     @State private var contents = ""
     
+    // 장소
+    @State private var locationName = ""
+    @State private var addressName = ""
+    @State private var lat: Double?
+    @State private var lng: Double?
+    
     // 유효성 검사: 제목 + 날짜 필수
-    var disabled: Bool {
+    private var disabled: Bool {
         return title.isEmpty
     }
     
@@ -66,7 +69,7 @@ struct PlanEditView: View {
         }
         .scrollIndicators(.never)
         // 네비게이션
-        .navigationTitle("일정 추가")
+        .navigationTitle("수정하기")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -103,7 +106,6 @@ struct PlanEditView: View {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
                let uiImage = UIImage(data: data) {
                 self.uiImage = uiImage
-                image = Image(uiImage: uiImage)
             }
         }
         // DatePicker
@@ -124,11 +126,14 @@ struct PlanEditView: View {
         .onAppear {
             title = plan.title
             selectedDate = plan.date
+            isTimeIncluded = plan.isTimeIncluded
+            contents = plan.contents
+            locationName = plan.locationName
+            addressName = plan.addressName
             lat = plan.lat
             lng = plan.lng
-            contents = plan.contents ?? ""
-            if plan.photo, let storedImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
-                image = Image(uiImage: storedImage)
+            if let storedImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+                uiImage = storedImage
             }
         }
     }
@@ -139,8 +144,8 @@ struct PlanEditView: View {
         Button {
             showImageActionSheet.toggle()
         } label: {
-            if let image {
-                image
+            if let uiImage {
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100)
@@ -302,22 +307,29 @@ struct PlanEditView: View {
         }
     }
     
-    // MARK: - Action
     private func updatePlan() {
         // 이미지 덮어쓰기
         if let uiImage {
             ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
+        } else {
+            ImageFileManager.shared.deleteImageFile(filename: "\(plan.id)")
         }
-        
-        let newPlan = Plan(title: title, date: selectedDate, lat: lat, lng: lng, contents: contents, photo: uiImage != nil)
         
         do {
             let realm = try Realm()
-            guard var target = realm.object(ofType: Plan.self, forPrimaryKey: plan.id) else { return }
+            guard let target = realm.object(ofType: Plan.self, forPrimaryKey: plan.id) else { return }
             try realm.write {
-                target = newPlan
+                target.savedDate = Date()
+                target.title = title
+                target.date = selectedDate
+                target.isTimeIncluded = isTimeIncluded
+                target.contents = contents
+                target.locationName = locationName
+                target.addressName = addressName
+                target.lat = lat
+                target.lng = lng
             }
-            print(target)
+            print("Realm 업데이트 성공")
         } catch {
             print("Realm 업데이트 실패: \(error)")
         }

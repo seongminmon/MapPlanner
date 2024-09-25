@@ -13,19 +13,25 @@ final class Plan: Object, ObjectKeyIdentifiable {
     @Persisted var savedDate: Date
     @Persisted var title: String
     @Persisted var date: Date
-    @Persisted var contents: String?
+    @Persisted var isTimeIncluded: Bool
+    @Persisted var contents: String
+    
+    // 장소 정보
+    @Persisted var locationName: String
+    @Persisted var addressName: String
     @Persisted var lat: Double?
     @Persisted var lng: Double?
-    @Persisted var photo: Bool
     
-    convenience init(title: String, date: Date, lat: Double? = nil, lng: Double? = nil, contents: String? = nil, photo: Bool) {
+    convenience init(title: String, date: Date, isTimeIncluded: Bool, contents: String, locationName: String, addressName: String, lat: Double? = nil, lng: Double? = nil) {
         self.init()
         self.savedDate = Date()
         self.title = title
         self.date = date
+        self.isTimeIncluded = isTimeIncluded
         self.contents = contents
+        self.locationName = locationName
+        self.addressName = addressName
         self.lat = lat
         self.lng = lng
-        self.photo = photo
     }
 }

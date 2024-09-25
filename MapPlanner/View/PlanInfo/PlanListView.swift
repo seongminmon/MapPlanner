@@ -46,7 +46,7 @@ struct PlanCell: View {
             showPlanDetailView.toggle()
         } label: {
             HStack(alignment: .top) {
-                if plan.photo, let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+                if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 100, height: 100)
