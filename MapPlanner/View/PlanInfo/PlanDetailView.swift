@@ -16,15 +16,28 @@ struct PlanDetailView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 20) {
+                if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } else {
+                    Image.calendar
+                        .foregroundStyle(Color(.appPrimary))
+                        .frame(width: 100, height: 100)
+                        .background(Color(.appSecondary))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
                 Text(plan.title)
-                Text("\(plan.date)")
+                Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
                 Text(plan.contents)
                 Text(plan.locationName)
                 Text(plan.addressName)
                 Text("\(String(describing: plan.lat))")
                 Text("\(String(describing: plan.lng))")
             }
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -51,6 +64,7 @@ struct PlanDetailView: View {
                     .foregroundStyle(Color(.destructive))
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .alert("일정 삭제하기", isPresented: $showAlert) {
                 Button("삭제", role: .destructive) {
                     deletePlan()

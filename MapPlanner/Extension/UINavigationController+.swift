@@ -7,11 +7,10 @@
 
 import UIKit
 
-// Custom NavigationBar 사용 + Back Gesture 적용
+// Back Gesture 적용
 extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.isHidden = true
         interactivePopGestureRecognizer?.delegate = self
     }
 

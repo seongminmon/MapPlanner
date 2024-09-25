@@ -43,6 +43,8 @@
 		24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */; };
 		24DD06EA2CA3F1CB00883F33 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */; };
 		24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */; };
+		24DD06EE2CA4125C00883F33 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06ED2CA4125C00883F33 /* Location.swift */; };
+		24DD06F12CA4136B00883F33 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F02CA4136B00883F33 /* SearchBar.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResponse.swift; sourceTree = "<group>"; };
+		24DD06ED2CA4125C00883F33 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		24DD06F02CA4136B00883F33 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		24CA38482C9409F500B873E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24DD06EF2CA4135500883F33 /* Components */,
 				24DD06D12CA1A9FB00883F33 /* RootView.swift */,
 				24DD06DD2CA2940900883F33 /* RootViewModel.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
@@ -230,6 +235,7 @@
 			children = (
 				24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */,
 				24CA385B2C944EA600B873E7 /* Plan.swift */,
+				24DD06ED2CA4125C00883F33 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -277,6 +283,14 @@
 				24DD06DB2CA293DB00883F33 /* ViewModelType.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		24DD06EF2CA4135500883F33 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				24DD06F02CA4136B00883F33 /* SearchBar.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
@@ -428,6 +442,7 @@
 				24CA38572C94359200B873E7 /* AddPlanView.swift in Sources */,
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
+				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
@@ -438,6 +453,7 @@
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* PlanListView.swift in Sources */,
 				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,
+				24DD06F12CA4136B00883F33 /* SearchBar.swift in Sources */,
 				24DD06D02CA1A8B200883F33 /* PlanEditView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
 				24DD06D22CA1A9FB00883F33 /* RootView.swift in Sources */,

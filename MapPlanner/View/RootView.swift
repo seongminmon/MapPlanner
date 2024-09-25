@@ -39,14 +39,6 @@ struct RootView: View {
                 }
             }
         }
-        .task {
-            do {
-                let result = try await NetworkManager.shared.callRequest("카페")
-                print("응답 데이터: \(result)")
-            } catch {
-                print("에러 발생: \(error)")
-            }
-        }
     }
     
     private func planTabBar() -> some View {

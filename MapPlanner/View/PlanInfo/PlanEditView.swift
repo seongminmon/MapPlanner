@@ -68,6 +68,7 @@ struct PlanEditView: View {
         .scrollIndicators(.never)
         // 네비게이션
         .navigationTitle("수정하기")
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {

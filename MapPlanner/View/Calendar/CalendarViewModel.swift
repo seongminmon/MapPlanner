@@ -56,7 +56,7 @@ final class CalendarViewModel: ViewModelType {
         
         input.refreshButtonTap
             .sink { [weak self] _ in
-                self?.output.currentDate = Date()
+                self?.output.currentDate = Date().getFirstDate()!
             }
             .store(in: &cancellables)
         
