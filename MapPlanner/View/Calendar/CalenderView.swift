@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CalendarView: View {
     
+    // TODO: - Drag 제스처로 캘린더 이동 시 애니메이션 추가하기
+    
     @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
@@ -24,12 +26,21 @@ struct CalendarView: View {
             datePickerSheetView()
         }
         .padding(.horizontal)
+        .gesture(
+            DragGesture().onEnded { value in
+                if value.translation.width < -100 {
+                    viewModel.input.changeMonthButtonTap.send(1)
+                } else if value.translation.width > 100 {
+                    viewModel.input.changeMonthButtonTap.send(-1)
+                }
+            }
+        )
     }
     
     // MARK: - View Components
     
     private func headerView() -> some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 15) {
             HStack {
                 // 저번 달 이동 버튼
                 changeMonthButton(
@@ -67,8 +78,6 @@ struct CalendarView: View {
                     }
                 }
             }
-            
-            // 요일 표시
             weekView()
         }
     }
@@ -151,6 +160,7 @@ struct CalendarView: View {
                 let date = viewModel.getDate(for: index)
                 let clicked = date == viewModel.output.clickedDate
                 let isCurrentMonth = date.compareYearMonth(viewModel.output.currentDate)
+                
                 DayCell(
                     date: date,
                     clicked: clicked,

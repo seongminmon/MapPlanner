@@ -19,8 +19,9 @@ struct RootView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("User's")
+                    Text("Map Planner")
                         .font(.boldTitle)
+                        .foregroundStyle(Color(.darkTheme))
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     NavigationLink {
@@ -77,6 +78,26 @@ struct RootView: View {
             TimeLineView()
                 .tag(TabInfo.timeline)
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
+    
+//    private func planTabView() -> some View {
+//        TabView(selection: $viewModel.output.selectedTab) {
+//            CalendarView()
+//                .tabItem {
+//                    Text(TabInfo.calendar.rawValue)
+//                }
+//                .tag(TabInfo.calendar)
+//            MapView()
+//                .tabItem {
+//                    Text(TabInfo.map.rawValue)
+//                }
+//                .tag(TabInfo.map)
+//            TimeLineView()
+//                .tabItem {
+//                    Text(TabInfo.timeline.rawValue)
+//                }
+//                .tag(TabInfo.timeline)
+//        }
+//    }
 }
