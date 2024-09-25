@@ -63,7 +63,7 @@ struct PlanCell: View {
                     Text(plan.title)
                         .font(.bold15)
                         .foregroundStyle(Color(.appPrimary))
-                    Text(plan.contents ?? "")
+                    Text(plan.contents)
                         .font(.regular13)
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color(.appSecondary))

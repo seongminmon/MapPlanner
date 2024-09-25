@@ -10,8 +10,23 @@ import SwiftUI
 struct AddLocationView: View {
     // TODO: - 장소 검색 구현
     // TODO: - 장소 검색 api 구현
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text("AddLocationView")
+        VStack {
+            Text("AddLocationView")
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image.leftChevron
+                }
+                .foregroundStyle(Color(.appPrimary))
+            }
+        }
     }
 }
 

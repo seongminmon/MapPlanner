@@ -40,6 +40,7 @@
 		24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06DD2CA2940900883F33 /* RootViewModel.swift */; };
 		24DD06E02CA298CC00883F33 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06DF2CA298CC00883F33 /* CalendarViewModel.swift */; };
 		24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06E52CA2EEC400883F33 /* DayCell.swift */; };
+		24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		24DD06DD2CA2940900883F33 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		24DD06DF2CA298CC00883F33 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		24DD06E52CA2EEC400883F33 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				2421E7912C9C080F00A4E607 /* Date+.swift */,
 				24DD06BF2C9EE35E00883F33 /* View+.swift */,
+				24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
 				24DD06D42CA1AAA600883F33 /* AddPlanButton.swift in Sources */,
+				24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */,
 				24CA38532C942F9100B873E7 /* ProfileView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* PlanListView.swift in Sources */,
