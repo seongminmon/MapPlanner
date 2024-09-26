@@ -8,9 +8,9 @@
 import Foundation
 
 struct Location: Hashable, Identifiable {
-    let id: String
-    let placeName: String
-    let addressName: String
-    let lon: Double
-    let lng: Double
+    var id: String
+    var placeName: String
+    var addressName: String
+    var lat: Double
+    var lng: Double
 }

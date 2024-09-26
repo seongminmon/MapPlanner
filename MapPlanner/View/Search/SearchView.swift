@@ -21,7 +21,7 @@ struct SearchView: View {
         return plans.filter {
             $0.title.contains(query) ||
             $0.contents.contains(query) ||
-            $0.locationName.contains(query) ||
+            $0.placeName.contains(query) ||
             $0.addressName.contains(query)
         }
     }

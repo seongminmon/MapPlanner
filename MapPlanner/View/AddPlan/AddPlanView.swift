@@ -11,8 +11,7 @@ import RealmSwift
 
 struct AddPlanView: View {
     
-    // TODO: - 사진 ✅ / 제목 ✅ / 날짜 ✅ / 장소 / 내용 ✅
-    // TODO: - 키보드 핸들링 - 비활성화 시키기 / 활성화 시 높이 조절
+    // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
     @ObservedResults(Plan.self) var plans
     @Environment(\.dismiss) private var dismiss
@@ -38,10 +37,7 @@ struct AddPlanView: View {
     @State private var contents = ""
     
     // 장소
-    @State private var locationName = ""
-    @State private var addressName = ""
-    @State private var lat: Double?
-    @State private var lng: Double?
+    @State private var location: Location?
     
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {
@@ -263,10 +259,13 @@ struct AddPlanView: View {
     private func addLocationButton() -> some View {
         VStack {
             Text("장소")
+                .font(.bold15)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
+            Text(location?.placeName ?? "")
+            Text(location?.addressName ?? "")
             NavigationLink {
-                AddLocationView()
+                AddLocationView(selectedLocation: $location)
             } label: {
                 HStack {
                     Image.location
@@ -298,10 +297,11 @@ struct AddPlanView: View {
             date: selectedDate, 
             isTimeIncluded: isTimeIncluded,
             contents: contents,
-            locationName: locationName,
-            addressName: addressName,
-            lat: lat,
-            lng: lng
+            locationID: location?.id ?? "",
+            placeName: location?.placeName ?? "",
+            addressName: location?.addressName ?? "",
+            lat: location?.lat,
+            lng: location?.lng
         )
         $plans.append(plan)
         print("Realm 추가 성공")

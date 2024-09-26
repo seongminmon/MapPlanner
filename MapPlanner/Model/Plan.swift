@@ -17,19 +17,21 @@ final class Plan: Object, ObjectKeyIdentifiable {
     @Persisted var contents: String
     
     // 장소 정보
-    @Persisted var locationName: String
+    @Persisted var locationID: String
+    @Persisted var placeName: String
     @Persisted var addressName: String
     @Persisted var lat: Double?
     @Persisted var lng: Double?
     
-    convenience init(title: String, date: Date, isTimeIncluded: Bool, contents: String, locationName: String, addressName: String, lat: Double? = nil, lng: Double? = nil) {
+    convenience init(title: String, date: Date, isTimeIncluded: Bool, contents: String, locationID: String, placeName: String, addressName: String, lat: Double? = nil, lng: Double? = nil) {
         self.init()
         self.savedDate = Date()
         self.title = title
         self.date = date
         self.isTimeIncluded = isTimeIncluded
         self.contents = contents
-        self.locationName = locationName
+        self.locationID = locationID
+        self.placeName = placeName
         self.addressName = addressName
         self.lat = lat
         self.lng = lng

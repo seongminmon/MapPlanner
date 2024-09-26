@@ -12,7 +12,7 @@ struct RootView: View {
     @StateObject private var viewModel = RootViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 planTabBar()
                 planTabView()
@@ -78,7 +78,6 @@ struct RootView: View {
             TimeLineView()
                 .tag(TabInfo.timeline)
         }
-//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
     
 //    private func planTabView() -> some View {

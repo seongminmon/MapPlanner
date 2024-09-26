@@ -37,10 +37,7 @@ struct PlanEditView: View {
     @State private var contents = ""
     
     // 장소
-    @State private var locationName = ""
-    @State private var addressName = ""
-    @State private var lat: Double?
-    @State private var lng: Double?
+    @State private var location: Location?
     
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {
@@ -126,10 +123,15 @@ struct PlanEditView: View {
             selectedDate = plan.date
             isTimeIncluded = plan.isTimeIncluded
             contents = plan.contents
-            locationName = plan.locationName
-            addressName = plan.addressName
-            lat = plan.lat
-            lng = plan.lng
+            if let lat = plan.lat, let lng = plan.lng {
+                location = Location(
+                    id: plan.locationID,
+                    placeName: plan.placeName,
+                    addressName: plan.addressName,
+                    lat: lat,
+                    lng: lng
+                )
+            }
             if let storedImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
                 uiImage = storedImage
             }
@@ -278,8 +280,10 @@ struct PlanEditView: View {
             Text("장소")
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
+            Text(location?.placeName ?? "")
+            Text(location?.addressName ?? "")
             NavigationLink {
-                AddLocationView()
+                AddLocationView(selectedLocation: $location)
             } label: {
                 HStack {
                     Image.location
@@ -322,10 +326,11 @@ struct PlanEditView: View {
                 target.date = selectedDate
                 target.isTimeIncluded = isTimeIncluded
                 target.contents = contents
-                target.locationName = locationName
-                target.addressName = addressName
-                target.lat = lat
-                target.lng = lng
+                target.locationID = location?.id ?? ""
+                target.placeName = location?.placeName ?? ""
+                target.addressName = location?.addressName ?? ""
+                target.lat = location?.lat
+                target.lng = location?.lng
             }
             print("Realm 업데이트 성공")
         } catch {

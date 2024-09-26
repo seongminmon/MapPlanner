@@ -15,7 +15,7 @@ struct PlanDetailView: View {
     @State private var showAlert = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
                     Image(uiImage: image)
@@ -32,7 +32,7 @@ struct PlanDetailView: View {
                 Text(plan.title)
                 Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
                 Text(plan.contents)
-                Text(plan.locationName)
+                Text(plan.placeName)
                 Text(plan.addressName)
                 Text("\(String(describing: plan.lat))")
                 Text("\(String(describing: plan.lng))")

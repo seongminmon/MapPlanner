@@ -9,17 +9,21 @@ import SwiftUI
 
 struct AddLocationView: View {
     
+    // TODO: - 페이지네이션
+    
     @Environment(\.dismiss) private var dismiss
     
     @State private var query = ""
     @State private var response: LocalResponse?
     @State private var locationList: [Location] = []
     
+    @Binding var selectedLocation: Location?
+    
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(locationList, id: \.id) { item in
-                    Text(item.placeName)
+                    locationCell(item)
                 }
             }
         }
@@ -53,6 +57,24 @@ struct AddLocationView: View {
                     print("에러 발생: \(error)")
                 }
             }
+        }
+    }
+    
+    private func locationCell(_ location: Location) -> some View {
+        Button {
+            selectedLocation = location
+            dismiss()
+        } label: {
+            VStack(alignment: .leading) {
+                Text(location.placeName)
+                    .font(.bold15)
+                Text(location.addressName)
+                    .font(.regular14)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 100)
+            .background(Color(.lightTheme))
+            .padding()
         }
     }
 }
