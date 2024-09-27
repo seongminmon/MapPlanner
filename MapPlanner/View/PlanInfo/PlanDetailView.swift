@@ -14,30 +14,33 @@ struct PlanDetailView: View {
     @StateObject private var planStore = PlanStore()
     
     @Environment(\.dismiss) private var dismiss
-    @State private var showAlert = false
+    @State private var showDeleteAlert = false
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                } else {
-                    Image.calendar
-                        .foregroundStyle(Color(.appPrimary))
-                        .frame(width: 100, height: 100)
-                        .background(Color(.appSecondary))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+            ScrollView {
+                VStack {
+                    // 사진
+                    imageView()
+                    VStack(spacing: 20) {
+                        Text(plan.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(plan.contents)
+                            .font(.regular14)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(plan.placeName)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(plan.addressName)
+                            .font(.regular14)
+                            .foregroundStyle(Color(.appSecondary))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .font(.bold15)
+                    .foregroundStyle(Color(.appPrimary))
+                    .padding()
                 }
-                Text(plan.title)
-                Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
-                Text(plan.contents)
-                Text(plan.placeName)
-                Text(plan.addressName)
-                Text("\(String(describing: plan.lat))")
-                Text("\(String(describing: plan.lng))")
             }
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -59,7 +62,7 @@ struct PlanDetailView: View {
                     .foregroundStyle(Color(.appPrimary))
                     
                     Button {
-                        showAlert.toggle()
+                        showDeleteAlert.toggle()
                     } label: {
                         Text("삭제")
                     }
@@ -67,12 +70,32 @@ struct PlanDetailView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .alert("일정 삭제하기", isPresented: $showAlert) {
+            
+            .alert("일정 삭제하기", isPresented: $showDeleteAlert) {
                 Button("삭제", role: .destructive) {
                     planStore.deletePlan(planID: plan.id)
                 }
                 Button("취소", role: .cancel) {}
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func imageView() -> some View {
+        if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+            Image(uiImage: image)
+                .resizable()
+                .frame(maxWidth: .infinity)
+                .frame(height: 300)
+        } else {
+            Image.camera
+                .resizable()
+                .frame(width: 50, height: 40)
+                .frame(maxWidth: .infinity)
+                .frame(height: 300)
+                .foregroundStyle(Color(.appPrimary))
+                .background(Color(.appSecondary))
+            
         }
     }
 }

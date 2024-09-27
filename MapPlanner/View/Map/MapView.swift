@@ -11,6 +11,7 @@ struct MapView: View {
     
     @StateObject var coordinator = Coordinator.shared
     @StateObject private var planStore = PlanStore()
+    @State private var showPlanCell = false
     
     var body: some View {
         VStack {
@@ -23,21 +24,27 @@ struct MapView: View {
         }
         .onChange(of: planStore.outputPlans) { newValue in
             let currentLocations = newValue.compactMap { $0.toLocation() }
-            let existingLocations = coordinator.markersDict.keys
-            
             let currentLocationIDList = currentLocations.map { $0.id }
+            
+            let existingLocations = coordinator.markersDict.keys
             let removeLocations: [String] = existingLocations.filter { !currentLocationIDList.contains($0) }
             
             // 없어진 마커 삭제
             coordinator.removeMarkers(removeLocations)
             
             // 새로운 마커 추가
-            currentLocations.forEach { location in
-                coordinator.addMarker(location) { _ in
-                    print("마커 탭", location)
-                    return true
+            newValue.forEach { plan in
+                if let location = plan.toLocation() {
+                    coordinator.addMarker(location) { _ in
+                        showPlanCell.toggle()
+                        return true
+                    }
                 }
             }
+        }
+        .sheet(isPresented: $showPlanCell) {
+            // TODO: - marker에서 탭한 plan 넘겨받기
+//            PlanCell(plan: plan)
         }
     }
 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TimeLineView: View {
+    
+    @StateObject private var planStore = PlanStore()
+    
     var body: some View {
         Text("TimeLineView")
     }

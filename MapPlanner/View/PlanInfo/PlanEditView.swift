@@ -59,20 +59,22 @@ struct PlanEditView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 30) {
+            VStack {
                 // 사진
                 imageButton()
-                // 제목
-                titleTextField()
-                // 날짜
-                showDatePickerButton()
-                // 시간
-                showTimePickerButton()
-                // 장소
-                addLocationButton()
-                // 내용
-                contentsTextField()
-                Spacer()
+                VStack(spacing: 20) {
+                    // 제목
+                    titleTextField()
+                    // 내용
+                    contentsTextField()
+                    // 날짜
+                    showDatePickerButton()
+                    // 시간
+                    showTimePickerButton()
+                    // 장소
+                    addLocationButton()
+                }
+                .padding()
             }
         }
         .scrollIndicators(.never)
@@ -123,7 +125,6 @@ struct PlanEditView: View {
         .sheet(isPresented: $showTimePicker) {
             timePickerSheetView()
         }
-        .padding()
         // 키보드 내리기
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
@@ -140,17 +141,16 @@ struct PlanEditView: View {
             if let uiImage {
                 Image(uiImage: uiImage)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .foregroundStyle(Color(.appPrimary))
-                    .background(Color(.appSecondary))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 300)
             } else {
                 Image.camera
-                    .frame(width: 100, height: 100)
+                    .resizable()
+                    .frame(width: 50, height: 40)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 300)
                     .foregroundStyle(Color(.appPrimary))
                     .background(Color(.appSecondary))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
     }
@@ -158,7 +158,7 @@ struct PlanEditView: View {
     private func titleTextField() -> some View {
         VStack {
             Text("제목 *")
-                .bold()
+                .font(.bold15)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("일정 제목", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -171,7 +171,7 @@ struct PlanEditView: View {
             showDatePicker.toggle()
         } label: {
             Text(selectedDate.toString("yyyy.MM.dd (E)"))
-                .font(.bold20)
+                .font(.bold18)
             Spacer()
             Image.rightChevron
                 .bold()
@@ -197,7 +197,7 @@ struct PlanEditView: View {
                 showDatePicker = false
             } label: {
                 Text("저장")
-                    .font(.bold15)
+                    .font(.bold18)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .foregroundColor(Color(.background))
@@ -216,7 +216,7 @@ struct PlanEditView: View {
         } label: {
             if isTimeIncluded {
                 Text(selectedDate.toString("a hh:mm"))
-                    .font(.bold20)
+                    .font(.bold18)
                 Button {
                     isTimeIncluded = false
                 } label: {
@@ -224,7 +224,7 @@ struct PlanEditView: View {
                 }
             } else {
                 Text("시간 +")
-                    .font(.bold20)
+                    .font(.bold18)
             }
             Spacer()
             Image.rightChevron
@@ -271,17 +271,25 @@ struct PlanEditView: View {
     private func addLocationButton() -> some View {
         VStack {
             Text("장소")
-                .bold()
+                .font(.bold15)
+                .foregroundStyle(Color(.appPrimary))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 10)
             Text(location?.placeName ?? "")
+                .font(.bold15)
+                .foregroundStyle(Color(.appPrimary))
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(location?.addressName ?? "")
+                .font(.regular14)
+                .foregroundStyle(Color(.appSecondary))
+                .frame(maxWidth: .infinity, alignment: .leading)
             NavigationLink {
                 AddLocationView(selectedLocation: $location)
             } label: {
                 HStack {
                     Image.location
                     Text("장소 선택")
-                        .bold()
+                        .font(.bold15)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -295,7 +303,7 @@ struct PlanEditView: View {
     private func contentsTextField() -> some View {
         VStack {
             Text("내용")
-                .bold()
+                .font(.bold15)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("내용을 입력해주세요", text: $contents, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
