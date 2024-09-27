@@ -26,10 +26,9 @@ final class Coordinator: NSObject, ObservableObject {
     
     private let view = NMFNaverMapView(frame: .zero)
     private var locationManager: CLLocationManager?
-    private var markers = [NMFMarker]() {
+    var markersDict: [String: NMFMarker] = [:] {
         didSet {
-            print("마커 리스트")
-            dump(markers)
+            print("마커 갯수", markersDict.count)
         }
     }
     
@@ -59,25 +58,25 @@ final class Coordinator: NSObject, ObservableObject {
     // TODO: - 커스텀 마커 사용하기
     
     func addMarker(_ location: Location, touchHandler: NMFOverlayTouchHandler?) {
+        // 이미 딕셔너리에 있는 경우는 패스
+        guard markersDict[location.id] == nil else { return }
+        
         let marker = NMFMarker()
         marker.iconImage = NMF_MARKER_IMAGE_BLUE
         marker.position = NMGLatLng(lat: location.lat, lng: location.lng)
         marker.mapView = view.mapView
-        
-//        let infoWindow = NMFInfoWindow()
-//        let dataSource = NMFInfoWindowDefaultTextSource.data()
-//        dataSource.title = location.placeName
-//        infoWindow.dataSource = dataSource
-//        infoWindow.open(with: marker)
-        
         marker.touchHandler = touchHandler
-        
-        markers.append(marker)
+        markersDict[location.id] = marker
     }
     
-    func clearMarkers() {
-        markers.forEach { $0.mapView = nil }
-        markers.removeAll()
+    func removeMarkers(_ locataionIDList: [String]) {
+        print("마커 지우기", locataionIDList)
+        locataionIDList.forEach { id in
+            if let marker = markersDict[id] {
+                marker.mapView = nil
+                markersDict[id] = nil
+            }
+        }
     }
     
     // naverMap 길찾기 구현
@@ -167,12 +166,12 @@ extension Coordinator: CLLocationManagerDelegate {
 extension Coordinator: NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
         // 카메라 이동이 시작되기 전 호출되는 함수
-//        print(#function, "카메라 이동 전")
+        //        print(#function, "카메라 이동 전")
     }
     
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
         // 카메라의 위치가 변경되면 호출되는 함수
-//        print(#function, "카메라 위치 변경")
+        //        print(#function, "카메라 위치 변경")
     }
 }
 

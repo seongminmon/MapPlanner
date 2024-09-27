@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct MapView: View {
     
@@ -23,10 +22,17 @@ struct MapView: View {
             Coordinator.shared.checkIfLocationServiceIsEnabled()
         }
         .onChange(of: planStore.outputPlans) { newValue in
-            coordinator.clearMarkers()
-            // 마커 그리기
-            newValue.forEach { item in
-                guard let location = item.toLocation() else { return }
+            let currentLocations = newValue.compactMap { $0.toLocation() }
+            let existingLocations = coordinator.markersDict.keys
+            
+            let currentLocationIDList = currentLocations.map { $0.id }
+            let removeLocations: [String] = existingLocations.filter { !currentLocationIDList.contains($0) }
+            
+            // 없어진 마커 삭제
+            coordinator.removeMarkers(removeLocations)
+            
+            // 새로운 마커 추가
+            currentLocations.forEach { location in
                 coordinator.addMarker(location) { _ in
                     print("마커 탭", location)
                     return true

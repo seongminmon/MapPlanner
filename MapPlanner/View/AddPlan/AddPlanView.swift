@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PhotosUI
-import RealmSwift
 
 struct AddPlanView: View {
     
@@ -269,7 +268,7 @@ struct AddPlanView: View {
             } label: {
                 HStack {
                     Image.location
-                    Text("장소 추가")
+                    Text("장소 선택")
                         .bold()
                 }
             }
@@ -304,9 +303,5 @@ struct AddPlanView: View {
             lng: location?.lng
         )
         planStore.addPlan(plan: plan, image: uiImage)
-//        $plans.append(plan)
-//        if let uiImage {
-//            ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
-//        }
     }
 }

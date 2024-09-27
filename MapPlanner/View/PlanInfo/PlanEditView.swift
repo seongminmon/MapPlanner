@@ -7,9 +7,10 @@
 
 import SwiftUI
 import PhotosUI
-import RealmSwift
 
 struct PlanEditView: View {
+    
+    // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
     var plan: PlanOutput
     
@@ -78,7 +79,6 @@ struct PlanEditView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    // Realm + image파일 업데이트
                     updatePlan()
                     dismiss()
                 } label: {
@@ -119,20 +119,14 @@ struct PlanEditView: View {
         }
         // 초기값 적용
         .onAppear {
+            uiImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)")
             title = plan.title
             selectedDate = plan.date
             isTimeIncluded = plan.isTimeIncluded
             contents = plan.contents
-            if let lat = plan.lat, let lng = plan.lng {
-                location = Location(
-                    id: plan.locationID,
-                    placeName: plan.placeName,
-                    addressName: plan.addressName,
-                    lat: lat,
-                    lng: lng
-                )
+            if let planLocation = plan.toLocation() {
+                location = planLocation
             }
-            uiImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)")
         }
     }
     
@@ -285,7 +279,7 @@ struct PlanEditView: View {
             } label: {
                 HStack {
                     Image.location
-                    Text("장소 추가")
+                    Text("장소 선택")
                         .bold()
                 }
             }
