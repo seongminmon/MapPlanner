@@ -45,6 +45,18 @@ struct PlanEditView: View {
         return title.isEmpty
     }
     
+    init(plan: PlanOutput) {
+        self.plan = plan
+        
+        // 초기값 설정
+        self._uiImage = State(initialValue: ImageFileManager.shared.loadImageFile(filename: "\(plan.id)"))
+        self._title = State(initialValue: plan.title)
+        self._selectedDate = State(initialValue: plan.date)
+        self._isTimeIncluded = State(initialValue: plan.isTimeIncluded)
+        self._contents = State(initialValue: plan.contents)
+        self._location = State(initialValue: plan.toLocation())
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -116,17 +128,6 @@ struct PlanEditView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
             hideKeyboard()
-        }
-        // 초기값 적용
-        .onAppear {
-            uiImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)")
-            title = plan.title
-            selectedDate = plan.date
-            isTimeIncluded = plan.isTimeIncluded
-            contents = plan.contents
-            if let planLocation = plan.toLocation() {
-                location = planLocation
-            }
         }
     }
     

@@ -55,7 +55,7 @@ final class Coordinator: NSObject, ObservableObject {
         return view
     }
     
-    // TODO: - 커스텀 마커 사용하기
+    // TODO: - 커스텀 마커 사용
     
     func addMarker(_ location: Location, touchHandler: NMFOverlayTouchHandler?) {
         // 이미 딕셔너리에 있는 경우는 패스
