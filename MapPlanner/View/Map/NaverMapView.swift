@@ -26,10 +26,16 @@ final class Coordinator: NSObject, ObservableObject {
     
     private let view = NMFNaverMapView(frame: .zero)
     private var locationManager: CLLocationManager?
+    private var markers = [NMFMarker]() {
+        didSet {
+            print("마커 리스트")
+            dump(markers)
+        }
+    }
     
     typealias Coord = (lat: Double, lng: Double)
-    @Published private var coord = Coord(lat: 0.0, lng: 0.0)
-    @Published private var userLocation = Coord(lat: 0.0, lng: 0.0)
+    @Published private var coord = Coord(lat: Location.defaultLat, lng: Location.defaultLng)
+    @Published private var userLocation = Coord(lat: Location.defaultLat, lng: Location.defaultLng)
     
     private override init() {
         super.init()
@@ -50,17 +56,28 @@ final class Coordinator: NSObject, ObservableObject {
         return view
     }
     
-    func setMarker(lat: Double, lng: Double) {
+    // TODO: - 커스텀 마커 사용하기
+    
+    func addMarker(_ location: Location, touchHandler: NMFOverlayTouchHandler?) {
         let marker = NMFMarker()
-        marker.iconImage = NMF_MARKER_IMAGE_PINK
-        marker.position = NMGLatLng(lat: lat, lng: lng)
+        marker.iconImage = NMF_MARKER_IMAGE_BLUE
+        marker.position = NMGLatLng(lat: location.lat, lng: location.lng)
         marker.mapView = view.mapView
         
-        let infoWindow = NMFInfoWindow()
-        let dataSource = NMFInfoWindowDefaultTextSource.data()
-        dataSource.title = "서울특별시청"
-        infoWindow.dataSource = dataSource
-        infoWindow.open(with: marker)
+//        let infoWindow = NMFInfoWindow()
+//        let dataSource = NMFInfoWindowDefaultTextSource.data()
+//        dataSource.title = location.placeName
+//        infoWindow.dataSource = dataSource
+//        infoWindow.open(with: marker)
+        
+        marker.touchHandler = touchHandler
+        
+        markers.append(marker)
+    }
+    
+    func clearMarkers() {
+        markers.forEach { $0.mapView = nil }
+        markers.removeAll()
     }
     
     // naverMap 길찾기 구현
@@ -88,7 +105,7 @@ extension Coordinator: CLLocationManagerDelegate {
             if CLLocationManager.locationServicesEnabled() {
                 DispatchQueue.main.async {
                     self.locationManager = CLLocationManager()
-                    self.locationManager!.delegate = self
+                    self.locationManager?.delegate = self
                     self.checkLocationAuthorization()
                 }
             } else {
@@ -110,8 +127,8 @@ extension Coordinator: CLLocationManagerDelegate {
             print("위치 정보 접근을 거절했습니다. 설정에 가서 변경하세요.")
         case .authorizedAlways, .authorizedWhenInUse:
             print("위치 정보 권한 O")
-            let lat = locationManager.location?.coordinate.latitude ?? 0.0
-            let lng = locationManager.location?.coordinate.longitude ?? 0.0
+            let lat = locationManager.location?.coordinate.latitude ?? Location.defaultLat
+            let lng = locationManager.location?.coordinate.longitude ?? Location.defaultLng
             coord = (lat, lng)
             userLocation = (lat, lng)
             fetchUserLocation()
@@ -124,8 +141,8 @@ extension Coordinator: CLLocationManagerDelegate {
     private func fetchUserLocation() {
         guard let locationManager = locationManager else { return }
         
-        let lat = locationManager.location?.coordinate.latitude ?? 0.0
-        let lng = locationManager.location?.coordinate.longitude ?? 0.0
+        let lat = locationManager.location?.coordinate.latitude ?? Location.defaultLat
+        let lng = locationManager.location?.coordinate.longitude ?? Location.defaultLng
         let cameraUpdate = NMFCameraUpdate(
             scrollTo: NMGLatLng(lat: lat, lng: lng),
             zoomTo: 15
@@ -150,12 +167,12 @@ extension Coordinator: CLLocationManagerDelegate {
 extension Coordinator: NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
         // 카메라 이동이 시작되기 전 호출되는 함수
-        print(#function, "카메라 이동 전")
+//        print(#function, "카메라 이동 전")
     }
     
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
         // 카메라의 위치가 변경되면 호출되는 함수
-        print(#function, "카메라 위치 변경")
+//        print(#function, "카메라 위치 변경")
     }
 }
 
@@ -177,7 +194,7 @@ extension Coordinator: NMFMapViewTouchDelegate {
         // latlng 탭된 지점의 지도 좌표.
         // point 탭된 지점의 화면 좌표.
         print(#function, "지도 탭")
-        print("지도 좌표:", latlng)        
+        print("지도 좌표:", latlng)
         print("포인트:", point)
     }
 }

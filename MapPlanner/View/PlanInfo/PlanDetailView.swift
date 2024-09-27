@@ -82,7 +82,6 @@ struct PlanDetailView: View {
             try realm.write {
                 realm.delete(target)
             }
-            dismiss()
             print("Realm 삭제 성공")
         } catch {
             print("Realm 삭제 실패: \(error)")

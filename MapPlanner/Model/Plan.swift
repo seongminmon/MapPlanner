@@ -37,3 +37,18 @@ final class Plan: Object, ObjectKeyIdentifiable {
         self.lng = lng
     }
 }
+
+extension Plan {
+    func toLocation() -> Location? {
+        guard let lat = self.lat, let lng = self.lng else { return nil }
+        return Location(
+            id: self.locationID,
+            placeName: self.placeName,
+            addressName: self.addressName,
+            lat: lat,
+            lng: lng
+        )
+    }
+}
+
+// TODO: - RealmModel / PresentModel 분리

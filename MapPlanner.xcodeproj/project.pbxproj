@@ -233,8 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */,
-				24CA385B2C944EA600B873E7 /* Plan.swift */,
 				24DD06ED2CA4125C00883F33 /* Location.swift */,
+				24CA385B2C944EA600B873E7 /* Plan.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
