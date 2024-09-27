@@ -79,24 +79,4 @@ struct RootView: View {
                 .tag(TabInfo.timeline)
         }
     }
-    
-//    private func planTabView() -> some View {
-//        TabView(selection: $viewModel.output.selectedTab) {
-//            CalendarView()
-//                .tabItem {
-//                    Text(TabInfo.calendar.rawValue)
-//                }
-//                .tag(TabInfo.calendar)
-//            MapView()
-//                .tabItem {
-//                    Text(TabInfo.map.rawValue)
-//                }
-//                .tag(TabInfo.map)
-//            TimeLineView()
-//                .tabItem {
-//                    Text(TabInfo.timeline.rawValue)
-//                }
-//                .tag(TabInfo.timeline)
-//        }
-//    }
 }

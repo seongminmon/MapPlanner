@@ -13,7 +13,7 @@ struct AddPlanView: View {
     
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
-    @ObservedResults(Plan.self) var plans
+    @StateObject private var planStore = PlanStore()
     @Environment(\.dismiss) private var dismiss
     
     // 사진
@@ -303,10 +303,10 @@ struct AddPlanView: View {
             lat: location?.lat,
             lng: location?.lng
         )
-        $plans.append(plan)
-        print("Realm 추가 성공")
-        if let uiImage {
-            ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
-        }
+        planStore.addPlan(plan: plan, image: uiImage)
+//        $plans.append(plan)
+//        if let uiImage {
+//            ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
+//        }
     }
 }

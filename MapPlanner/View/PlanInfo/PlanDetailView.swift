@@ -10,7 +10,9 @@ import RealmSwift
 
 struct PlanDetailView: View {
     
-    var plan: Plan
+    var plan: PlanOutput
+    @StateObject private var planStore = PlanStore()
+    
     @Environment(\.dismiss) private var dismiss
     @State private var showAlert = false
     
@@ -67,24 +69,10 @@ struct PlanDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .alert("일정 삭제하기", isPresented: $showAlert) {
                 Button("삭제", role: .destructive) {
-                    deletePlan()
+                    planStore.deletePlan(planID: plan.id)
                 }
                 Button("취소", role: .cancel) {}
             }
-        }
-    }
-    
-    private func deletePlan() {
-        do {
-            let realm = try Realm()
-            guard let target = realm.object(ofType: Plan.self, forPrimaryKey: plan.id) else { return }
-            ImageFileManager.shared.deleteImageFile(filename: "\(target.id)")
-            try realm.write {
-                realm.delete(target)
-            }
-            print("Realm 삭제 성공")
-        } catch {
-            print("Realm 삭제 실패: \(error)")
         }
     }
 }

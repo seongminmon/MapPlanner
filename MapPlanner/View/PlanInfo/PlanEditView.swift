@@ -11,9 +11,9 @@ import RealmSwift
 
 struct PlanEditView: View {
     
-    var plan: Plan
+    var plan: PlanOutput
     
-    @ObservedResults(Plan.self) var plans
+    @StateObject private var planStore = PlanStore()
     @Environment(\.dismiss) private var dismiss
     
     // 사진
@@ -132,9 +132,7 @@ struct PlanEditView: View {
                     lng: lng
                 )
             }
-            if let storedImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
-                uiImage = storedImage
-            }
+            uiImage = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)")
         }
     }
     
@@ -310,31 +308,19 @@ struct PlanEditView: View {
     }
     
     private func updatePlan() {
-        // 이미지 덮어쓰기
-        if let uiImage {
-            ImageFileManager.shared.saveImageFile(image: uiImage, filename: "\(plan.id)")
-        } else {
-            ImageFileManager.shared.deleteImageFile(filename: "\(plan.id)")
-        }
-        
-        do {
-            let realm = try Realm()
-            guard let target = realm.object(ofType: Plan.self, forPrimaryKey: plan.id) else { return }
-            try realm.write {
-                target.savedDate = Date()
-                target.title = title
-                target.date = selectedDate
-                target.isTimeIncluded = isTimeIncluded
-                target.contents = contents
-                target.locationID = location?.id ?? ""
-                target.placeName = location?.placeName ?? ""
-                target.addressName = location?.addressName ?? ""
-                target.lat = location?.lat
-                target.lng = location?.lng
-            }
-            print("Realm 업데이트 성공")
-        } catch {
-            print("Realm 업데이트 실패: \(error)")
-        }
+        let newPlan = PlanOutput(
+            id: plan.id,
+            savedDate: Date(),
+            title: title,
+            date: selectedDate,
+            isTimeIncluded: isTimeIncluded,
+            contents: contents,
+            locationID: location?.id ?? "",
+            placeName: location?.placeName ?? "",
+            addressName: location?.addressName ?? "",
+            lat: location?.lat,
+            lng: location?.lng
+        )
+        planStore.updatePlan(planID: plan.id, newPlan: newPlan, image: uiImage)
     }
 }

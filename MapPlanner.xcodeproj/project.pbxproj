@@ -45,6 +45,8 @@
 		24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */; };
 		24DD06EE2CA4125C00883F33 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06ED2CA4125C00883F33 /* Location.swift */; };
 		24DD06F32CA42A9800883F33 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F22CA42A9800883F33 /* PlanCell.swift */; };
+		24FB3FB42CA6722E00DC8087 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB32CA6722E00DC8087 /* RealmManager.swift */; };
+		24FB3FB62CA6841C00DC8087 /* PlanOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,8 @@
 		24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResponse.swift; sourceTree = "<group>"; };
 		24DD06ED2CA4125C00883F33 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		24DD06F22CA42A9800883F33 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
+		24FB3FB32CA6722E00DC8087 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanOutput.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				241A58AF2C92C87200232D8B /* Info.plist */,
 				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
 				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
+				24FB3FB32CA6722E00DC8087 /* RealmManager.swift */,
 				24DD06DA2CA293D400883F33 /* Protocol */,
 				24DD06C22C9FE38B00883F33 /* Design */,
 				24CA385F2C9459DE00B873E7 /* Model */,
@@ -235,6 +240,7 @@
 				24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */,
 				24DD06ED2CA4125C00883F33 /* Location.swift */,
 				24CA385B2C944EA600B873E7 /* Plan.swift */,
+				24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
+				24FB3FB62CA6841C00DC8087 /* PlanOutput.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
@@ -453,6 +460,7 @@
 				2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */,
 				24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */,
 				2421E7922C9C080F00A4E607 /* Date+.swift in Sources */,
+				24FB3FB42CA6722E00DC8087 /* RealmManager.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */,
 				24DD06C62C9FECE400883F33 /* PlanDetailView.swift in Sources */,

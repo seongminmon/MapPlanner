@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import RealmSwift
+//import RealmSwift
 
 struct DayCell: View {
     
@@ -14,12 +14,13 @@ struct DayCell: View {
     var clicked: Bool
     var isCurrentMonth: Bool
     
-    @State private var showPlanListView = false
-    @ObservedResults(Plan.self) var plans
+    @StateObject private var planStore = PlanStore()
     
-    var filteredPlans: [Plan] {
-        return plans.filter { $0.date.compareYearMonthDay(date) }
+    var filteredPlans: [PlanOutput] {
+        return planStore.outputPlans.filter { $0.date.compareYearMonthDay(date) }
     }
+    
+    @State private var showPlanListView = false
     
     var isToday: Bool {
         return date.compareYearMonthDay(Date())
@@ -82,9 +83,9 @@ struct DayCell: View {
     }
     
     @ViewBuilder
-    private func thumbnailView(_ item: Plan) -> some View {
+    private func thumbnailView(_ item: PlanOutput) -> some View {
         GeometryReader { geometry in
-            if let image = ImageFileManager.shared.loadImageFile(filename: "\(item.id)") {
+            if let image = ImageFileManager.shared.loadImageFile(filename: item.id) {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)

@@ -11,10 +11,10 @@ import RealmSwift
 struct PlanListView: View {
     
     var date: Date
-    @ObservedResults(Plan.self) var plans
+    @StateObject private var planStore = PlanStore()
     
-    var filteredPlans: [Plan] {
-        return plans.filter { $0.date.compareYearMonthDay(date) }
+    var filteredPlans: [PlanOutput] {
+        return planStore.outputPlans.filter { $0.date.compareYearMonthDay(date) }
     }
     
     var body: some View {

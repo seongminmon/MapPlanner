@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlanCell: View {
     
-    var plan: Plan
+    var plan: PlanOutput
     @State var showPlanDetailView = false
     
     var body: some View {

@@ -9,16 +9,16 @@ import SwiftUI
 import RealmSwift
 
 struct SearchView: View {
- 
+    
     @Environment(\.dismiss) private var dismiss
     
     @State private var text = ""
     @State private var query = ""
-    @ObservedResults(Plan.self) var plans
+    @StateObject private var planStore = PlanStore()
     
     // 제목 / 내용 / 장소명 / 주소명으로 검색
-    var filteredPlans: [Plan] {
-        return plans.filter {
+    var filteredPlans: [PlanOutput] {
+        return planStore.outputPlans.filter {
             $0.title.contains(query) ||
             $0.contents.contains(query) ||
             $0.placeName.contains(query) ||
