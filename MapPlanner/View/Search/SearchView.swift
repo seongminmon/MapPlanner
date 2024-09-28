@@ -10,6 +10,8 @@ import RealmSwift
 
 struct SearchView: View {
     
+    // TODO: - 실시간 검색으로 변경하기
+    
     @Environment(\.dismiss) private var dismiss
     
     @State private var text = ""

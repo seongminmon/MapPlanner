@@ -10,6 +10,7 @@ import PhotosUI
 
 struct PlanEditView: View {
     
+    // TODO: - 선택한 사진 삭제 기능
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
     var plan: PlanOutput

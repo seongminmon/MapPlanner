@@ -24,4 +24,5 @@ extension Image {
     static let xmarkFill = Image(systemName: "xmark.circle.fill")
     static let calendar = Image(systemName: "calendar")
     static let ellipsis = Image(systemName: "ellipsis")
+    static let setting = Image(systemName: "gearshape")
 }

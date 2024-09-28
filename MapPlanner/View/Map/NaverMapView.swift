@@ -9,6 +9,9 @@ import SwiftUI
 import NMapsMap
 
 struct NaverMapView: UIViewRepresentable {
+    // TODO: - 첫 위치 카메라 이동하기
+    // 권한 설정시 내 위치로 카메라 이동하기
+    // 권한 없으면 기본 위치로 이동하기
     
     func makeCoordinator() -> Coordinator {
         return Coordinator.shared

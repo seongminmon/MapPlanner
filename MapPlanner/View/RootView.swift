@@ -32,9 +32,9 @@ struct RootView: View {
                     .foregroundStyle(Color(.appPrimary))
                     
                     NavigationLink {
-                        ProfileView()
+                        SettingView()
                     } label: {
-                        Image.person
+                        Image.setting
                     }
                     .foregroundStyle(Color(.appPrimary))
                 }
@@ -78,5 +78,6 @@ struct RootView: View {
             TimeLineView()
                 .tag(TabInfo.timeline)
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TimeLineView: View {
     
+    // TODO: - 일정 추가 버튼
+    
     @StateObject private var planStore = PlanStore()
     
     var body: some View {

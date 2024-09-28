@@ -9,20 +9,31 @@ import SwiftUI
 
 struct MapView: View {
     
-    @StateObject var coordinator = Coordinator.shared
+    // TODO: - 마커 선택 시
+    // 일정 정보 띄우기
+    // 다른 곳 탭하면 일정 정보 사라지게 하기
+    // 일정 추가 버튼
+    
+    @StateObject private var coordinator = Coordinator.shared
     @StateObject private var planStore = PlanStore()
-    @State private var showPlanCell = false
+    @State private var selectedPlan: PlanOutput?
     
     var body: some View {
         VStack {
             NaverMapView()
                 .ignoresSafeArea(.all, edges: .bottom)
+                .overlay {
+                    if let selectedPlan {
+                        PlanCell(plan: selectedPlan)
+                    }
+                }
         }
         .onAppear {
             // 권한 설정
             Coordinator.shared.checkIfLocationServiceIsEnabled()
         }
         .onChange(of: planStore.outputPlans) { newValue in
+            // TODO: - marker에서 탭한 plan 넘겨받기
             let currentLocations = newValue.compactMap { $0.toLocation() }
             let currentLocationIDList = currentLocations.map { $0.id }
             
@@ -36,15 +47,11 @@ struct MapView: View {
             newValue.forEach { plan in
                 if let location = plan.toLocation() {
                     coordinator.addMarker(location) { _ in
-                        showPlanCell.toggle()
+                        selectedPlan = plan
                         return true
                     }
                 }
             }
-        }
-        .sheet(isPresented: $showPlanCell) {
-            // TODO: - marker에서 탭한 plan 넘겨받기
-//            PlanCell(plan: plan)
         }
     }
 }
