@@ -12,7 +12,8 @@ struct PlanEditView: View {
     
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
-    var plan: PlanOutput
+    // MARK: - plan == nil ? 일정 추가 : 수정하기
+    var plan: PlanOutput?
     
     @StateObject private var planStore = PlanStore()
     @Environment(\.dismiss) private var dismiss
@@ -27,7 +28,7 @@ struct PlanEditView: View {
     @State private var title = ""
     
     // 날짜 *
-    @State var selectedDate: Date = Date()
+    @State var selectedDate: Date
     @State private var showDatePicker = false
     @State private var datePickerDate: Date = Date()
     @State private var isTimeIncluded = false
@@ -45,8 +46,11 @@ struct PlanEditView: View {
         return title.isEmpty
     }
     
-    init(plan: PlanOutput) {
+    init(plan: PlanOutput?, selectedDate: Date?) {
+        self._selectedDate = State(initialValue: selectedDate ?? Date())
+        
         self.plan = plan
+        guard let plan else { return }
         
         // 초기값 설정
         self._uiImage = State(initialValue: ImageFileManager.shared.loadImageFile(filename: "\(plan.id)"))
@@ -73,7 +77,7 @@ struct PlanEditView: View {
         }
         .scrollIndicators(.never)
         // 네비게이션
-        .navigationTitle("수정하기")
+        .navigationTitle(plan == nil ? "일정 추가" : "수정하기")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -87,7 +91,8 @@ struct PlanEditView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    updatePlan()
+                    plan == nil ? addPlan() : updatePlan()
+                    
                     dismiss()
                 } label: {
                     Text("저장")
@@ -103,7 +108,8 @@ struct PlanEditView: View {
                 showPhotosPicker.toggle()
             }
             if uiImage != nil {
-                Button("사진 삭제", role: .destructive) {
+                Button("삭제", role: .destructive) {
+                    selectedPhoto = nil
                     uiImage = nil
                 }
             }
@@ -311,7 +317,24 @@ struct PlanEditView: View {
         }
     }
     
+    private func addPlan() {
+        let plan = Plan(
+            title: title,
+            date: selectedDate,
+            isTimeIncluded: isTimeIncluded,
+            contents: contents,
+            locationID: location?.id ?? "",
+            placeName: location?.placeName ?? "",
+            addressName: location?.addressName ?? "",
+            lat: location?.lat,
+            lng: location?.lng
+        )
+        planStore.addPlan(plan: plan, image: uiImage)
+    }
+    
     private func updatePlan() {
+        guard let plan else { return }
+        
         let newPlan = PlanOutput(
             id: plan.id,
             savedDate: Date(),

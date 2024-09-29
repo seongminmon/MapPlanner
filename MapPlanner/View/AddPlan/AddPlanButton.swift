@@ -13,7 +13,7 @@ struct AddPlanButton: View {
     
     var body: some View {
         NavigationLink {
-            AddPlanView(selectedDate: date)
+            PlanEditView(plan: nil, selectedDate: date)
         } label: {
             Image.plus
                 .foregroundStyle(Color(.background))

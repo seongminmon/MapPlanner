@@ -68,7 +68,7 @@ struct PlanDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .confirmationDialog("", isPresented: $showActionSheet) {
                 NavigationLink {
-                    PlanEditView(plan: plan)
+                    PlanEditView(plan: plan, selectedDate: nil)
                 } label: {
                     Text("편집")
                 }
