@@ -9,10 +9,8 @@ import SwiftUI
 
 struct MapView: View {
     
-    // TODO: - 마커 선택 시
-    // 일정 정보 띄우기
-    // 다른 곳 탭하면 일정 정보 사라지게 하기
-    // 동일한 장소에 대한 고려
+    // TODO: -
+    // 마커 선택시 카메라 이동
     
     @StateObject private var coordinator = Coordinator.shared
     @StateObject private var planStore = PlanStore()
@@ -22,8 +20,6 @@ struct MapView: View {
     var body: some View {
         ZStack {
             NaverMapView()
-                .ignoresSafeArea(.all, edges: .bottom)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             AddPlanButton()
         }
         .onAppear {
@@ -54,16 +50,7 @@ struct MapView: View {
             }
         }
         .sheet(item: $selectedPlan) { plan in
-            VStack {
-                Text(plan.placeName)
-                    .font(.bold18)
-                    .padding(.top, 10)
-                PlanCell(plan: plan)
-                    .background(Color.clear)
-                    .padding(.horizontal, 8)
-                Spacer()
-            }
-            .presentationDetents([.fraction(0.4)])
+            LocationPlanListView(location: plan.toLocation())
         }
     }
 }

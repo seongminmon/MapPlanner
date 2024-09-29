@@ -71,7 +71,7 @@ struct DayCell: View {
                     }
             }
             .sheet(isPresented: $showPlanListView) {
-                PlanListView(date: date)
+                DatePlanListView(date: date)
             }
         } else {
             Circle()

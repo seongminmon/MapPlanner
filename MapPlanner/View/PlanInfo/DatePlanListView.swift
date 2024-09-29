@@ -1,5 +1,5 @@
 //
-//  PlanListView.swift
+//  DatePlanListView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/23/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-struct PlanListView: View {
+struct DatePlanListView: View {
     
     var date: Date
     @StateObject private var planStore = PlanStore()

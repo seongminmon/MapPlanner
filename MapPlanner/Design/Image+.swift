@@ -25,4 +25,5 @@ extension Image {
     static let calendar = Image(systemName: "calendar")
     static let ellipsis = Image(systemName: "ellipsis")
     static let setting = Image(systemName: "gearshape")
+    static let map = Image(systemName: "map")
 }
