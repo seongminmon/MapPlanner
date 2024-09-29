@@ -247,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				24DD06D32CA1AAA600883F33 /* AddPlanButton.swift */,
+				24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */,
 				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
 			);
 			path = AddPlan;
@@ -267,7 +268,6 @@
 				24DD06CB2CA1A88400883F33 /* PlanListView.swift */,
 				24DD06F22CA42A9800883F33 /* PlanCell.swift */,
 				24DD06C52C9FECE400883F33 /* PlanDetailView.swift */,
-				24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */,
 			);
 			path = PlanInfo;
 			sourceTree = "<group>";

@@ -40,6 +40,12 @@ struct PlanCell: View {
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color(.appSecondary))
                         .lineLimit(2)
+                    Text(plan.placeName)
+                        .font(.bold15)
+                        .foregroundStyle(Color(.appPrimary))
+                    Text(plan.addressName)
+                        .font(.regular13)
+                        .foregroundStyle(Color(.appPrimary))
                 }
                 Spacer()
             }

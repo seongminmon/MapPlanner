@@ -53,7 +53,7 @@ struct CalendarView: View {
                 Button {
                     viewModel.input.showDatePickerButtonTap.send(())
                 } label: {
-                    Text(viewModel.output.currentDate.toString("yyyy.MM"))
+                    Text(viewModel.output.currentDate.toString(DateFormat.untilMonth))
                         .font(.bold20)
                 }
                 .foregroundStyle(Color(.appPrimary))

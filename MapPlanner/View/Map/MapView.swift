@@ -16,28 +16,20 @@ struct MapView: View {
     
     @StateObject private var coordinator = Coordinator.shared
     @StateObject private var planStore = PlanStore()
+    
     @State private var selectedPlan: PlanOutput?
     
     var body: some View {
         ZStack {
             NaverMapView()
-                .background(.pink)
                 .ignoresSafeArea(.all, edges: .bottom)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.blue)
-                .overlay(alignment: .bottom) {
-                    if let selectedPlan {
-                        PlanCell(plan: selectedPlan)
-                            .background(Color(.background))
-                    }
-                }
             AddPlanButton()
         }
         .onAppear {
             // 권한 설정
             coordinator.checkIfLocationServiceIsEnabled()
             coordinator.didTapMap = {
-                print(#function)
                 selectedPlan = nil
             }
         }
@@ -60,6 +52,18 @@ struct MapView: View {
                     }
                 }
             }
+        }
+        .sheet(item: $selectedPlan) { plan in
+            VStack {
+                Text(plan.placeName)
+                    .font(.bold18)
+                    .padding(.top, 10)
+                PlanCell(plan: plan)
+                    .background(Color.clear)
+                    .padding(.horizontal, 8)
+                Spacer()
+            }
+            .presentationDetents([.fraction(0.4)])
         }
     }
 }

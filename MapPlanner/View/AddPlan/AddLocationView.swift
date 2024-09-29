@@ -67,13 +67,13 @@ struct AddLocationView: View {
         } label: {
             VStack(alignment: .leading) {
                 Text(location.placeName)
-                    .font(.bold15)
+                    .font(.bold18)
+                    .foregroundStyle(Color(.appPrimary))
                 Text(location.addressName)
-                    .font(.regular14)
+                    .font(.regular15)
+                    .foregroundStyle(Color(.appSecondary))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: 100)
-            .background(Color(.lightTheme))
             .padding()
         }
     }

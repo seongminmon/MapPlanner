@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum DateFormat {
+    static let untilMonth = "yyyy.MM"
+    static let untilDay = "yyyy.MM.dd"
+    static let untilWeekDay = "yyyy.MM.dd (E)"
+    static let untilTime = "yyyy.MM.dd (E) a hh:mm"
+    static let time = "a hh:mm"
+}
+
 extension Date {
     static let dateFormatter = DateFormatter()
     static let startDate = Calendar.current.date(from: DateComponents(year: 2020, month: 01, day: 01))!

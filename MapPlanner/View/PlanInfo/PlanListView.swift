@@ -19,7 +19,7 @@ struct PlanListView: View {
     
     var body: some View {
         VStack {
-            Text(date.toString("yyyy.MM.dd"))
+            Text(date.toString(DateFormat.untilDay))
                 .font(.bold18)
                 .padding(.top, 10)
             ScrollView {
@@ -28,7 +28,7 @@ struct PlanListView: View {
                         PlanCell(plan: item)
                     }
                 }
-                .padding()
+                .padding(.horizontal, 8)
             }
         }
         .background(Color.clear)

@@ -9,18 +9,27 @@ import SwiftUI
 
 struct TimeLineView: View {
     
-    // TODO: - 일정 추가 버튼
-    
     @StateObject private var planStore = PlanStore()
     
+    var sortedPlan: [PlanOutput] {
+        return planStore.outputPlans.sorted { $0.date > $1.date }
+    }
+    
     var body: some View {
+        let _ = print(sortedPlan.map { ($0.title, $0.date) })
+        
         ZStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(planStore.outputPlans, id: \.id) { item in
-                        PlanCell(plan: item)
+                    ForEach(sortedPlan, id: \.id) { item in
+                        VStack {
+                            Text(item.date.toString(DateFormat.untilDay))
+                                .font(.bold18)
+                            PlanCell(plan: item)
+                        }
                     }
                 }
+                .padding(.horizontal, 8)
             }
             AddPlanButton()
         }

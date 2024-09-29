@@ -12,7 +12,7 @@ struct PlanEditView: View {
     
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
-    // MARK: - plan == nil ? 일정 추가 : 수정하기
+    // MARK: - plan == nil ? 추가 : 수정
     var plan: PlanOutput?
     
     @StateObject private var planStore = PlanStore()
@@ -92,7 +92,6 @@ struct PlanEditView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     plan == nil ? addPlan() : updatePlan()
-                    
                     dismiss()
                 } label: {
                     Text("저장")
@@ -177,7 +176,7 @@ struct PlanEditView: View {
             datePickerDate = selectedDate
             showDatePicker.toggle()
         } label: {
-            Text(selectedDate.toString("yyyy.MM.dd (E)"))
+            Text(selectedDate.toString(DateFormat.untilWeekDay))
                 .font(.bold18)
             Spacer()
             Image.rightChevron
@@ -222,7 +221,7 @@ struct PlanEditView: View {
             showTimePicker.toggle()
         } label: {
             if isTimeIncluded {
-                Text(selectedDate.toString("a hh:mm"))
+                Text(selectedDate.toString(DateFormat.time))
                     .font(.bold18)
                 Button {
                     isTimeIncluded = false
@@ -276,35 +275,36 @@ struct PlanEditView: View {
     }
     
     private func addLocationButton() -> some View {
-        VStack {
-            Text("장소")
-                .font(.bold15)
-                .foregroundStyle(Color(.appPrimary))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 10)
-            Text(location?.placeName ?? "")
-                .font(.bold15)
-                .foregroundStyle(Color(.appPrimary))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text(location?.addressName ?? "")
-                .font(.regular14)
-                .foregroundStyle(Color(.appSecondary))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            NavigationLink {
-                AddLocationView(selectedLocation: $location)
-            } label: {
-                HStack {
-                    Image.location
+        NavigationLink {
+            AddLocationView(selectedLocation: $location)
+        } label: {
+            HStack {
+                if let location {
+                    VStack(alignment: .leading) {
+                        Text(location.placeName)
+                            .font(.bold18)
+                            .foregroundStyle(Color(.appPrimary))
+                        Text(location.addressName)
+                            .font(.regular15)
+                            .foregroundStyle(Color(.appSecondary))
+                    }
+                } else {
                     Text("장소 선택")
-                        .font(.bold15)
+                        .font(.bold18)
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .foregroundStyle(Color(.background))
-                .background(Color(.button))
-                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                Spacer()
+                if location != nil {
+                    Button {
+                        self.location = nil
+                    } label: {
+                        Image.xmark
+                    }
+                }
+                Image.rightChevron
+                    .bold()
             }
         }
+        .foregroundStyle(Color(.appPrimary))
     }
     
     private func contentsTextField() -> some View {

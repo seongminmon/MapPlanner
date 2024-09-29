@@ -26,7 +26,7 @@ struct PlanDetailView: View {
                     VStack(spacing: 10) {
                         Text(plan.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
+                        Text("\(plan.isTimeIncluded ? plan.date.toString(DateFormat.untilTime) : plan.date.toString(DateFormat.untilWeekDay))")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Text(plan.contents)
                             .font(.regular14)
