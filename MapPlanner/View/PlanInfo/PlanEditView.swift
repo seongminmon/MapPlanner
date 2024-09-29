@@ -60,19 +60,13 @@ struct PlanEditView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                // 사진
+            VStack(spacing: 300) {
                 imageButton()
                 VStack(spacing: 20) {
-                    // 제목
                     titleTextField()
-                    // 내용
                     contentsTextField()
-                    // 날짜
                     showDatePickerButton()
-                    // 시간
                     showTimePickerButton()
-                    // 장소
                     addLocationButton()
                 }
                 .padding()
@@ -140,18 +134,22 @@ struct PlanEditView: View {
             showImageActionSheet.toggle()
         } label: {
             if let uiImage {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300)
+                GeometryReader { geometry in
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: 300)
+                        .clipped()
+                }
             } else {
-                Image.camera
-                    .resizable()
-                    .frame(width: 50, height: 40)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300)
-                    .foregroundStyle(Color(.appPrimary))
-                    .background(Color(.appSecondary))
+                GeometryReader { geometry in
+                    Image.camera
+                        .resizable()
+                        .frame(width: 50, height: 40)
+                        .frame(width: geometry.size.width, height: 300)
+                        .foregroundStyle(Color(.appPrimary))
+                        .background(Color(.appSecondary))
+                }
             }
         }
     }

@@ -34,6 +34,7 @@ final class Coordinator: NSObject, ObservableObject {
             print("마커 갯수", markersDict.count)
         }
     }
+    var didTapMap: (() -> Void)?
     
     typealias Coord = (lat: Double, lng: Double)
     @Published private var coord = Coord(lat: Location.defaultLat, lng: Location.defaultLng)
@@ -188,6 +189,7 @@ extension Coordinator: NMFMapViewTouchDelegate {
         // symbol 탭된 심벌.
         // `YES`일 경우 이벤트를 소비합니다.
         // 그렇지 않을 경우 이벤트가 지도로 전달되어 `mapView:didTapMap:point:`가 호출됩니다.
+        didTapMap?()
         return true
     }
     
@@ -198,5 +200,6 @@ extension Coordinator: NMFMapViewTouchDelegate {
         print(#function, "지도 탭")
         print("지도 좌표:", latlng)
         print("포인트:", point)
+        didTapMap?()
     }
 }

@@ -19,7 +19,7 @@ struct PlanDetailView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
+                VStack(spacing: 300) {
                     // 사진
                     imageView()
                     VStack(spacing: 20) {
@@ -83,19 +83,22 @@ struct PlanDetailView: View {
     @ViewBuilder
     private func imageView() -> some View {
         if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
-            Image(uiImage: image)
-                .resizable()
-                .frame(maxWidth: .infinity)
-                .frame(height: 300)
+            GeometryReader { geometry in
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: 300)
+                    .clipped()
+            }
         } else {
-            Image.camera
-                .resizable()
-                .frame(width: 50, height: 40)
-                .frame(maxWidth: .infinity)
-                .frame(height: 300)
-                .foregroundStyle(Color(.appPrimary))
-                .background(Color(.appSecondary))
-            
+            GeometryReader { geometry in
+                Image.calendar
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .frame(width: geometry.size.width, height: 300)
+                    .foregroundStyle(Color(.appPrimary))
+                    .background(Color(.appSecondary))
+            }
         }
     }
 }

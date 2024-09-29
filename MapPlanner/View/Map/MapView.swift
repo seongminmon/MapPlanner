@@ -22,18 +22,24 @@ struct MapView: View {
         VStack {
             NaverMapView()
                 .ignoresSafeArea(.all, edges: .bottom)
-                .overlay {
+                .overlay(alignment: .bottom) {
                     if let selectedPlan {
                         PlanCell(plan: selectedPlan)
+                            .transition(.move(edge: .bottom))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
+                .animation(.easeInOut, value: selectedPlan)
         }
         .onAppear {
             // 권한 설정
-            Coordinator.shared.checkIfLocationServiceIsEnabled()
+            coordinator.checkIfLocationServiceIsEnabled()
+            coordinator.didTapMap = {
+                print(#function)
+                selectedPlan = nil
+            }
         }
         .onChange(of: planStore.outputPlans) { newValue in
-            // TODO: - marker에서 탭한 plan 넘겨받기
             let currentLocations = newValue.compactMap { $0.toLocation() }
             let currentLocationIDList = currentLocations.map { $0.id }
             

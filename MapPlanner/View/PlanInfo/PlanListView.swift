@@ -23,7 +23,7 @@ struct PlanListView: View {
                 .font(.bold18)
                 .padding(.top, 10)
             ScrollView {
-                LazyVStack(spacing: 10) {
+                VStack(spacing: 10) {
                     ForEach(filteredPlans, id: \.id) { item in
                         PlanCell(plan: item)
                     }
