@@ -35,7 +35,7 @@ struct DayCell: View {
         } else if isCurrentMonth {
             return Color(.appPrimary)
         } else {
-            return Color(.appSecondary)
+            return Color(.lightSecondary)
         }
     }
     

@@ -20,7 +20,7 @@ extension Image {
     static let list = Image(systemName: "list.bullet")
     static let refresh = Image(systemName: "arrow.clockwise")
     static let checkmark = Image(systemName: "checkmark")
-    static let xmark = Image(systemName: "xmark.circle")
+    static let xmark = Image(systemName: "xmark")
     static let xmarkFill = Image(systemName: "xmark.circle.fill")
     static let calendar = Image(systemName: "calendar")
     static let ellipsis = Image(systemName: "ellipsis")

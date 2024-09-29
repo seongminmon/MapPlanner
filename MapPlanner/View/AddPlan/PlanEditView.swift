@@ -223,18 +223,21 @@ struct PlanEditView: View {
             if isTimeIncluded {
                 Text(selectedDate.toString(DateFormat.time))
                     .font(.bold18)
+            } else {
+                Text("시간 +")
+                    .font(.bold18)
+            }
+            Spacer()
+            if isTimeIncluded {
                 Button {
                     isTimeIncluded = false
                 } label: {
                     Image.xmark
                 }
             } else {
-                Text("시간 +")
-                    .font(.bold18)
+                Image.rightChevron
+                    .bold()
             }
-            Spacer()
-            Image.rightChevron
-                .bold()
         }
         .foregroundStyle(Color(.appPrimary))
     }
@@ -299,9 +302,10 @@ struct PlanEditView: View {
                     } label: {
                         Image.xmark
                     }
+                } else {
+                    Image.rightChevron
+                        .bold()
                 }
-                Image.rightChevron
-                    .bold()
             }
         }
         .foregroundStyle(Color(.appPrimary))

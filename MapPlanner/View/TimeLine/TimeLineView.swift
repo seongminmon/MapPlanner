@@ -16,8 +16,6 @@ struct TimeLineView: View {
     }
     
     var body: some View {
-        let _ = print(sortedPlan.map { ($0.title, $0.date) })
-        
         ZStack {
             ScrollView {
                 LazyVStack {

@@ -20,6 +20,7 @@ struct MapView: View {
     var body: some View {
         ZStack {
             NaverMapView()
+                .ignoresSafeArea(.all, edges: .top)
             AddPlanButton()
         }
         .onAppear {

@@ -19,7 +19,7 @@ struct AddPlanButton: View {
                 .foregroundStyle(Color(.background))
                 .padding()
                 .frame(width: 50, height: 50)
-                .background(Color(.appPrimary))
+                .background(Color(.darkTheme))
                 .clipShape(Circle())
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)

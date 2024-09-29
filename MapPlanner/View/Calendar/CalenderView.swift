@@ -14,18 +14,18 @@ struct CalendarView: View {
     @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
-        ZStack {
-            VStack {
-                headerView()
-                calendarGridView()
-                Spacer()
+            ZStack {
+                VStack {
+                    headerView()
+                    calendarGridView()
+                    Spacer()
+                }
+                .padding()
+                AddPlanButton(date: viewModel.output.clickedDate ?? Date())
             }
-            .padding(.horizontal)
-            AddPlanButton(date: viewModel.output.clickedDate ?? Date())
-        }
-        .sheet(isPresented: $viewModel.output.showDatePicker) {
-            datePickerSheetView()
-        }
+            .sheet(isPresented: $viewModel.output.showDatePicker) {
+                datePickerSheetView()
+            }
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -100 {
@@ -72,9 +72,10 @@ struct CalendarView: View {
                     Button {
                         viewModel.input.refreshButtonTap.send(())
                     } label: {
-                        Image.refresh
-                            .bold()
-                            .foregroundStyle(Color(.appPrimary))
+                        Text("오늘")
+                            .font(.bold18)
+                            .foregroundStyle(Color(.darkTheme))
+                            .padding(.trailing, 16)
                     }
                 }
             }
@@ -175,3 +176,7 @@ struct CalendarView: View {
         }
     }
 }
+
+//#Preview {
+//    CalendarView(viewModel: <#T##arg#>)
+//}
