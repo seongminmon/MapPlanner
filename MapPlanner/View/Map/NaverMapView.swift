@@ -182,24 +182,16 @@ extension Coordinator: NMFMapViewCameraDelegate {
 // MARK: - 맵 터치 관련 Delegate
 extension Coordinator: NMFMapViewTouchDelegate {
     // 지도 심벌이 탭되면 호출되는 메서드
-    func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
-        print(#function, "지도 심벌 탭")
-        print("심벌:", symbol)
-        // mapView 지도 객체.
-        // symbol 탭된 심벌.
-        // `YES`일 경우 이벤트를 소비합니다.
-        // 그렇지 않을 경우 이벤트가 지도로 전달되어 `mapView:didTapMap:point:`가 호출됩니다.
-        didTapMap?()
-        return true
-    }
+//    func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
+//        print(#function, symbol)
+//        // `YES`일 경우 이벤트를 소비합니다.
+//        // 그렇지 않을 경우 이벤트가 지도로 전달되어 `mapView:didTapMap:point:`가 호출됩니다.
+//        return false
+//    }
     
     // 지도가 탭되면 호출되는 메서드
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        // latlng 탭된 지점의 지도 좌표.
-        // point 탭된 지점의 화면 좌표.
-        print(#function, "지도 탭")
-        print("지도 좌표:", latlng)
-        print("포인트:", point)
+        print(#function, latlng)
         didTapMap?()
     }
 }

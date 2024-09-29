@@ -12,24 +12,26 @@ struct MapView: View {
     // TODO: - 마커 선택 시
     // 일정 정보 띄우기
     // 다른 곳 탭하면 일정 정보 사라지게 하기
-    // 일정 추가 버튼
+    // 동일한 장소에 대한 고려
     
     @StateObject private var coordinator = Coordinator.shared
     @StateObject private var planStore = PlanStore()
     @State private var selectedPlan: PlanOutput?
     
     var body: some View {
-        VStack {
+        ZStack {
             NaverMapView()
+                .background(.pink)
                 .ignoresSafeArea(.all, edges: .bottom)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.blue)
                 .overlay(alignment: .bottom) {
                     if let selectedPlan {
                         PlanCell(plan: selectedPlan)
-                            .transition(.move(edge: .bottom))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .background(Color(.background))
                     }
                 }
-                .animation(.easeInOut, value: selectedPlan)
+            AddPlanButton()
         }
         .onAppear {
             // 권한 설정

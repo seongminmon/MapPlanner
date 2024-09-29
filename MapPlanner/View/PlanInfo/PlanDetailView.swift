@@ -14,6 +14,7 @@ struct PlanDetailView: View {
     @StateObject private var planStore = PlanStore()
     
     @Environment(\.dismiss) private var dismiss
+    @State private var showActionSheet = false
     @State private var showDeleteAlert = false
     
     var body: some View {
@@ -22,7 +23,7 @@ struct PlanDetailView: View {
                 VStack(spacing: 300) {
                     // 사진
                     imageView()
-                    VStack(spacing: 20) {
+                    VStack(spacing: 10) {
                         Text(plan.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Text("\(plan.isTimeIncluded ? plan.date.toString("yyyy.MM.dd (E) a hh:mm") : plan.date.toString("yyyy.MM.dd (E)"))")
@@ -30,12 +31,14 @@ struct PlanDetailView: View {
                         Text(plan.contents)
                             .font(.regular14)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(plan.placeName)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(plan.addressName)
-                            .font(.regular14)
-                            .foregroundStyle(Color(.appSecondary))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        VStack {
+                            Text(plan.placeName)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(plan.addressName)
+                                .font(.regular14)
+                                .foregroundStyle(Color(.appSecondary))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
                     .font(.bold15)
                     .foregroundStyle(Color(.appPrimary))
@@ -54,24 +57,30 @@ struct PlanDetailView: View {
                 }
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    NavigationLink {
-                        PlanEditView(plan: plan)
+                    Button {
+                        showActionSheet.toggle()
                     } label: {
-                        Text("편집")
+                        Image.ellipsis
                     }
                     .foregroundStyle(Color(.appPrimary))
-                    
-                    Button {
-                        showDeleteAlert.toggle()
-                    } label: {
-                        Text("삭제")
-                    }
-                    .foregroundStyle(Color(.destructive))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            .alert("일정 삭제하기", isPresented: $showDeleteAlert) {
+            .confirmationDialog("", isPresented: $showActionSheet) {
+                NavigationLink {
+                    PlanEditView(plan: plan)
+                } label: {
+                    Text("편집")
+                }
+                .foregroundStyle(Color(.appPrimary))
+                
+                Button("삭제", role: .destructive) {
+                    showDeleteAlert.toggle()
+                }
+                
+                Button("취소", role: .cancel) {}
+            }
+            .alert("정말 삭제하시겠습니까?", isPresented: $showDeleteAlert) {
                 Button("삭제", role: .destructive) {
                     planStore.deletePlan(planID: plan.id)
                 }

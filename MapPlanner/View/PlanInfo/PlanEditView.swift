@@ -10,7 +10,6 @@ import PhotosUI
 
 struct PlanEditView: View {
     
-    // TODO: - 선택한 사진 삭제 기능
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
     var plan: PlanOutput
@@ -103,6 +102,11 @@ struct PlanEditView: View {
             Button("앨범") {
                 showPhotosPicker.toggle()
             }
+            if uiImage != nil {
+                Button("사진 삭제", role: .destructive) {
+                    uiImage = nil
+                }
+            }
             Button("취소", role: .cancel) {}
         }
         .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhoto)
@@ -130,19 +134,17 @@ struct PlanEditView: View {
     // MARK: - View Components
     
     private func imageButton() -> some View {
-        Button {
-            showImageActionSheet.toggle()
-        } label: {
-            if let uiImage {
-                GeometryReader { geometry in
+        GeometryReader { geometry in
+            Button {
+                showImageActionSheet.toggle()
+            } label: {
+                if let uiImage {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()
                         .frame(width: geometry.size.width, height: 300)
                         .clipped()
-                }
-            } else {
-                GeometryReader { geometry in
+                } else {
                     Image.camera
                         .resizable()
                         .frame(width: 50, height: 40)
@@ -290,12 +292,12 @@ struct PlanEditView: View {
                     Text("장소 선택")
                         .font(.bold15)
                 }
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .foregroundStyle(Color(.background))
+                .background(Color(.button))
+                .clipShape(RoundedRectangle(cornerRadius: 25.0))
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .foregroundStyle(Color(.background))
-            .background(Color(.button))
-            .clipShape(RoundedRectangle(cornerRadius: 25.0))
         }
     }
     

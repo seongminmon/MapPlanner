@@ -20,12 +20,12 @@ struct CalendarView: View {
                 calendarGridView()
                 Spacer()
             }
+            .padding(.horizontal)
             AddPlanButton(date: viewModel.output.clickedDate ?? Date())
         }
         .sheet(isPresented: $viewModel.output.showDatePicker) {
             datePickerSheetView()
         }
-        .padding(.horizontal)
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -100 {

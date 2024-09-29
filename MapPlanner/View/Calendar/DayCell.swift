@@ -87,7 +87,7 @@ struct DayCell: View {
             if let image = ImageFileManager.shared.loadImageFile(filename: item.id) {
                 Image(uiImage: image)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             } else {

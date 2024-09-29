@@ -14,6 +14,15 @@ struct TimeLineView: View {
     @StateObject private var planStore = PlanStore()
     
     var body: some View {
-        Text("TimeLineView")
+        ZStack {
+            ScrollView {
+                LazyVStack {
+                    ForEach(planStore.outputPlans, id: \.id) { item in
+                        PlanCell(plan: item)
+                    }
+                }
+            }
+            AddPlanButton()
+        }
     }
 }
