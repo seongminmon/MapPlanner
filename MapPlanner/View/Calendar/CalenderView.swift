@@ -12,18 +12,16 @@ struct CalendarView: View {
     @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
-            ZStack {
-                VStack {
-                    headerView()
-                    calendarGridView()
-                    Spacer()
-                }
-                .padding()
-                AddDiaryButton(date: viewModel.output.clickedDate ?? Date())
+        ZStack {
+            VStack {
+                headerView()
+                calendarGridView()
+                Spacer()
             }
-            .sheet(isPresented: $viewModel.output.showDatePicker) {
-                datePickerSheetView()
-            }
+            .padding()
+            AddDiaryButton(date: viewModel.output.clickedDate ?? Date())
+        }
+        .contentShape(Rectangle())
         .gesture(
             DragGesture().onEnded { value in
                 if value.translation.width < -100 {
@@ -33,6 +31,9 @@ struct CalendarView: View {
                 }
             }
         )
+        .sheet(isPresented: $viewModel.output.showDatePicker) {
+            datePickerSheetView()
+        }
     }
     
     // MARK: - View Components
