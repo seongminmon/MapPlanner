@@ -10,7 +10,7 @@ import RealmSwift
 
 struct SearchView: View {
     
-    // TODO: - 실시간 검색으로 변경하기
+    // TODO: - 디자인 변경
     
     @StateObject private var diaryManager = DiaryManager()
     @Environment(\.dismiss) private var dismiss
@@ -23,15 +23,19 @@ struct SearchView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                ForEach(filteredDiaryList, id: \.id) { item in
-                    DiaryCell(diary: item)
+        VStack {
+            SearchBar(query: $query, placeholder: "기록을 검색해보세요")
+            ScrollView {
+                VStack(spacing: 10) {
+                    ForEach(filteredDiaryList, id: \.id) { item in
+                        DiaryCell(diary: item)
+                    }
                 }
             }
         }
         // 네비게이션 바
         .navigationTitle("기록 검색")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -48,6 +52,5 @@ struct SearchView: View {
         .onTapGesture {
             hideKeyboard()
         }
-        .searchable(text: $query, prompt: "기록을 검색해보세요")
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DiaryCell: View {
     
+    // TODO: - 디자인 변경
+    
     var diary: Diary
     @State var showDiaryDetailView = false
     
@@ -49,7 +51,7 @@ struct DiaryCell: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal, 8)
+            .padding(.horizontal, 16)
         }
         .fullScreenCover(isPresented: $showDiaryDetailView) {
             DiaryDetailView(diary: diary)

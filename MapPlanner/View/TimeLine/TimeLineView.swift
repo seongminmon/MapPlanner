@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TimeLineView: View {
     
+    // TODO: - 디자인 변경
+    
     @StateObject private var diaryManager = DiaryManager()
     
     var sortedDiaryList: [Diary] {

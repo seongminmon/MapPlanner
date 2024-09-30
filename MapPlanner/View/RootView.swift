@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RootView: View {
     
+    // TODO: - 사진 권한
+    
     @StateObject private var viewModel = RootViewModel()
     
     var body: some View {

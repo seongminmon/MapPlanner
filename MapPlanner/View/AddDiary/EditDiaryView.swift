@@ -10,7 +10,7 @@ import PhotosUI
 
 struct EditDiaryView: View {
     
-    // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
+    // TODO: - 디자인 변경
     
     // MARK: - diary == nil ? 추가 : 수정
     var diary: Diary?

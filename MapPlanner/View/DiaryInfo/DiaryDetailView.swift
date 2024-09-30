@@ -10,6 +10,8 @@ import RealmSwift
 
 struct DiaryDetailView: View {
     
+    // TODO: - 디자인 변경
+    
     var diary: Diary
     @StateObject private var diaryManager = DiaryManager()
     

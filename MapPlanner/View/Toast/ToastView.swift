@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+// TODO: - 추가 / 수정 / 삭제 시 토스트 띄우기
+//    @State private var toast: Toast? = nil
+//    toast = Toast(type: .success, title: "삭제되었습니다.", message: "")
+//    toast = Toast(type: .success, title: "기록이 추가되었습니다.", message: "")
+//    toast = Toast(type: .success, title: "기록이 수정되었습니다.", message: "")
+//        .toastView(toast: $toast)
+
 struct ToastView: View {
     var type: ToastStyle
     var title: String
-    var message: String
     var onCancelTapped: (() -> Void)
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,10 +27,6 @@ struct ToastView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.bold14)
-                    
-                    Text(message)
-                        .font(.regular12)
-                        .foregroundColor(Color(.appSecondary))
                 }
                 
                 Spacer(minLength: 10)
@@ -75,12 +77,9 @@ struct ToastModifier: ViewModifier {
         if let toast = toast {
             VStack {
                 Spacer()
-                ToastView(
-                    type: toast.type,
-                    title: toast.title,
-                    message: toast.message) {
-                        dismissToast()
-                    }
+                ToastView(type: toast.type, title: toast.title) {
+                    dismissToast()
+                }
             }
             .transition(.move(edge: .bottom))
         }
@@ -95,7 +94,7 @@ struct ToastModifier: ViewModifier {
             workItem?.cancel()
             
             let task = DispatchWorkItem {
-               dismissToast()
+                dismissToast()
             }
             
             workItem = task

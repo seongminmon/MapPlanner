@@ -10,8 +10,10 @@ import SwiftUI
 struct AddLocationView: View {
     
     // TODO: - 페이지네이션
+    // TODO: - 디자인 변경
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismissSearch) private var dismissSearch
     
     @State private var query = ""
     @State private var response: LocalResponse?
@@ -20,15 +22,19 @@ struct AddLocationView: View {
     @Binding var selectedLocation: Location?
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                ForEach(locationList, id: \.id) { item in
-                    locationCell(item)
+        VStack {
+            SearchBar(query: $query, placeholder: "장소를 검색해보세요")
+            ScrollView {
+                VStack(spacing: 10) {
+                    ForEach(locationList, id: \.id) { item in
+                        locationCell(item)
+                    }
                 }
             }
         }
         // 네비게이션 바
         .navigationTitle("장소 검색")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -45,8 +51,7 @@ struct AddLocationView: View {
         .onTapGesture {
             hideKeyboard()
         }
-        .searchable(text: $query, prompt: "장소를 검색해보세요")
-        .onSubmit(of: .search) {
+        .onSubmit {
             Task {
                 do {
                     let result = try await NetworkManager.shared.callRequest(query)
@@ -64,6 +69,7 @@ struct AddLocationView: View {
         Button {
             selectedLocation = location
             dismiss()
+            dismissSearch()
         } label: {
             VStack(alignment: .leading) {
                 Text(location.placeName)
@@ -74,7 +80,7 @@ struct AddLocationView: View {
                     .foregroundStyle(Color(.appSecondary))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 8)
+            .padding(.horizontal, 16)
         }
     }
 }
