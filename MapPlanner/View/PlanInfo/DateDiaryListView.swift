@@ -1,5 +1,5 @@
 //
-//  DatePlanListView.swift
+//  DateDiaryListView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/23/24.
@@ -8,13 +8,13 @@
 import SwiftUI
 import RealmSwift
 
-struct DatePlanListView: View {
+struct DateDiaryListView: View {
     
     var date: Date
-    @StateObject private var planStore = PlanStore()
+    @StateObject private var diaryManager = DiaryManager()
     
-    var filteredPlans: [PlanOutput] {
-        return planStore.outputPlans.filter { $0.date.compareYearMonthDay(date) }
+    var filteredDiaryList: [Diary] {
+        return diaryManager.dateFilteredDiaryList(date)
     }
     
     var body: some View {
@@ -24,8 +24,8 @@ struct DatePlanListView: View {
                 .padding(.top, 10)
             ScrollView {
                 VStack(spacing: 10) {
-                    ForEach(filteredPlans, id: \.id) { item in
-                        PlanCell(plan: item)
+                    ForEach(filteredDiaryList, id: \.id) { item in
+                        DiaryCell(diary: item)
                     }
                 }
                 .padding(.horizontal, 8)

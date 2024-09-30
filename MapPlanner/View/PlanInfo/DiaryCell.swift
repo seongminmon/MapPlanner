@@ -1,5 +1,5 @@
 //
-//  PlanCell.swift
+//  DiaryCell.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/25/24.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct PlanCell: View {
+struct DiaryCell: View {
     
-    var plan: PlanOutput
-    @State var showPlanDetailView = false
+    var diary: Diary
+    @State var showDiaryDetailView = false
     
     var body: some View {
         Button {
-            showPlanDetailView.toggle()
+            showDiaryDetailView.toggle()
         } label: {
             HStack(alignment: .top) {
-                if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+                if let image = ImageFileManager.shared.loadImageFile(filename: "\(diary.id)") {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
@@ -32,26 +32,26 @@ struct PlanCell: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text(plan.title)
+                    Text(diary.title)
                         .font(.bold15)
                         .foregroundStyle(Color(.appPrimary))
-                    Text(plan.contents)
+                    Text(diary.contents)
                         .font(.regular13)
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color(.appSecondary))
                         .lineLimit(2)
-                    Text(plan.placeName)
+                    Text(diary.placeName)
                         .font(.bold15)
                         .foregroundStyle(Color(.appPrimary))
-                    Text(plan.addressName)
+                    Text(diary.addressName)
                         .font(.regular13)
                         .foregroundStyle(Color(.appPrimary))
                 }
                 Spacer()
             }
         }
-        .fullScreenCover(isPresented: $showPlanDetailView) {
-            PlanDetailView(plan: plan)
+        .fullScreenCover(isPresented: $showDiaryDetailView) {
+            DiaryDetailView(diary: diary)
         }
     }
 }

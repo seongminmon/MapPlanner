@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    // TODO: - Drag 제스처로 캘린더 이동 시 애니메이션 추가하기
-    
     @StateObject private var viewModel = CalendarViewModel()
     
     var body: some View {
@@ -21,7 +19,7 @@ struct CalendarView: View {
                     Spacer()
                 }
                 .padding()
-                AddPlanButton(date: viewModel.output.clickedDate ?? Date())
+                AddDiaryButton(date: viewModel.output.clickedDate ?? Date())
             }
             .sheet(isPresented: $viewModel.output.showDatePicker) {
                 datePickerSheetView()
@@ -176,7 +174,3 @@ struct CalendarView: View {
         }
     }
 }
-
-//#Preview {
-//    CalendarView(viewModel: <#T##arg#>)
-//}

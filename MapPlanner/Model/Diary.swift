@@ -1,5 +1,5 @@
 //
-//  PlanOutput.swift
+//  Diary.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/27/24.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - RealmModel / PresentModel 분리
-struct PlanOutput: Hashable, Identifiable {
+struct Diary: Hashable, Identifiable {
     var id: String
     var savedDate: Date
     var title: String
@@ -23,7 +23,7 @@ struct PlanOutput: Hashable, Identifiable {
     var lng: Double?
 }
 
-extension PlanOutput {
+extension Diary {
     func toLocation() -> Location? {
         guard let lat = self.lat, let lng = self.lng else { return nil }
         return Location(

@@ -12,27 +12,21 @@ struct SearchView: View {
     
     // TODO: - 실시간 검색으로 변경하기
     
+    @StateObject private var diaryManager = DiaryManager()
     @Environment(\.dismiss) private var dismiss
     
-    @State private var text = ""
     @State private var query = ""
-    @StateObject private var planStore = PlanStore()
     
     // 제목 / 내용 / 장소명 / 주소명으로 검색
-    var filteredPlans: [PlanOutput] {
-        return planStore.outputPlans.filter {
-            $0.title.contains(query) ||
-            $0.contents.contains(query) ||
-            $0.placeName.contains(query) ||
-            $0.addressName.contains(query)
-        }
+    private var filteredDiaryList: [Diary] {
+        diaryManager.searchedDiaryList(query)
     }
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(filteredPlans, id: \.id) { item in
-                    PlanCell(plan: item)
+                ForEach(filteredDiaryList, id: \.id) { item in
+                    DiaryCell(diary: item)
                 }
             }
         }
@@ -54,9 +48,6 @@ struct SearchView: View {
         .onTapGesture {
             hideKeyboard()
         }
-        .searchable(text: $text, prompt: "일정을 검색해보세요")
-        .onSubmit(of: .search) {
-            query = text
-        }
+        .searchable(text: $query, prompt: "일정을 검색해보세요")
     }
 }

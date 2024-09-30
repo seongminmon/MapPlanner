@@ -1,5 +1,5 @@
 //
-//  AddPlanButton.swift
+//  AddDiaryButton.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/23/24.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct AddPlanButton: View {
+struct AddDiaryButton: View {
     
     var date = Date()
     
     var body: some View {
         NavigationLink {
-            PlanEditView(plan: nil, selectedDate: date)
+            EditDiaryView(diary: nil, selectedDate: date)
         } label: {
             Image.plus
                 .foregroundStyle(Color(.background))

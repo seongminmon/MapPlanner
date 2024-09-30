@@ -12,17 +12,17 @@ struct RootView: View {
     @StateObject private var viewModel = RootViewModel()
     
     var body: some View {
-        planTabView()
+        diaryTabView()
     }
     
-    private func planTabView() -> some View {
+    private func diaryTabView() -> some View {
         TabView(selection: $viewModel.output.selectedTab) {
             NavigationStack {
                 CalendarView()
                 // 네비게이션 바
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            Text("Map Planner")
+                            Text("Map Diary")
                                 .font(.boldTitle)
                                 .foregroundStyle(Color(.darkTheme))
                         }
@@ -63,7 +63,7 @@ struct RootView: View {
                 // 네비게이션 바
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            Text("Map Planner")
+                            Text("Map Diary")
                                 .font(.boldTitle)
                                 .foregroundStyle(Color(.darkTheme))
                         }

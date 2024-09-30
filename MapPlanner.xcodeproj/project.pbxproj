@@ -25,15 +25,15 @@
 		24CA38532C942F9100B873E7 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38522C942F9100B873E7 /* SettingView.swift */; };
 		24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38542C942F9B00B873E7 /* SearchView.swift */; };
 		24CA385A2C944E7100B873E7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; };
-		24CA385C2C944EA600B873E7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA385B2C944EA600B873E7 /* Plan.swift */; };
+		24CA385C2C944EA600B873E7 /* RealmDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA385B2C944EA600B873E7 /* RealmDiary.swift */; };
 		24CA385D2C94587300B873E7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		24DD06C02C9EE35E00883F33 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06BF2C9EE35E00883F33 /* View+.swift */; };
 		24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06C32C9FE39B00883F33 /* Font+.swift */; };
-		24DD06C62C9FECE400883F33 /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06C52C9FECE400883F33 /* PlanDetailView.swift */; };
-		24DD06CC2CA1A88400883F33 /* DatePlanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06CB2CA1A88400883F33 /* DatePlanListView.swift */; };
-		24DD06D02CA1A8B200883F33 /* PlanEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */; };
+		24DD06C62C9FECE400883F33 /* DiaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06C52C9FECE400883F33 /* DiaryDetailView.swift */; };
+		24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06CB2CA1A88400883F33 /* DateDiaryListView.swift */; };
+		24DD06D02CA1A8B200883F33 /* EditDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06CF2CA1A8B200883F33 /* EditDiaryView.swift */; };
 		24DD06D22CA1A9FB00883F33 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06D12CA1A9FB00883F33 /* RootView.swift */; };
-		24DD06D42CA1AAA600883F33 /* AddPlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06D32CA1AAA600883F33 /* AddPlanButton.swift */; };
+		24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06D32CA1AAA600883F33 /* AddDiaryButton.swift */; };
 		24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06D62CA1AB3A00883F33 /* TimeLineView.swift */; };
 		24DD06DC2CA293DB00883F33 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06DB2CA293DB00883F33 /* ViewModelType.swift */; };
 		24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06DD2CA2940900883F33 /* RootViewModel.swift */; };
@@ -43,10 +43,10 @@
 		24DD06EA2CA3F1CB00883F33 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */; };
 		24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */; };
 		24DD06EE2CA4125C00883F33 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06ED2CA4125C00883F33 /* Location.swift */; };
-		24DD06F32CA42A9800883F33 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F22CA42A9800883F33 /* PlanCell.swift */; };
-		24FB3FB42CA6722E00DC8087 /* PlanStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB32CA6722E00DC8087 /* PlanStore.swift */; };
-		24FB3FB62CA6841C00DC8087 /* PlanOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */; };
-		24FB3FBA2CA9722900DC8087 /* LocationPlanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB92CA9722900DC8087 /* LocationPlanListView.swift */; };
+		24DD06F32CA42A9800883F33 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DD06F22CA42A9800883F33 /* DiaryCell.swift */; };
+		24FB3FB42CA6722E00DC8087 /* DiaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */; };
+		24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB52CA6841C00DC8087 /* Diary.swift */; };
+		24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB92CA9722900DC8087 /* LocationDiaryListView.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,14 +84,14 @@
 		24CA38492C9410EB00B873E7 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		24CA38522C942F9100B873E7 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		24CA38542C942F9B00B873E7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		24CA385B2C944EA600B873E7 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		24CA385B2C944EA600B873E7 /* RealmDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDiary.swift; sourceTree = "<group>"; };
 		24DD06BF2C9EE35E00883F33 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		24DD06C32C9FE39B00883F33 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
-		24DD06C52C9FECE400883F33 /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
-		24DD06CB2CA1A88400883F33 /* DatePlanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePlanListView.swift; sourceTree = "<group>"; };
-		24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanEditView.swift; sourceTree = "<group>"; };
+		24DD06C52C9FECE400883F33 /* DiaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailView.swift; sourceTree = "<group>"; };
+		24DD06CB2CA1A88400883F33 /* DateDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDiaryListView.swift; sourceTree = "<group>"; };
+		24DD06CF2CA1A8B200883F33 /* EditDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiaryView.swift; sourceTree = "<group>"; };
 		24DD06D12CA1A9FB00883F33 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		24DD06D32CA1AAA600883F33 /* AddPlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanButton.swift; sourceTree = "<group>"; };
+		24DD06D32CA1AAA600883F33 /* AddDiaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryButton.swift; sourceTree = "<group>"; };
 		24DD06D62CA1AB3A00883F33 /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		24DD06DB2CA293DB00883F33 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		24DD06DD2CA2940900883F33 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -101,10 +101,10 @@
 		24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResponse.swift; sourceTree = "<group>"; };
 		24DD06ED2CA4125C00883F33 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		24DD06F22CA42A9800883F33 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
-		24FB3FB32CA6722E00DC8087 /* PlanStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanStore.swift; sourceTree = "<group>"; };
-		24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanOutput.swift; sourceTree = "<group>"; };
-		24FB3FB92CA9722900DC8087 /* LocationPlanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPlanListView.swift; sourceTree = "<group>"; };
+		24DD06F22CA42A9800883F33 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
+		24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryManager.swift; sourceTree = "<group>"; };
+		24FB3FB52CA6841C00DC8087 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		24FB3FB92CA9722900DC8087 /* LocationDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDiaryListView.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 				241A58AF2C92C87200232D8B /* Info.plist */,
 				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
 				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
-				24FB3FB32CA6722E00DC8087 /* PlanStore.swift */,
+				24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */,
 				24DD06DA2CA293D400883F33 /* Protocol */,
 				24DD06C22C9FE38B00883F33 /* Design */,
 				24CA385F2C9459DE00B873E7 /* Model */,
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				24CA383D2C93F77000B873E7 /* MapView.swift */,
-				24FB3FB92CA9722900DC8087 /* LocationPlanListView.swift */,
+				24FB3FB92CA9722900DC8087 /* LocationDiaryListView.swift */,
 				241A58B02C92CC5700232D8B /* NaverMapView.swift */,
 			);
 			path = Map;
@@ -240,8 +240,8 @@
 			children = (
 				24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */,
 				24DD06ED2CA4125C00883F33 /* Location.swift */,
-				24CA385B2C944EA600B873E7 /* Plan.swift */,
-				24FB3FB52CA6841C00DC8087 /* PlanOutput.swift */,
+				24CA385B2C944EA600B873E7 /* RealmDiary.swift */,
+				24FB3FB52CA6841C00DC8087 /* Diary.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,8 +249,8 @@
 		24DD06C12C9FD14D00883F33 /* AddPlan */ = {
 			isa = PBXGroup;
 			children = (
-				24DD06D32CA1AAA600883F33 /* AddPlanButton.swift */,
-				24DD06CF2CA1A8B200883F33 /* PlanEditView.swift */,
+				24DD06D32CA1AAA600883F33 /* AddDiaryButton.swift */,
+				24DD06CF2CA1A8B200883F33 /* EditDiaryView.swift */,
 				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
 			);
 			path = AddPlan;
@@ -268,9 +268,9 @@
 		24DD06CA2CA1A85100883F33 /* PlanInfo */ = {
 			isa = PBXGroup;
 			children = (
-				24DD06CB2CA1A88400883F33 /* DatePlanListView.swift */,
-				24DD06F22CA42A9800883F33 /* PlanCell.swift */,
-				24DD06C52C9FECE400883F33 /* PlanDetailView.swift */,
+				24DD06CB2CA1A88400883F33 /* DateDiaryListView.swift */,
+				24DD06F22CA42A9800883F33 /* DiaryCell.swift */,
+				24DD06C52C9FECE400883F33 /* DiaryDetailView.swift */,
 			);
 			path = PlanInfo;
 			sourceTree = "<group>";
@@ -440,30 +440,30 @@
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
-				24FB3FB62CA6841C00DC8087 /* PlanOutput.swift in Sources */,
+				24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
-				24DD06D42CA1AAA600883F33 /* AddPlanButton.swift in Sources */,
+				24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */,
 				24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */,
 				24CA38532C942F9100B873E7 /* SettingView.swift in Sources */,
 				241A58B12C92CC5700232D8B /* NaverMapView.swift in Sources */,
-				24DD06F32CA42A9800883F33 /* PlanCell.swift in Sources */,
-				24FB3FBA2CA9722900DC8087 /* LocationPlanListView.swift in Sources */,
-				24DD06CC2CA1A88400883F33 /* DatePlanListView.swift in Sources */,
+				24DD06F32CA42A9800883F33 /* DiaryCell.swift in Sources */,
+				24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */,
+				24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */,
 				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,
-				24DD06D02CA1A8B200883F33 /* PlanEditView.swift in Sources */,
+				24DD06D02CA1A8B200883F33 /* EditDiaryView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
 				24DD06D22CA1A9FB00883F33 /* RootView.swift in Sources */,
-				24CA385C2C944EA600B873E7 /* Plan.swift in Sources */,
+				24CA385C2C944EA600B873E7 /* RealmDiary.swift in Sources */,
 				2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */,
 				24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */,
 				2421E7922C9C080F00A4E607 /* Date+.swift in Sources */,
-				24FB3FB42CA6722E00DC8087 /* PlanStore.swift in Sources */,
+				24FB3FB42CA6722E00DC8087 /* DiaryManager.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */,
-				24DD06C62C9FECE400883F33 /* PlanDetailView.swift in Sources */,
+				24DD06C62C9FECE400883F33 /* DiaryDetailView.swift in Sources */,
 				241A58892C91BBD200232D8B /* MapPlannerApp.swift in Sources */,
 				241A589B2C91BE5400232D8B /* APIInfo.swift in Sources */,
 			);

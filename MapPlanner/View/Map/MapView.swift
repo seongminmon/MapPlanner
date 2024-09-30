@@ -13,24 +13,24 @@ struct MapView: View {
     // 마커 선택시 카메라 이동
     
     @StateObject private var coordinator = Coordinator.shared
-    @StateObject private var planStore = PlanStore()
+    @StateObject private var diaryManager = DiaryManager()
     
-    @State private var selectedPlan: PlanOutput?
+    @State private var selectedDiary: Diary?
     
     var body: some View {
         ZStack {
             NaverMapView()
                 .ignoresSafeArea(.all, edges: .top)
-            AddPlanButton()
+            AddDiaryButton()
         }
         .onAppear {
             // 권한 설정
             coordinator.checkIfLocationServiceIsEnabled()
             coordinator.didTapMap = {
-                selectedPlan = nil
+                selectedDiary = nil
             }
         }
-        .onChange(of: planStore.outputPlans) { newValue in
+        .onChange(of: diaryManager.diaryList) { newValue in
             let currentLocations = newValue.compactMap { $0.toLocation() }
             let currentLocationIDList = currentLocations.map { $0.id }
             
@@ -41,17 +41,17 @@ struct MapView: View {
             coordinator.removeMarkers(removeLocations)
             
             // 새로운 마커 추가
-            newValue.forEach { plan in
-                if let location = plan.toLocation() {
+            newValue.forEach { diary in
+                if let location = diary.toLocation() {
                     coordinator.addMarker(location) { _ in
-                        selectedPlan = plan
+                        selectedDiary = diary
                         return true
                     }
                 }
             }
         }
-        .sheet(item: $selectedPlan) { plan in
-            LocationPlanListView(location: plan.toLocation())
+        .sheet(item: $selectedDiary) { diary in
+            LocationDiaryListView(location: diary.toLocation())
         }
     }
 }

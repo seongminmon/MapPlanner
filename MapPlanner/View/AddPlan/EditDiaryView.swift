@@ -1,5 +1,5 @@
 //
-//  PlanEditView.swift
+//  EditDiaryView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/23/24.
@@ -8,14 +8,14 @@
 import SwiftUI
 import PhotosUI
 
-struct PlanEditView: View {
+struct EditDiaryView: View {
     
     // TODO: - 키보드 핸들링 - 활성화 시 높이 조절
     
-    // MARK: - plan == nil ? 추가 : 수정
-    var plan: PlanOutput?
+    // MARK: - diary == nil ? 추가 : 수정
+    var diary: Diary?
     
-    @StateObject private var planStore = PlanStore()
+    @StateObject private var diaryManager = DiaryManager()
     @Environment(\.dismiss) private var dismiss
     
     // 사진
@@ -46,19 +46,19 @@ struct PlanEditView: View {
         return title.isEmpty
     }
     
-    init(plan: PlanOutput?, selectedDate: Date?) {
+    init(diary: Diary?, selectedDate: Date?) {
         self._selectedDate = State(initialValue: selectedDate ?? Date())
         
-        self.plan = plan
-        guard let plan else { return }
+        self.diary = diary
+        guard let diary else { return }
         
         // 초기값 설정
-        self._uiImage = State(initialValue: ImageFileManager.shared.loadImageFile(filename: "\(plan.id)"))
-        self._title = State(initialValue: plan.title)
-        self._selectedDate = State(initialValue: plan.date)
-        self._isTimeIncluded = State(initialValue: plan.isTimeIncluded)
-        self._contents = State(initialValue: plan.contents)
-        self._location = State(initialValue: plan.toLocation())
+        self._uiImage = State(initialValue: ImageFileManager.shared.loadImageFile(filename: "\(diary.id)"))
+        self._title = State(initialValue: diary.title)
+        self._selectedDate = State(initialValue: diary.date)
+        self._isTimeIncluded = State(initialValue: diary.isTimeIncluded)
+        self._contents = State(initialValue: diary.contents)
+        self._location = State(initialValue: diary.toLocation())
     }
     
     var body: some View {
@@ -77,7 +77,7 @@ struct PlanEditView: View {
         }
         .scrollIndicators(.never)
         // 네비게이션
-        .navigationTitle(plan == nil ? "일정 추가" : "수정하기")
+        .navigationTitle(diary == nil ? "일정 추가" : "수정하기")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -91,7 +91,7 @@ struct PlanEditView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    plan == nil ? addPlan() : updatePlan()
+                    diary == nil ? addDiary() : updateDiary()
                     dismiss()
                 } label: {
                     Text("저장")
@@ -321,8 +321,8 @@ struct PlanEditView: View {
         }
     }
     
-    private func addPlan() {
-        let plan = Plan(
+    private func addDiary() {
+        let diary = RealmDiary(
             title: title,
             date: selectedDate,
             isTimeIncluded: isTimeIncluded,
@@ -333,14 +333,14 @@ struct PlanEditView: View {
             lat: location?.lat,
             lng: location?.lng
         )
-        planStore.addPlan(plan: plan, image: uiImage)
+        diaryManager.addDiary(diary: diary, image: uiImage)
     }
     
-    private func updatePlan() {
-        guard let plan else { return }
+    private func updateDiary() {
+        guard let diary else { return }
         
-        let newPlan = PlanOutput(
-            id: plan.id,
+        let newDiary = Diary(
+            id: diary.id,
             savedDate: Date(),
             title: title,
             date: selectedDate,
@@ -352,6 +352,6 @@ struct PlanEditView: View {
             lat: location?.lat,
             lng: location?.lng
         )
-        planStore.updatePlan(planID: plan.id, newPlan: newPlan, image: uiImage)
+        diaryManager.updateDiary(diaryID: diary.id, newDiary: newDiary, image: uiImage)
     }
 }

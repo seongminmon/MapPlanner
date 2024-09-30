@@ -13,13 +13,13 @@ struct DayCell: View {
     var clicked: Bool
     var isCurrentMonth: Bool
     
-    @StateObject private var planStore = PlanStore()
+    @StateObject private var diaryManager = DiaryManager()
     
-    var filteredPlans: [PlanOutput] {
-        return planStore.outputPlans.filter { $0.date.compareYearMonthDay(date) }
+    var filteredDiaryList: [Diary] {
+        return diaryManager.dateFilteredDiaryList(date)
     }
     
-    @State private var showPlanListView = false
+    @State private var showDiaryListView = false
     
     var isToday: Bool {
         return date.compareYearMonthDay(Date())
@@ -50,14 +50,14 @@ struct DayCell: View {
     }
     
     var body: some View {
-        if let firstItem = filteredPlans.first {
+        if let firstItem = filteredDiaryList.first {
             Button {
-                showPlanListView.toggle()
+                showDiaryListView.toggle()
             } label: {
                 thumbnailView(firstItem)
                     .overlay(alignment: .topTrailing) {
-                        if filteredPlans.count > 1 {
-                            let displayCount = filteredPlans.count > 9 ? "9+" : "\(filteredPlans.count)"
+                        if filteredDiaryList.count > 1 {
+                            let displayCount = filteredDiaryList.count > 9 ? "9+" : "\(filteredDiaryList.count)"
                             Circle()
                                 .fill(Color(.appPrimary))
                                 .overlay {
@@ -70,8 +70,8 @@ struct DayCell: View {
                         }
                     }
             }
-            .sheet(isPresented: $showPlanListView) {
-                DatePlanListView(date: date)
+            .sheet(isPresented: $showDiaryListView) {
+                DateDiaryListView(date: date)
             }
         } else {
             Circle()
@@ -82,7 +82,7 @@ struct DayCell: View {
     }
     
     @ViewBuilder
-    private func thumbnailView(_ item: PlanOutput) -> some View {
+    private func thumbnailView(_ item: Diary) -> some View {
         GeometryReader { geometry in
             if let image = ImageFileManager.shared.loadImageFile(filename: item.id) {
                 Image(uiImage: image)

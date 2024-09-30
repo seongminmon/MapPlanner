@@ -1,5 +1,5 @@
 //
-//  LocationPlanListView.swift
+//  LocationDiaryListView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/29/24.
@@ -8,13 +8,13 @@
 import SwiftUI
 import RealmSwift
 
-struct LocationPlanListView: View {
+struct LocationDiaryListView: View {
     
     var location: Location?
-    @StateObject private var planStore = PlanStore()
+    @StateObject private var diaryManager = DiaryManager()
     
-    var filteredPlans: [PlanOutput] {
-        return planStore.outputPlans.filter { $0.locationID == location?.id }
+    var filteredDiaryList: [Diary] {
+        return diaryManager.locationFilteredDiaryList(location?.id)
     }
     
     var body: some View {
@@ -24,8 +24,8 @@ struct LocationPlanListView: View {
                 .padding(.top, 10)
             ScrollView {
                 VStack(spacing: 10) {
-                    ForEach(filteredPlans, id: \.id) { item in
-                        PlanCell(plan: item)
+                    ForEach(filteredDiaryList, id: \.id) { item in
+                        DiaryCell(diary: item)
                     }
                 }
                 .padding(.horizontal, 8)

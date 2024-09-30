@@ -1,5 +1,5 @@
 //
-//  PlanDetailView.swift
+//  DiaryDetailView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/22/24.
@@ -8,10 +8,10 @@
 import SwiftUI
 import RealmSwift
 
-struct PlanDetailView: View {
+struct DiaryDetailView: View {
     
-    var plan: PlanOutput
-    @StateObject private var planStore = PlanStore()
+    var diary: Diary
+    @StateObject private var diaryManager = DiaryManager()
     
     @Environment(\.dismiss) private var dismiss
     @State private var showActionSheet = false
@@ -24,17 +24,17 @@ struct PlanDetailView: View {
                     // 사진
                     imageView()
                     VStack(spacing: 10) {
-                        Text(plan.title)
+                        Text(diary.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(plan.isTimeIncluded ? plan.date.toString(DateFormat.untilTime) : plan.date.toString(DateFormat.untilWeekDay))")
+                        Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(plan.contents)
+                        Text(diary.contents)
                             .font(.regular14)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         VStack {
-                            Text(plan.placeName)
+                            Text(diary.placeName)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(plan.addressName)
+                            Text(diary.addressName)
                                 .font(.regular14)
                                 .foregroundStyle(Color(.appSecondary))
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -68,7 +68,7 @@ struct PlanDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .confirmationDialog("", isPresented: $showActionSheet) {
                 NavigationLink {
-                    PlanEditView(plan: plan, selectedDate: nil)
+                    EditDiaryView(diary: diary, selectedDate: nil)
                 } label: {
                     Text("편집")
                 }
@@ -82,7 +82,7 @@ struct PlanDetailView: View {
             }
             .alert("정말 삭제하시겠습니까?", isPresented: $showDeleteAlert) {
                 Button("삭제", role: .destructive) {
-                    planStore.deletePlan(planID: plan.id)
+                    diaryManager.deleteDiary(diaryID: diary.id)
                 }
                 Button("취소", role: .cancel) {}
             }
@@ -91,7 +91,7 @@ struct PlanDetailView: View {
     
     @ViewBuilder
     private func imageView() -> some View {
-        if let image = ImageFileManager.shared.loadImageFile(filename: "\(plan.id)") {
+        if let image = ImageFileManager.shared.loadImageFile(filename: "\(diary.id)") {
             GeometryReader { geometry in
                 Image(uiImage: image)
                     .resizable()

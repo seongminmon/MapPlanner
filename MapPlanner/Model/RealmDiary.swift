@@ -1,5 +1,5 @@
 //
-//  Plan.swift
+//  RealmDiary.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/13/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-final class Plan: Object, ObjectKeyIdentifiable {
+final class RealmDiary: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var savedDate: Date
     @Persisted var title: String
@@ -38,9 +38,9 @@ final class Plan: Object, ObjectKeyIdentifiable {
     }
 }
 
-extension Plan {    
-    func toPlanOutput() -> PlanOutput {
-        return PlanOutput(
+extension RealmDiary {    
+    func toDiary() -> Diary {
+        return Diary(
             id: self.id.stringValue,
             savedDate: self.savedDate,
             title: self.title,
