@@ -152,9 +152,7 @@
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A58AF2C92C87200232D8B /* Info.plist */,
-				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
-				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
-				24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */,
+				24FB3FBB2CAA6E7000DC8087 /* Manager */,
 				24DD06DA2CA293D400883F33 /* Protocol */,
 				24DD06C22C9FE38B00883F33 /* Design */,
 				24CA385F2C9459DE00B873E7 /* Model */,
@@ -289,6 +287,16 @@
 				24DD06DB2CA293DB00883F33 /* ViewModelType.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		24FB3FBB2CAA6E7000DC8087 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
+				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
+				24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {

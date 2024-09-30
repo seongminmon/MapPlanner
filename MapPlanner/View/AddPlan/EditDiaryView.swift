@@ -77,7 +77,7 @@ struct EditDiaryView: View {
         }
         .scrollIndicators(.never)
         // 네비게이션
-        .navigationTitle(diary == nil ? "일정 추가" : "수정하기")
+        .navigationTitle(diary == nil ? "기록 추가" : "수정하기")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -166,7 +166,7 @@ struct EditDiaryView: View {
             Text("제목 *")
                 .font(.bold15)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            TextField("일정 제목", text: $title)
+            TextField("기록 제목", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }

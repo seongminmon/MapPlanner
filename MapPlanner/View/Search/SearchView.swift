@@ -31,7 +31,7 @@ struct SearchView: View {
             }
         }
         // 네비게이션 바
-        .navigationTitle("일정 검색")
+        .navigationTitle("기록 검색")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -48,6 +48,6 @@ struct SearchView: View {
         .onTapGesture {
             hideKeyboard()
         }
-        .searchable(text: $query, prompt: "일정을 검색해보세요")
+        .searchable(text: $query, prompt: "기록을 검색해보세요")
     }
 }
