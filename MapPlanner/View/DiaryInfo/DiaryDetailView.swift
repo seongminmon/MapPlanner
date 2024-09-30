@@ -11,6 +11,7 @@ import RealmSwift
 struct DiaryDetailView: View {
     
     // TODO: - 디자인 변경
+    // TODO: - 지도에서 위치 보기
     
     var diary: Diary
     @StateObject private var diaryManager = DiaryManager()
@@ -22,7 +23,7 @@ struct DiaryDetailView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 300) {
+                VStack(spacing: 250) {
                     // 사진
                     imageView()
                     VStack(spacing: 10) {
@@ -98,7 +99,7 @@ struct DiaryDetailView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: geometry.size.width, height: 300)
+                    .frame(width: geometry.size.width, height: 250)
                     .clipped()
             }
         } else {
@@ -106,7 +107,7 @@ struct DiaryDetailView: View {
                 Image.calendar
                     .resizable()
                     .frame(width: 50, height: 50)
-                    .frame(width: geometry.size.width, height: 300)
+                    .frame(width: geometry.size.width, height: 250)
                     .foregroundStyle(Color(.appPrimary))
                     .background(Color(.appSecondary))
             }

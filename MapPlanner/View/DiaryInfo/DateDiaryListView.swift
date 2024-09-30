@@ -23,7 +23,7 @@ struct DateDiaryListView: View {
                 .font(.bold18)
                 .padding(.top, 10)
             ScrollView {
-                VStack(spacing: 10) {
+                VStack {
                     ForEach(filteredDiaryList, id: \.id) { item in
                         DiaryCell(diary: item)
                     }

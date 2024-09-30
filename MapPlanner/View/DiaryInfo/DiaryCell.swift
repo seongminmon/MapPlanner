@@ -9,8 +9,6 @@ import SwiftUI
 
 struct DiaryCell: View {
     
-    // TODO: - 디자인 변경
-    
     var diary: Diary
     @State var showDiaryDetailView = false
     
@@ -19,36 +17,8 @@ struct DiaryCell: View {
             showDiaryDetailView.toggle()
         } label: {
             HStack(alignment: .top) {
-                if let image = ImageFileManager.shared.loadImageFile(filename: "\(diary.id)") {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                } else {
-                    Image.calendar
-                        .foregroundStyle(Color(.appPrimary))
-                        .frame(width: 100, height: 100)
-                        .background(Color(.appSecondary))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-                
-                VStack(alignment: .leading) {
-                    Text(diary.title)
-                        .font(.bold15)
-                        .foregroundStyle(Color(.appPrimary))
-                    Text(diary.contents)
-                        .font(.regular13)
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(Color(.appSecondary))
-                        .lineLimit(2)
-                    Text(diary.placeName)
-                        .font(.bold15)
-                        .foregroundStyle(Color(.appPrimary))
-                    Text(diary.addressName)
-                        .font(.regular13)
-                        .foregroundStyle(Color(.appPrimary))
-                }
+                imageView()
+                descriptionView()
                 Spacer()
             }
             .padding(.horizontal, 16)
@@ -56,5 +26,40 @@ struct DiaryCell: View {
         .fullScreenCover(isPresented: $showDiaryDetailView) {
             DiaryDetailView(diary: diary)
         }
+    }
+    
+    @ViewBuilder
+    private func imageView() -> some View {
+        if let image = ImageFileManager.shared.loadImageFile(filename: "\(diary.id)") {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        } else {
+            Image.calendar
+                .foregroundStyle(Color(.appPrimary))
+                .frame(width: 100, height: 100)
+                .background(Color(.appSecondary))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+    
+    private func descriptionView() -> some View {
+        VStack(alignment: .leading) {
+            Text(diary.title)
+                .font(.bold15)
+            Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
+                .font(.regular12)
+                .foregroundStyle(Color(.appSecondary))
+            Spacer()
+            Text(diary.placeName)
+            Text(diary.addressName)
+                .font(.regular12)
+                .foregroundStyle(Color(.appSecondary))
+        }
+        .font(.bold14)
+        .foregroundStyle(Color(.appPrimary))
+        .padding(.vertical, 4)
     }
 }

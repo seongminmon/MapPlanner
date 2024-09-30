@@ -63,7 +63,7 @@ struct EditDiaryView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 300) {
+            VStack(spacing: 250) {
                 imageButton()
                 VStack(spacing: 20) {
                     titleTextField()
@@ -134,6 +134,7 @@ struct EditDiaryView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .scrollDismissesKeyboard(.immediately)
     }
     
     // MARK: - View Components
@@ -147,13 +148,13 @@ struct EditDiaryView: View {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: geometry.size.width, height: 300)
+                        .frame(width: geometry.size.width, height: 250)
                         .clipped()
                 } else {
                     Image.camera
                         .resizable()
                         .frame(width: 50, height: 40)
-                        .frame(width: geometry.size.width, height: 300)
+                        .frame(width: geometry.size.width, height: 250)
                         .foregroundStyle(Color(.appPrimary))
                         .background(Color(.appSecondary))
                 }

@@ -10,8 +10,6 @@ import RealmSwift
 
 struct SearchView: View {
     
-    // TODO: - 디자인 변경
-    
     @StateObject private var diaryManager = DiaryManager()
     @Environment(\.dismiss) private var dismiss
     
@@ -52,5 +50,6 @@ struct SearchView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .scrollDismissesKeyboard(.immediately)
     }
 }

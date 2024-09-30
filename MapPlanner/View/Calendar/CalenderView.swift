@@ -74,7 +74,7 @@ struct CalendarView: View {
                         Text("오늘")
                             .font(.bold18)
                             .foregroundStyle(Color(.darkTheme))
-                            .padding(.trailing, 16)
+                            .padding(.trailing, 12)
                     }
                 }
             }

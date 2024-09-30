@@ -23,8 +23,6 @@ struct TimeLineView: View {
                 VStack(spacing: 10) {
                     ForEach(sortedDiaryList, id: \.id) { item in
                         VStack {
-                            Text(item.date.toString(DateFormat.untilDay))
-                                .font(.bold18)
                             DiaryCell(diary: item)
                         }
                     }

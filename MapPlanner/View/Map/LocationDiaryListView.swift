@@ -19,11 +19,11 @@ struct LocationDiaryListView: View {
     
     var body: some View {
         VStack {
-            Text(location?.placeName ?? "")
+            Text(location?.placeName ?? "장소 정보 없음")
                 .font(.bold18)
                 .padding(.top, 10)
             ScrollView {
-                VStack(spacing: 10) {
+                VStack {
                     ForEach(filteredDiaryList, id: \.id) { item in
                         DiaryCell(diary: item)
                     }

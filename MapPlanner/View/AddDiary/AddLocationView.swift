@@ -50,6 +50,7 @@ struct AddLocationView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .scrollDismissesKeyboard(.immediately)
         .onSubmit {
             Task {
                 do {
