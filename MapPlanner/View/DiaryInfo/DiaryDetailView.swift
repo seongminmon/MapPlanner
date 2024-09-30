@@ -10,7 +10,6 @@ import RealmSwift
 
 struct DiaryDetailView: View {
     
-    // TODO: - 디자인 변경
     // TODO: - 지도에서 위치 보기
     
     var diary: Diary
@@ -23,31 +22,13 @@ struct DiaryDetailView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 250) {
-                    // 사진
+                VStack(spacing: 350) {
                     imageView()
-                    VStack(spacing: 10) {
-                        Text(diary.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(diary.contents)
-                            .font(.regular14)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        VStack {
-                            Text(diary.placeName)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(diary.addressName)
-                                .font(.regular14)
-                                .foregroundStyle(Color(.appSecondary))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                    .font(.bold15)
-                    .foregroundStyle(Color(.appPrimary))
-                    .padding()
+                    descriptionView()
                 }
             }
+            .ignoresSafeArea(.all, edges: .top)
+            // 네비게이션 바
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -56,7 +37,7 @@ struct DiaryDetailView: View {
                     } label: {
                         Image.xmark
                     }
-                    .foregroundStyle(Color(.appPrimary))
+                    .foregroundStyle(Color(.white))
                 }
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -65,10 +46,10 @@ struct DiaryDetailView: View {
                     } label: {
                         Image.ellipsis
                     }
-                    .foregroundStyle(Color(.appPrimary))
+                    .foregroundStyle(Color(.white))
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Action Sheet
             .confirmationDialog("", isPresented: $showActionSheet) {
                 NavigationLink {
                     EditDiaryView(diary: diary, selectedDate: nil)
@@ -76,13 +57,12 @@ struct DiaryDetailView: View {
                     Text("편집")
                 }
                 .foregroundStyle(Color(.appPrimary))
-                
                 Button("삭제", role: .destructive) {
                     showDeleteAlert.toggle()
                 }
-                
                 Button("취소", role: .cancel) {}
             }
+            // Alert
             .alert("정말 삭제하시겠습니까?", isPresented: $showDeleteAlert) {
                 Button("삭제", role: .destructive) {
                     diaryManager.deleteDiary(diaryID: diary.id)
@@ -99,7 +79,7 @@ struct DiaryDetailView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: geometry.size.width, height: 250)
+                    .frame(width: geometry.size.width, height: 350)
                     .clipped()
             }
         } else {
@@ -107,10 +87,34 @@ struct DiaryDetailView: View {
                 Image.calendar
                     .resizable()
                     .frame(width: 50, height: 50)
-                    .frame(width: geometry.size.width, height: 250)
+                    .frame(width: geometry.size.width, height: 350)
                     .foregroundStyle(Color(.appPrimary))
                     .background(Color(.appSecondary))
             }
         }
+    }
+    
+    // TODO: - 디자인 변경
+    private func descriptionView() -> some View {
+        VStack(spacing: 10) {
+            Text(diary.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(diary.contents)
+                .font(.regular14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                Text(diary.placeName)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(diary.addressName)
+                    .font(.regular14)
+                    .foregroundStyle(Color(.appSecondary))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .font(.bold15)
+        .foregroundStyle(Color(.appPrimary))
+        .padding()
     }
 }

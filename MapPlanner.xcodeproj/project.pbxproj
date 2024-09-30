@@ -212,7 +212,7 @@
 				24DD06CA2CA1A85100883F33 /* DiaryInfo */,
 				24DD06C12C9FD14D00883F33 /* AddDiary */,
 				24CA38502C942F7A00B873E7 /* Search */,
-				24CA38512C942F8200B873E7 /* Profile */,
+				24CA38512C942F8200B873E7 /* Setting */,
 				24FB3FBC2CAA74C900DC8087 /* Toast */,
 			);
 			path = View;
@@ -237,12 +237,12 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		24CA38512C942F8200B873E7 /* Profile */ = {
+		24CA38512C942F8200B873E7 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				24CA38522C942F9100B873E7 /* SettingView.swift */,
 			);
-			path = Profile;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		24CA385F2C9459DE00B873E7 /* Model */ = {
