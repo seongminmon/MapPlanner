@@ -9,9 +9,6 @@ import SwiftUI
 
 struct MapView: View {
     
-    // TODO: -
-    // 마커 선택시 카메라 이동
-    
     @StateObject private var coordinator = Coordinator.shared
     @StateObject private var diaryManager = DiaryManager()
     

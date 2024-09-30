@@ -18,7 +18,13 @@ struct NaverMapView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> NMFNaverMapView {
-        return context.coordinator.getNaverMapView()
+        print(#function)
+        let mapView = context.coordinator.getNaverMapView()
+        context.coordinator.cameraUpdate(
+            lat: Location.defaultLat,
+            lng: Location.defaultLng
+        )
+        return mapView
     }
     
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {}
@@ -83,6 +89,7 @@ final class Coordinator: NSObject, ObservableObject {
         }
     }
     
+    // MARK: - 미사용
     // naverMap 길찾기 구현
     func openRouteURL(lat: Double, lng: Double) {
         // URL Scheme을 사용하여 네이버맵 앱을 열고 자동차 경로를 생성합니다.
@@ -117,7 +124,7 @@ extension Coordinator: CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - 위치 정보 동의 확인
+    // 위치 정보 동의 확인
     private func checkLocationAuthorization() {
         guard let locationManager = locationManager else { return }
         
@@ -143,9 +150,13 @@ extension Coordinator: CLLocationManagerDelegate {
     
     private func fetchUserLocation() {
         guard let locationManager = locationManager else { return }
-        
         let lat = locationManager.location?.coordinate.latitude ?? Location.defaultLat
         let lng = locationManager.location?.coordinate.longitude ?? Location.defaultLng
+        print("위경도:", lat, lng)
+        cameraUpdate(lat: lat, lng: lng)
+    }
+    
+    func cameraUpdate(lat: Double, lng: Double) {
         let cameraUpdate = NMFCameraUpdate(
             scrollTo: NMGLatLng(lat: lat, lng: lng),
             zoomTo: 15
@@ -181,13 +192,6 @@ extension Coordinator: NMFMapViewCameraDelegate {
 
 // MARK: - 맵 터치 관련 Delegate
 extension Coordinator: NMFMapViewTouchDelegate {
-    // 지도 심벌이 탭되면 호출되는 메서드
-//    func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
-//        print(#function, symbol)
-//        // `YES`일 경우 이벤트를 소비합니다.
-//        // 그렇지 않을 경우 이벤트가 지도로 전달되어 `mapView:didTapMap:point:`가 호출됩니다.
-//        return false
-//    }
     
     // 지도가 탭되면 호출되는 메서드
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {

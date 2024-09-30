@@ -47,6 +47,9 @@
 		24FB3FB42CA6722E00DC8087 /* DiaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */; };
 		24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB52CA6841C00DC8087 /* Diary.swift */; };
 		24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FB92CA9722900DC8087 /* LocationDiaryListView.swift */; };
+		24FB3FBE2CAA74E300DC8087 /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FBD2CAA74E300DC8087 /* ToastStyle.swift */; };
+		24FB3FC02CAA784A00DC8087 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FBF2CAA784A00DC8087 /* Toast.swift */; };
+		24FB3FC22CAA785A00DC8087 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC12CAA785A00DC8087 /* ToastView.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +108,9 @@
 		24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryManager.swift; sourceTree = "<group>"; };
 		24FB3FB52CA6841C00DC8087 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		24FB3FB92CA9722900DC8087 /* LocationDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDiaryListView.swift; sourceTree = "<group>"; };
+		24FB3FBD2CAA74E300DC8087 /* ToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
+		24FB3FBF2CAA784A00DC8087 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		24FB3FC12CAA785A00DC8087 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 		24CA38482C9409F500B873E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24FB3FBC2CAA74C900DC8087 /* Toast */,
 				24DD06D12CA1A9FB00883F33 /* RootView.swift */,
 				24DD06DD2CA2940900883F33 /* RootViewModel.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
@@ -297,6 +304,16 @@
 				24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		24FB3FBC2CAA74C900DC8087 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				24FB3FBD2CAA74E300DC8087 /* ToastStyle.swift */,
+				24FB3FBF2CAA784A00DC8087 /* Toast.swift */,
+				24FB3FC12CAA785A00DC8087 /* ToastView.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		EFECFC5F23DE218648D46279 /* Pods */ = {
@@ -443,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DD06EA2CA3F1CB00883F33 /* NetworkManager.swift in Sources */,
+				24FB3FBE2CAA74E300DC8087 /* ToastStyle.swift in Sources */,
 				24DD06E02CA298CC00883F33 /* CalendarViewModel.swift in Sources */,
 				24DD06DC2CA293DB00883F33 /* ViewModelType.swift in Sources */,
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
@@ -460,6 +478,7 @@
 				24DD06F32CA42A9800883F33 /* DiaryCell.swift in Sources */,
 				24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */,
+				24FB3FC02CAA784A00DC8087 /* Toast.swift in Sources */,
 				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,
 				24DD06D02CA1A8B200883F33 /* EditDiaryView.swift in Sources */,
 				24CA383E2C93F77000B873E7 /* MapView.swift in Sources */,
@@ -469,6 +488,7 @@
 				24DD06C42C9FE39B00883F33 /* Font+.swift in Sources */,
 				2421E7922C9C080F00A4E607 /* Date+.swift in Sources */,
 				24FB3FB42CA6722E00DC8087 /* DiaryManager.swift in Sources */,
+				24FB3FC22CAA785A00DC8087 /* ToastView.swift in Sources */,
 				24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */,
 				2421E78C2C9BF2DB00A4E607 /* AddLocationView.swift in Sources */,
 				24DD06C62C9FECE400883F33 /* DiaryDetailView.swift in Sources */,
