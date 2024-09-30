@@ -10,7 +10,6 @@ import SwiftUI
 struct AddLocationView: View {
     
     // TODO: - 페이지네이션
-    // TODO: - 디자인 변경
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dismissSearch) private var dismissSearch
@@ -25,7 +24,7 @@ struct AddLocationView: View {
         VStack {
             SearchBar(query: $query, placeholder: "장소를 검색해보세요")
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 16) {
                     ForEach(locationList, id: \.id) { item in
                         locationCell(item)
                     }
@@ -71,12 +70,12 @@ struct AddLocationView: View {
             dismiss()
             dismissSearch()
         } label: {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(location.placeName)
-                    .font(.bold18)
+                    .font(.bold15)
                     .foregroundStyle(Color(.appPrimary))
                 Text(location.addressName)
-                    .font(.regular15)
+                    .font(.regular12)
                     .foregroundStyle(Color(.appSecondary))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
