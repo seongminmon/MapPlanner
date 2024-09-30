@@ -9,6 +9,7 @@ import Foundation
 
 final class NetworkManager {
     static let shared = NetworkManager()
+    private init() {}
     
     // 키워드로 장소 검색하기
     private let urlString = "https://dapi.kakao.com/v2/local/search/keyword"

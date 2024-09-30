@@ -22,12 +22,14 @@ struct MapView: View {
         }
         .onAppear {
             // 권한 설정
+            print("onAppear")
             coordinator.checkIfLocationServiceIsEnabled()
             coordinator.didTapMap = {
                 selectedDiary = nil
             }
         }
         .onChange(of: diaryManager.diaryList) { newValue in
+            print("onChange")
             let currentLocations = newValue.compactMap { $0.toLocation() }
             let currentLocationIDList = currentLocations.map { $0.id }
             
@@ -41,6 +43,7 @@ struct MapView: View {
             newValue.forEach { diary in
                 if let location = diary.toLocation() {
                     coordinator.addMarker(location) { _ in
+                        coordinator.cameraUpdate(lat: location.lat, lng: location.lng)
                         selectedDiary = diary
                         return true
                     }

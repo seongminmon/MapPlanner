@@ -21,7 +21,7 @@ struct AddLocationView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            VStack(spacing: 10) {
                 ForEach(locationList, id: \.id) { item in
                     locationCell(item)
                 }
@@ -74,7 +74,7 @@ struct AddLocationView: View {
                     .foregroundStyle(Color(.appSecondary))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            .padding(.horizontal, 8)
         }
     }
 }

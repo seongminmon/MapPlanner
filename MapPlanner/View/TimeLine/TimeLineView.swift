@@ -18,7 +18,7 @@ struct TimeLineView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVStack {
+                VStack(spacing: 10) {
                     ForEach(sortedDiaryList, id: \.id) { item in
                         VStack {
                             Text(item.date.toString(DateFormat.untilDay))
@@ -27,7 +27,6 @@ struct TimeLineView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 8)
             }
             AddDiaryButton()
         }

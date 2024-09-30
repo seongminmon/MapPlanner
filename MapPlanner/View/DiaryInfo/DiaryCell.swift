@@ -49,6 +49,7 @@ struct DiaryCell: View {
                 }
                 Spacer()
             }
+            .padding(.horizontal, 8)
         }
         .fullScreenCover(isPresented: $showDiaryDetailView) {
             DiaryDetailView(diary: diary)

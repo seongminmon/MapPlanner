@@ -24,7 +24,7 @@ struct SearchView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            VStack(spacing: 10) {
                 ForEach(filteredDiaryList, id: \.id) { item in
                     DiaryCell(diary: item)
                 }

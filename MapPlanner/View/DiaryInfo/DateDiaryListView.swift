@@ -28,7 +28,6 @@ struct DateDiaryListView: View {
                         DiaryCell(diary: item)
                     }
                 }
-                .padding(.horizontal, 8)
             }
         }
         .background(Color.clear)
