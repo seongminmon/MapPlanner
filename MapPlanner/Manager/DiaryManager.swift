@@ -36,20 +36,56 @@ final class DiaryManager: ObservableObject {
     }
     
     func dateFilteredDiaryList(_ date: Date) -> [Diary] {
-        return diaryList.filter { $0.date.compareYearMonthDay(date) }
+        return diaryList
+            .filter { $0.date.compareYearMonthDay(date) }
+            .sorted { $0.savedDate > $1.savedDate }
     }
     
     func locationFilteredDiaryList(_ locationID: String?) -> [Diary] {
-        return diaryList.filter { $0.locationID == locationID }
+        return diaryList
+            .filter { $0.locationID == locationID }
+            .sorted {
+                if $0.date == $1.date {
+                    return $0.savedDate > $1.savedDate
+                }
+                return $0.date > $1.date
+            }
     }
     
     func searchedDiaryList(_ query: String) -> [Diary] {
-        return diaryList.filter {
-            $0.title.contains(query) ||
-            $0.contents.contains(query) ||
-            $0.placeName.contains(query) ||
-            $0.addressName.contains(query)
+        return diaryList
+            .filter {
+                $0.title.contains(query) ||
+                $0.contents.contains(query) ||
+                $0.placeName.contains(query) ||
+                $0.addressName.contains(query)
+            }
+            .sorted {
+                if $0.date == $1.date {
+                    return $0.savedDate > $1.savedDate
+                }
+                return $0.date > $1.date
+            }
+    }
+    
+    func timeLineDiaryDict() -> [String: [Diary]] {
+        let sortedList = diaryList.sorted {
+            if $0.date == $1.date {
+                return $0.savedDate > $1.savedDate
+            }
+            return $0.date > $1.date
         }
+        
+        var diaryDict = [String: [Diary]]()
+        for diary in sortedList {
+            let key = diary.date.toString(DateFormat.untilMonth)
+            if diaryDict[key] != nil {
+                diaryDict[key]?.append(diary)
+            } else {
+                diaryDict[key] = [diary]
+            }
+        }
+        return diaryDict
     }
     
     func addDiary(diary: RealmDiary, image: UIImage?) {

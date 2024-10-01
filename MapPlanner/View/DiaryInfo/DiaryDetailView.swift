@@ -96,22 +96,14 @@ struct DiaryDetailView: View {
     
     // TODO: - 디자인 변경
     private func descriptionView() -> some View {
+        // title / date / contents / placeName / addressName
         VStack(spacing: 10) {
             Text(diary.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
-                .frame(maxWidth: .infinity, alignment: .leading)
             Text(diary.contents)
-                .font(.regular14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            VStack {
-                Text(diary.placeName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(diary.addressName)
-                    .font(.regular14)
-                    .foregroundStyle(Color(.appSecondary))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
+            Text(diary.placeName)
+            Text(diary.addressName)
         }
         .font(.bold15)
         .foregroundStyle(Color(.appPrimary))

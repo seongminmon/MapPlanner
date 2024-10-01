@@ -42,12 +42,14 @@ extension Date {
     }
     
     /// 연/월/일까지 비교
-    func compareYearMonthDay(_ target: Date) -> Bool {
+    func compareYearMonthDay(_ target: Date?) -> Bool {
+        guard let target else { return false }
         return Calendar.current.isDate(self, inSameDayAs: target)
     }
     
     /// 연/월까지 비교
-    func compareYearMonth(_ target: Date) -> Bool {
+    func compareYearMonth(_ target: Date?) -> Bool {
+        guard let target else { return false }
         let year1 = Calendar.current.component(.year, from: self)
         let month1 = Calendar.current.component(.month, from: self)
         let year2 = Calendar.current.component(.year, from: target)

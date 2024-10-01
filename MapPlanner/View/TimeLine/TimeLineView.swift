@@ -9,26 +9,40 @@ import SwiftUI
 
 struct TimeLineView: View {
     
-    // TODO: - 디자인 변경
-    
     @StateObject private var diaryManager = DiaryManager()
     
-    var sortedDiaryList: [Diary] {
-        return diaryManager.diaryList.sorted { $0.date > $1.date }
+    private var diaryDict: [String: [Diary]] {
+        return diaryManager.timeLineDiaryDict()
     }
     
     var body: some View {
         ZStack {
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(sortedDiaryList, id: \.id) { item in
-                        VStack {
-                            DiaryCell(diary: item)
+            listView()
+            AddDiaryButton()
+        }
+    }
+    
+    private func listView() -> some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(diaryDict.sorted(by: { $0.key > $1.key }), id: \.key) { (month, diaries) in
+                    VStack {
+                        // 월 표시
+                        Text(month)
+                            .font(.bold20)
+                            .foregroundStyle(Color(.darkTheme))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 8)
+                        
+                        // 해당 월의 다이어리 항목들 표시
+                        ForEach(diaries, id: \.id) { diary in
+                            DiaryCell(diary: diary)
                         }
                     }
                 }
             }
-            AddDiaryButton()
         }
     }
 }
