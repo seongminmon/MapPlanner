@@ -38,8 +38,10 @@ struct DiaryCell: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         } else {
             Image.calendar
-                .foregroundStyle(Color(.appPrimary))
+                .resizable()
+                .frame(width: 40, height: 40)
                 .frame(width: 100, height: 100)
+                .foregroundStyle(Color(.appPrimary))
                 .background(Color(.appSecondary))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }

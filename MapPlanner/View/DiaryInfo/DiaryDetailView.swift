@@ -86,7 +86,8 @@ struct DiaryDetailView: View {
             GeometryReader { geometry in
                 Image.calendar
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 80, height: 80)
+                    .offset(y: 20)
                     .frame(width: geometry.size.width, height: 350)
                     .foregroundStyle(Color(.appPrimary))
                     .background(Color(.appSecondary))
