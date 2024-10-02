@@ -15,18 +15,19 @@ struct SubMapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> NMFMapView {
         let mapView = NMFMapView()
-        
-        // 지정된 위도, 경도로 마커 위치 설정
         let markerLocation = NMGLatLng(lat: lat, lng: lng)
         
         // 마커 추가
-        let marker = NMFMarker(position: markerLocation)
+        let marker = NMFMarker()
+        marker.iconImage = NMF_MARKER_IMAGE_BLUE
+        marker.position = markerLocation
         marker.mapView = mapView
 
-        // 초기 카메라 설정
-        let cameraPosition = NMFCameraPosition(markerLocation, zoom: 15)
-        mapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
-
+        // 마커 화면 중심으로 이동
+        DispatchQueue.main.async {
+            let cameraPosition = NMFCameraPosition(markerLocation, zoom: 15)
+            mapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
+        }
         return mapView
     }
 
