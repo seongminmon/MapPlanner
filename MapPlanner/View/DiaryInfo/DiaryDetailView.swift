@@ -31,26 +31,28 @@ struct DiaryDetailView: View {
             .overlay {
                 VStack {
                     HStack {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image.xmark
-                        }
-                        .foregroundStyle(Color(.white))
-                        .frame(width: 40, height: 40)
-                        
+                        Image.xmark
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15, height: 15)
+                            .foregroundStyle(Color(.white))
+                            .onTapGesture {
+                                dismiss()
+                            }
                         Spacer()
-                        Button {
-                            showActionSheet.toggle()
-                        } label: {
-                            Image.ellipsis
-                        }
-                        .foregroundStyle(Color(.white))
-                        .frame(width: 40, height: 40)
+                        Image.ellipsis
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 23, height: 23)
+                            .foregroundStyle(Color(.white))
+                            .onTapGesture {
+                                showActionSheet.toggle()
+                            }
                     }
                     Spacer()
                 }
                 .padding(.horizontal)
+                .padding(.top, 8)
             }
             // Action Sheet
             .confirmationDialog("", isPresented: $showActionSheet) {
@@ -99,17 +101,20 @@ struct DiaryDetailView: View {
     }
     
     private func descriptionView() -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 15) {
             Text(diary.title)
                 .font(.bold20)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
                 Image.calendar
                 Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             Text(diary.contents)
-                .font(.regular12)
+                .font(.regular13)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             // 장소 정보 있을 때 지도로 표시
             if diary.lat != nil {
@@ -125,7 +130,7 @@ struct DiaryDetailView: View {
         VStack(alignment: .leading) {
             HStack {
                 Image.location
-                VStack {
+                VStack(alignment: .leading) {
                     Text(diary.placeName)
                     Text(diary.addressName)
                         .font(.regular12)
@@ -137,6 +142,7 @@ struct DiaryDetailView: View {
                 lat: diary.lat ?? Location.defaultLat,
                 lng: diary.lng ?? Location.defaultLng
             )
+            .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 200)
             .allowsHitTesting(false)
             .clipShape(RoundedRectangle(cornerRadius: 10))
