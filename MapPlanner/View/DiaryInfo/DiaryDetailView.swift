@@ -10,9 +10,6 @@ import RealmSwift
 
 struct DiaryDetailView: View {
     
-    // TODO: - 지도에서 위치 보기
-    // TODO: - 스크롤 내릴 시 네비게이션 버튼 안 보이는 문제
-    
     var diary: Diary
     @StateObject private var diaryManager = DiaryManager()
     
@@ -30,32 +27,37 @@ struct DiaryDetailView: View {
             }
             .ignoresSafeArea(.all, edges: .top)
             // 네비게이션 바
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image.xmark
+            .toolbar(.hidden, for: .navigationBar)
+            .overlay {
+                VStack {
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image.xmark
+                        }
+                        .foregroundStyle(Color(.white))
+                        .frame(width: 40, height: 40)
+                        
+                        Spacer()
+                        Button {
+                            showActionSheet.toggle()
+                        } label: {
+                            Image.ellipsis
+                        }
+                        .foregroundStyle(Color(.white))
+                        .frame(width: 40, height: 40)
                     }
-                    .foregroundStyle(Color(.white))
+                    Spacer()
                 }
-                
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button {
-                        showActionSheet.toggle()
-                    } label: {
-                        Image.ellipsis
-                    }
-                    .foregroundStyle(Color(.white))
-                }
+                .padding(.horizontal)
             }
             // Action Sheet
             .confirmationDialog("", isPresented: $showActionSheet) {
                 NavigationLink {
                     EditDiaryView(diary: diary, selectedDate: nil)
                 } label: {
-                    Text("편집")
+                    Text("수정")
                 }
                 .foregroundStyle(Color(.appPrimary))
                 Button("삭제", role: .destructive) {
@@ -96,29 +98,49 @@ struct DiaryDetailView: View {
         }
     }
     
-    // TODO: - 디자인 변경
     private func descriptionView() -> some View {
-        // title / date / contents / placeName / addressName
-        VStack(spacing: 10) {
+        VStack(alignment: .leading) {
             Text(diary.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
+                .font(.bold20)
+            
+            HStack {
+                Image.calendar
+                Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
+            }
+            
             Text(diary.contents)
+                .font(.regular12)
+            
             // 장소 정보 있을 때 지도로 표시
             if diary.lat != nil {
-                Text(diary.placeName)
-                Text(diary.addressName)
-                // TODO: - 마커 정가운데에 오도록 조정하기
-                SubMapView(
-                    lat: diary.lat ?? Location.defaultLat,
-                    lng: diary.lng ?? Location.defaultLng
-                )
-                .frame(height: 200)
-                .allowsHitTesting(false)
+                locationView()
             }
         }
         .font(.bold15)
         .foregroundStyle(Color(.appPrimary))
         .padding()
     }
+    
+    private func locationView() -> some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Image.location
+                VStack {
+                    Text(diary.placeName)
+                    Text(diary.addressName)
+                        .font(.regular12)
+                        .foregroundStyle(Color(.appSecondary))
+                }
+            }
+            
+            SubMapView(
+                lat: diary.lat ?? Location.defaultLat,
+                lng: diary.lng ?? Location.defaultLng
+            )
+            .frame(height: 200)
+            .allowsHitTesting(false)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+    
 }

@@ -51,6 +51,7 @@
 		24FB3FC22CAA785A00DC8087 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC12CAA785A00DC8087 /* ToastView.swift */; };
 		24FB3FC62CAABC4200DC8087 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC52CAABC4200DC8087 /* SearchBar.swift */; };
 		24FB3FC82CAC1E5F00DC8087 /* SubMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC72CAC1E5F00DC8087 /* SubMapView.swift */; };
+		24FB3FCA2CAD66EC00DC8087 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		24FB3FC12CAA785A00DC8087 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		24FB3FC52CAABC4200DC8087 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		24FB3FC72CAC1E5F00DC8087 /* SubMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMapView.swift; sourceTree = "<group>"; };
+		24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		24CA38482C9409F500B873E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */,
 				24DD06D12CA1A9FB00883F33 /* RootView.swift */,
 				24DD06DD2CA2940900883F33 /* RootViewModel.swift */,
 				24CA38472C9409E200B873E7 /* Calendar */,
@@ -400,6 +403,7 @@
 				24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */,
 				241A58902C91BBD300232D8B /* Preview Assets.xcassets in Resources */,
 				241A58972C91BC3F00232D8B /* .gitignore in Resources */,
+				24FB3FCA2CAD66EC00DC8087 /* LaunchScreen.storyboard in Resources */,
 				24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */,
 				241A588D2C91BBD300232D8B /* Assets.xcassets in Resources */,
 			);
@@ -633,9 +637,12 @@
 				INFOPLIST_FILE = MapPlanner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맵다이어리";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -672,9 +679,12 @@
 				INFOPLIST_FILE = MapPlanner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맵다이어리";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

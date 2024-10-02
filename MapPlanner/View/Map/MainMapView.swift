@@ -77,10 +77,9 @@ final class Coordinator: NSObject, ObservableObject {
         marker.position = NMGLatLng(lat: location.lat, lng: location.lng)
         marker.mapView = view.mapView
         marker.touchHandler = { [weak self] overlay in
-            guard let self = self else { return false }
+            guard self != nil else { return false }
             return touchHandler?(overlay) ?? false
         }
-//        marker.touchHandler = touchHandler
         // 딕셔너리에 추가
         markersDict[location.id] = marker
     }

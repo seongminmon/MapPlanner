@@ -10,8 +10,6 @@ import PhotosUI
 
 struct EditDiaryView: View {
     
-    // TODO: - 디자인 변경
-    
     // MARK: - diary == nil ? 추가 : 수정
     var diary: Diary?
     
@@ -78,6 +76,7 @@ struct EditDiaryView: View {
         .scrollIndicators(.never)
         // 네비게이션
         .navigationTitle(diary == nil ? "기록 추가" : "수정하기")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -225,7 +224,7 @@ struct EditDiaryView: View {
                 Text(selectedDate.toString(DateFormat.time))
                     .font(.bold18)
             } else {
-                Text("시간 +")
+                Text("시간 선택")
                     .font(.bold18)
             }
             Spacer()
@@ -313,6 +312,7 @@ struct EditDiaryView: View {
     }
     
     private func contentsTextField() -> some View {
+        // TODO: - 엔터 누르면 키보드 아래로 숨는 문제
         VStack {
             Text("내용")
                 .font(.bold15)
