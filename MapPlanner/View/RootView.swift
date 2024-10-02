@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct RootView: View {
-    
-    // TODO: - 사진 권한
-    
     @StateObject private var viewModel = RootViewModel()
     
     var body: some View {
@@ -28,18 +25,11 @@ struct RootView: View {
                                 .font(.boldTitle)
                                 .foregroundStyle(Color(.darkTheme))
                         }
-                        ToolbarItemGroup(placement: .topBarTrailing) {
+                        ToolbarItem(placement: .topBarTrailing) {
                             NavigationLink {
                                 SearchView()
                             } label: {
                                 Image.search
-                            }
-                            .foregroundStyle(Color(.appPrimary))
-                            
-                            NavigationLink {
-                                SettingView()
-                            } label: {
-                                Image.setting
                             }
                             .foregroundStyle(Color(.appPrimary))
                         }
@@ -69,18 +59,11 @@ struct RootView: View {
                                 .font(.boldTitle)
                                 .foregroundStyle(Color(.darkTheme))
                         }
-                        ToolbarItemGroup(placement: .topBarTrailing) {
+                        ToolbarItem(placement: .topBarTrailing) {
                             NavigationLink {
                                 SearchView()
                             } label: {
                                 Image.search
-                            }
-                            .foregroundStyle(Color(.appPrimary))
-                            
-                            NavigationLink {
-                                SettingView()
-                            } label: {
-                                Image.setting
                             }
                             .foregroundStyle(Color(.appPrimary))
                         }
