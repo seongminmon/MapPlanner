@@ -112,9 +112,17 @@ struct DiaryDetailView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(diary.contents)
-                .font(.regular13)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if !diary.contents.isEmpty {
+                Text(diary.contents)
+                    .font(.regular14)
+                    .foregroundColor(Color(.appPrimary))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(.lightSecondary))
+                    )
+            }
             
             // 장소 정보 있을 때 지도로 표시
             if diary.lat != nil {

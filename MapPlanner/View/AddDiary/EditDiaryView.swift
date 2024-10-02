@@ -72,6 +72,7 @@ struct EditDiaryView: View {
                 }
                 .padding()
             }
+            .padding(.bottom, 80)
         }
         .scrollIndicators(.never)
         // 네비게이션
@@ -317,8 +318,10 @@ struct EditDiaryView: View {
             Text("내용")
                 .font(.bold15)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            TextField("내용을 입력해주세요", text: $contents, axis: .vertical)
-                .textFieldStyle(.roundedBorder)
+            
+            TextEditor(text: $contents)
+                .customStyleEditor(placeholder: "내용을 입력해주세요", userInput: $contents)
+                .frame(height: 200)
         }
     }
     
@@ -332,7 +335,7 @@ struct EditDiaryView: View {
             placeName: location?.placeName ?? "",
             addressName: location?.addressName ?? "",
             lat: location?.lat,
-            lng: location?.lng, 
+            lng: location?.lng,
             category: location?.category ?? ""
         )
         diaryManager.addDiary(diary: diary, image: uiImage)

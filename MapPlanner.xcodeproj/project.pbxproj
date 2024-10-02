@@ -52,6 +52,7 @@
 		24FB3FC62CAABC4200DC8087 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC52CAABC4200DC8087 /* SearchBar.swift */; };
 		24FB3FC82CAC1E5F00DC8087 /* SubMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FC72CAC1E5F00DC8087 /* SubMapView.swift */; };
 		24FB3FCA2CAD66EC00DC8087 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */; };
+		24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB3FCB2CAD744500DC8087 /* CustomTextEditorStyle.swift */; };
 		76B2D5D27C9071EBF1357BB8 /* Pods_MapPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		24FB3FC52CAABC4200DC8087 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		24FB3FC72CAC1E5F00DC8087 /* SubMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMapView.swift; sourceTree = "<group>"; };
 		24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		24FB3FCB2CAD744500DC8087 /* CustomTextEditorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorStyle.swift; sourceTree = "<group>"; };
 		79835B1C74828A660C35A33B /* Pods_MapPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827222173C75D7097C256E88 /* Pods-MapPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.release.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		AC0C09D96116D6B333664843 /* Pods-MapPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MapPlanner/Pods-MapPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				24DD06D32CA1AAA600883F33 /* AddDiaryButton.swift */,
 				24DD06CF2CA1A8B200883F33 /* EditDiaryView.swift */,
+				24FB3FCB2CAD744500DC8087 /* CustomTextEditorStyle.swift */,
 				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
 			);
 			path = AddDiary;
@@ -469,6 +472,7 @@
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
 				24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
+				24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
