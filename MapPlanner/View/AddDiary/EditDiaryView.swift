@@ -332,7 +332,8 @@ struct EditDiaryView: View {
             placeName: location?.placeName ?? "",
             addressName: location?.addressName ?? "",
             lat: location?.lat,
-            lng: location?.lng
+            lng: location?.lng, 
+            category: location?.category ?? ""
         )
         diaryManager.addDiary(diary: diary, image: uiImage)
     }
@@ -351,7 +352,8 @@ struct EditDiaryView: View {
             placeName: location?.placeName ?? "",
             addressName: location?.addressName ?? "",
             lat: location?.lat,
-            lng: location?.lng
+            lng: location?.lng,
+            category: location?.category ?? ""
         )
         diaryManager.updateDiary(diaryID: diary.id, newDiary: newDiary, image: uiImage)
     }

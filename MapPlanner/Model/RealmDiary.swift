@@ -22,8 +22,9 @@ final class RealmDiary: Object, ObjectKeyIdentifiable {
     @Persisted var addressName: String
     @Persisted var lat: Double?
     @Persisted var lng: Double?
+    @Persisted var category: String
     
-    convenience init(title: String, date: Date, isTimeIncluded: Bool, contents: String, locationID: String, placeName: String, addressName: String, lat: Double? = nil, lng: Double? = nil) {
+    convenience init(title: String, date: Date, isTimeIncluded: Bool, contents: String, locationID: String, placeName: String, addressName: String, lat: Double? = nil, lng: Double? = nil, category: String) {
         self.init()
         self.savedDate = Date()
         self.title = title
@@ -35,6 +36,7 @@ final class RealmDiary: Object, ObjectKeyIdentifiable {
         self.addressName = addressName
         self.lat = lat
         self.lng = lng
+        self.category = category
     }
 }
 
@@ -51,7 +53,8 @@ extension RealmDiary {
             placeName: self.placeName,
             addressName: self.addressName,
             lat: self.lat,
-            lng: self.lng
+            lng: self.lng, 
+            category: self.category
         )
     }
 }

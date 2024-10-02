@@ -27,7 +27,9 @@ final class DiaryManager: ObservableObject {
             let realm = try Realm()
             let results = realm.objects(RealmDiary.self)
             token = results.observe{ [weak self] changes in
-                self?.diaryList = results.map { $0.toDiary() }
+                DispatchQueue.main.async {
+                    self?.diaryList = results.map { $0.toDiary() }
+                }
             }
         } catch let error {
             print("옵저버 세팅 실패")
@@ -128,6 +130,7 @@ final class DiaryManager: ObservableObject {
                     diary.addressName = newDiary.addressName
                     diary.lat = newDiary.lat
                     diary.lng = newDiary.lng
+                    diary.category = newDiary.category
                     realm.add(diary, update: .modified)
                 }
             }

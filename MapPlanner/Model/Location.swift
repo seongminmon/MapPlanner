@@ -13,6 +13,7 @@ struct Location: Hashable, Identifiable {
     var addressName: String
     var lat: Double
     var lng: Double
+    var category: String
 }
 
 extension Location {

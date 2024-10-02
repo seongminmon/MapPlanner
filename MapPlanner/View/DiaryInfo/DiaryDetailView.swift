@@ -11,6 +11,7 @@ import RealmSwift
 struct DiaryDetailView: View {
     
     // TODO: - 지도에서 위치 보기
+    // TODO: - 스크롤 내릴 시 네비게이션 버튼 안 보이는 문제
     
     var diary: Diary
     @StateObject private var diaryManager = DiaryManager()
@@ -103,8 +104,18 @@ struct DiaryDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
             Text(diary.contents)
-            Text(diary.placeName)
-            Text(diary.addressName)
+            // 장소 정보 있을 때 지도로 표시
+            if diary.lat != nil {
+                Text(diary.placeName)
+                Text(diary.addressName)
+                // TODO: - 마커 정가운데에 오도록 조정하기
+                SubMapView(
+                    lat: diary.lat ?? Location.defaultLat,
+                    lng: diary.lng ?? Location.defaultLng
+                )
+                .frame(height: 200)
+                .allowsHitTesting(false)
+            }
         }
         .font(.bold15)
         .foregroundStyle(Color(.appPrimary))

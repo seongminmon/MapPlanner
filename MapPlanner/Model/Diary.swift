@@ -21,6 +21,7 @@ struct Diary: Hashable, Identifiable {
     var addressName: String
     var lat: Double?
     var lng: Double?
+    var category: String
 }
 
 extension Diary {
@@ -31,7 +32,8 @@ extension Diary {
             placeName: self.placeName,
             addressName: self.addressName,
             lat: lat,
-            lng: lng
+            lng: lng,
+            category: self.category
         )
     }
 }

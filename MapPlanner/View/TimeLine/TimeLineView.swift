@@ -17,7 +17,12 @@ struct TimeLineView: View {
     
     var body: some View {
         ZStack {
-            listView()
+            if diaryDict.isEmpty {
+                Text("저장된 기록이 없습니다.")
+                    .font(.bold20)
+            } else {
+                listView()
+            }
             AddDiaryButton()
         }
     }

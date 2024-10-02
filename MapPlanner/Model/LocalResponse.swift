@@ -47,7 +47,8 @@ extension Document {
             placeName: self.place_name,
             addressName: self.address_name,
             lat: Double(self.y) ?? 0,
-            lng: Double(self.x) ?? 0
+            lng: Double(self.x) ?? 0,
+            category: self.category_name
         )
     }
 }

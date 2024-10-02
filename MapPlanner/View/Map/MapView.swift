@@ -6,30 +6,30 @@
 //
 
 import SwiftUI
+import NMapsMap
 
 struct MapView: View {
     
-    @StateObject private var coordinator = Coordinator.shared
     @StateObject private var diaryManager = DiaryManager()
+    @StateObject var coordinator: Coordinator = Coordinator.shared
     
     @State private var selectedDiary: Diary?
+    @State private var isFirst = true
     
     var body: some View {
         ZStack {
-            NaverMapView()
-                .ignoresSafeArea(.all, edges: .top)
+            MainMapView()
+            .ignoresSafeArea(.all, edges: .top)
             AddDiaryButton()
         }
         .onAppear {
-            // 권한 설정
-            print("onAppear")
-            coordinator.checkIfLocationServiceIsEnabled()
-            coordinator.didTapMap = {
-                selectedDiary = nil
+            if isFirst {
+                coordinator.checkIfLocationServiceIsEnabled()
+                coordinator.didTapMap = { selectedDiary = nil }
+                isFirst = false
             }
         }
         .onChange(of: diaryManager.diaryList) { newValue in
-            print("onChange")
             let currentLocations = newValue.compactMap { $0.toLocation() }
             let currentLocationIDList = currentLocations.map { $0.id }
             
