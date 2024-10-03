@@ -146,6 +146,7 @@ struct DiaryDetailView: View {
                 }
             }
             
+            // TODO: - 지도 처음 띄울때 오래 걸리는 문제 -> 로딩 뷰 보이기
             SubMapView(
                 lat: diary.lat ?? Location.defaultLat,
                 lng: diary.lng ?? Location.defaultLng
@@ -156,5 +157,4 @@ struct DiaryDetailView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
-    
 }

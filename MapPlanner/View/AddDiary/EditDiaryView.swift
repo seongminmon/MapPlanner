@@ -10,6 +10,8 @@ import PhotosUI
 
 struct EditDiaryView: View {
     
+    // TODO: - 작성된 내용이 있을때 dismiss시 확인 Alert 띄우기
+    
     // MARK: - diary == nil ? 추가 : 수정
     var diary: Diary?
     
@@ -313,7 +315,6 @@ struct EditDiaryView: View {
     }
     
     private func contentsTextField() -> some View {
-        // TODO: - 엔터 누르면 키보드 아래로 숨는 문제
         VStack {
             Text("내용")
                 .font(.bold15)

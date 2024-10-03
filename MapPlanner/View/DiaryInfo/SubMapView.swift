@@ -17,6 +17,7 @@ struct SubMapView: UIViewRepresentable {
         let mapView = NMFMapView()
         let markerLocation = NMGLatLng(lat: lat, lng: lng)
         
+        // TODO: - 커스텀 마커로 변경
         // 마커 추가
         let marker = NMFMarker()
         marker.iconImage = NMF_MARKER_IMAGE_BLUE

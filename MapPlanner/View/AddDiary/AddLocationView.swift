@@ -10,6 +10,8 @@ import SwiftUI
 struct AddLocationView: View {
     
     // TODO: - 페이지네이션
+    // TODO: - API 통신 중 progressView 띄우기
+    // TODO: - 통신 실패 시 예외 처리
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dismissSearch) private var dismissSearch
