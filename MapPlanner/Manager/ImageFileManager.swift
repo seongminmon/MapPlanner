@@ -12,9 +12,10 @@ final class ImageFileManager {
     private init() {}
     
     // 도큐먼트 폴더 위치
-    private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     func saveImageFile(image: UIImage, filename: String) {
+        guard let documentDirectory else { return }
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
         guard let data = image.jpegData(compressionQuality: 0.5) else { return }
         
@@ -27,6 +28,7 @@ final class ImageFileManager {
     }
     
     func loadImageFile(filename: String) -> UIImage? {
+        guard let documentDirectory else { return nil }
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
         if FileManager.default.fileExists(atPath: fileURL.path) {
             return UIImage(contentsOfFile: fileURL.path)
@@ -36,6 +38,7 @@ final class ImageFileManager {
     }
 
     func deleteImageFile(filename: String) {
+        guard let documentDirectory else { return }
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
         if FileManager.default.fileExists(atPath: fileURL.path) {
             do {

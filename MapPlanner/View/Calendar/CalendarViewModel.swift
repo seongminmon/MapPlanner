@@ -22,7 +22,7 @@ final class CalendarViewModel: ViewModelType {
     
     struct Output {
         // 달력 표시되고 있는 달 (연/월까지 유효)
-        var currentDate = Date().getFirstDate()!
+        var currentDate = Date().getFirstDate() ?? Date()
         // 유저가 선택한 날짜 (연/월/일까지 유효)
         var clickedDate: Date?
         
@@ -56,7 +56,7 @@ final class CalendarViewModel: ViewModelType {
         
         input.refreshButtonTap
             .sink { [weak self] _ in
-                self?.output.currentDate = Date().getFirstDate()!
+                self?.output.currentDate = Date().getFirstDate() ?? Date()
             }
             .store(in: &cancellables)
         
@@ -78,18 +78,18 @@ final class CalendarViewModel: ViewModelType {
     
     // 인덱스로 date 구하기
     func getDate(for index: Int) -> Date {
-        let startDate = output.currentDate.getFirstDate()!
-        return calendar.date(byAdding: .day, value: index, to: startDate)!
+        let startDate = output.currentDate.getFirstDate() ?? Date()
+        return calendar.date(byAdding: .day, value: index, to: startDate) ?? Date()
     }
     
     // 달력 이동
     private func changeMonth(by value: Int) {
-        output.currentDate = output.currentDate.byAddingMonth(value)!
+        output.currentDate = output.currentDate.byAddingMonth(value) ?? Date()
     }
     
     // 달력 이동이 가능한지
     func canMoveMonth(_ value: Int) -> Bool {
-        let tagetDate = output.currentDate.byAddingMonth(value)!
+        guard let tagetDate = output.currentDate.byAddingMonth(value) else { return false }
         return Date.startDate <= tagetDate && tagetDate <= Date.endDate
     }
     

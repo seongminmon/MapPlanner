@@ -260,7 +260,7 @@ struct EditDiaryView: View {
                     bySettingHour: Calendar.current.component(.hour, from: datePickerTime),
                     minute: Calendar.current.component(.minute, from: datePickerTime),
                     second: 0, of: selectedDate
-                )!
+                ) ?? Date()
                 isTimeIncluded = true
                 showTimePicker = false
             } label: {
