@@ -23,10 +23,16 @@ struct AddLocationView: View {
     var body: some View {
         VStack {
             SearchBar(query: $query, placeholder: "장소를 검색해보세요")
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach(locationList, id: \.id) { item in
-                        locationCell(item)
+            if locationList.isEmpty {
+                Text("검색 결과가 없습니다.")
+                    .font(.bold20)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ForEach(locationList, id: \.id) { item in
+                            locationCell(item)
+                        }
                     }
                 }
             }
@@ -52,6 +58,7 @@ struct AddLocationView: View {
         }
         .scrollDismissesKeyboard(.immediately)
         .onSubmit {
+            if query.isEmpty { return }
             Task {
                 do {
                     let result = try await NetworkManager.shared.callRequest(query)

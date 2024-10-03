@@ -23,13 +23,20 @@ struct SearchView: View {
     var body: some View {
         VStack {
             SearchBar(query: $query, placeholder: "기록을 검색해보세요")
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(filteredDiaryList, id: \.id) { item in
-                        DiaryCell(diary: item)
+            if filteredDiaryList.isEmpty {
+                Text("검색 결과가 없습니다.")
+                    .font(.bold20)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(filteredDiaryList, id: \.id) { item in
+                            DiaryCell(diary: item)
+                        }
                     }
                 }
             }
+            
         }
         // 네비게이션 바
         .navigationTitle("기록 검색")
