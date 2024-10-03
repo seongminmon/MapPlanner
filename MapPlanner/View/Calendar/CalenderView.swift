@@ -106,12 +106,10 @@ struct CalendarView: View {
         VStack {
             Spacer()
             HStack {
-                // TODO: - Picker 디자인 변경
-                // TODO: - 자동으로 연도에 formatting이 들어가는 문제
                 // 연도 선택기
                 Picker("연도", selection: $viewModel.output.selectedYear) {
                     ForEach(2020...2050, id: \.self) { year in
-                        Text("\(year)년")
+                        Text(String(format: "%d년", year))
                             .tag(year)
                     }
                 }
