@@ -7,13 +7,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MapPlanner"
+            "value" : "MapDiary"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "맵플래너"
+            "value" : "맵다이어리"
           }
         }
       }
