@@ -7,17 +7,10 @@
 
 import SwiftUI
 
-// TODO: - 추가 / 수정 / 삭제 시 토스트 띄우기
-//    @State private var toast: Toast? = nil
-//    toast = Toast(type: .success, title: "삭제되었습니다.", message: "")
-//    toast = Toast(type: .success, title: "기록이 추가되었습니다.", message: "")
-//    toast = Toast(type: .success, title: "기록이 수정되었습니다.", message: "")
-//        .toastView(toast: $toast)
-
 struct ToastView: View {
     var type: ToastStyle
     var title: String
-    var onCancelTapped: (() -> Void)
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
@@ -27,20 +20,15 @@ struct ToastView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.bold14)
+                        .foregroundColor(Color(.appPrimary))
                 }
                 
                 Spacer(minLength: 10)
                 
-                Button {
-                    onCancelTapped()
-                } label: {
-                    Image.xmark
-                        .foregroundColor(Color(.appPrimary))
-                }
             }
             .padding()
         }
-        .background(Color.white)
+        .background(Color(.background))
         .overlay(
             Rectangle()
                 .fill(type.themeColor)
@@ -50,7 +38,6 @@ struct ToastView: View {
         )
         .frame(minWidth: 0, maxWidth: .infinity)
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
 }
@@ -66,6 +53,7 @@ struct ToastModifier: ViewModifier {
                 ZStack {
                     mainToastView()
                         .offset(y: -30)
+                        .zIndex(1)
                 }.animation(.spring(), value: toast)
             )
             .onChange(of: toast) { value in
@@ -77,9 +65,9 @@ struct ToastModifier: ViewModifier {
         if let toast = toast {
             VStack {
                 Spacer()
-                ToastView(type: toast.type, title: toast.title) {
-                    dismissToast()
-                }
+                ToastView(type: toast.type, title: toast.title) //{
+//                    dismissToast()
+//                }
             }
             .transition(.move(edge: .bottom))
         }

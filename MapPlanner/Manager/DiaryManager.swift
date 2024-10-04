@@ -96,6 +96,13 @@ final class DiaryManager: ObservableObject {
         }
         $realmDiaryList.append(diary)
         print("Realm 추가")
+        
+        let addToast = Toast(type: .success, title: "기록이 추가되었습니다")
+        NotificationCenter.default.post(
+            name: Notification.Name("ShowToast"),
+            object: nil,
+            userInfo: ["toast": addToast]
+        )
     }
     
     func deleteDiary(diaryID: String) {
@@ -109,6 +116,13 @@ final class DiaryManager: ObservableObject {
             }
             ImageFileManager.shared.deleteImageFile(filename: diaryID)
             print("Realm 삭제 성공")
+            
+            let deleteToast = Toast(type: .success, title: "기록이 삭제되었습니다")
+            NotificationCenter.default.post(
+                name: Notification.Name("ShowToast"),
+                object: nil,
+                userInfo: ["toast": deleteToast]
+            )
         } catch {
             print("Realm 삭제 실패 \(error)")
         }
@@ -140,6 +154,13 @@ final class DiaryManager: ObservableObject {
                 ImageFileManager.shared.deleteImageFile(filename: diaryID)
             }
             print("Realm 업데이트 성공")
+            
+            let updateToast = Toast(type: .success, title: "수정되었습니다")
+            NotificationCenter.default.post(
+                name: Notification.Name("ShowToast"),
+                object: nil,
+                userInfo: ["toast": updateToast]
+            )
         } catch {
             print("Realm 업데이트 실패 \(error)")
         }

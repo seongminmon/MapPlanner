@@ -26,7 +26,12 @@ struct SearchView: View {
             if filteredDiaryList.isEmpty {
                 Text("검색 결과가 없습니다.")
                     .font(.bold20)
+                    // 키보드 내리기
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(.background))
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
             } else {
                 ScrollView {
                     VStack(spacing: 10) {
@@ -35,8 +40,13 @@ struct SearchView: View {
                         }
                     }
                 }
+                // 키보드 내리기
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture {
+                    hideKeyboard()
+                }
+                .scrollDismissesKeyboard(.immediately)
             }
-            
         }
         // 네비게이션 바
         .navigationTitle("기록 검색")
@@ -52,11 +62,5 @@ struct SearchView: View {
                 .foregroundStyle(Color(.appPrimary))
             }
         }
-        // 키보드 내리기
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            hideKeyboard()
-        }
-        .scrollDismissesKeyboard(.immediately)
     }
 }

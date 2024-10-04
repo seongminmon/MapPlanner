@@ -14,8 +14,8 @@ struct AddLocationView: View {
     // TODO: - 통신 실패 시 예외 처리
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.dismissSearch) private var dismissSearch
     
+    @State private var recentQuery = ""
     @State private var query = ""
     @State private var response: LocalResponse?
     @State private var locationList: [Location] = []
@@ -28,7 +28,12 @@ struct AddLocationView: View {
             if locationList.isEmpty {
                 Text("검색 결과가 없습니다.")
                     .font(.bold20)
+                    // 키보드 내리기
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(.background))
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
             } else {
                 ScrollView {
                     VStack(spacing: 16) {
@@ -37,6 +42,12 @@ struct AddLocationView: View {
                         }
                     }
                 }
+                // 키보드 내리기
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture {
+                    hideKeyboard()
+                }
+                .scrollDismissesKeyboard(.immediately)
             }
         }
         // 네비게이션 바
@@ -53,14 +64,9 @@ struct AddLocationView: View {
                 .foregroundStyle(Color(.appPrimary))
             }
         }
-        // 키보드 내리기
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            hideKeyboard()
-        }
-        .scrollDismissesKeyboard(.immediately)
         .onSubmit {
-            if query.isEmpty { return }
+            guard !query.isEmpty && query != recentQuery else { return }
+            recentQuery = query
             Task {
                 do {
                     let result = try await NetworkManager.shared.callRequest(query)
@@ -78,7 +84,6 @@ struct AddLocationView: View {
         Button {
             selectedLocation = location
             dismiss()
-            dismissSearch()
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 Text(location.placeName)

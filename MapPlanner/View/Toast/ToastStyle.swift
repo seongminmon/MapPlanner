@@ -10,8 +10,8 @@ import SwiftUI
 enum ToastStyle {
     case error
     case warning
-    case success
     case info
+    case success
 }
 
 extension ToastStyle {
@@ -20,16 +20,16 @@ extension ToastStyle {
         case .error: Color(.toastError)
         case .warning: Color(.toastWarning)
         case .info: Color(.toastInfo)
-        case .success: Color(.toastSuccess)
+        case .success: Color(.darkTheme)
         }
     }
     
     var iconImage: Image {
         switch self {
-        case .info: Image.info
-        case .warning: Image.warning
-        case .success: Image.success
         case .error: Image.error
+        case .warning: Image.warning
+        case .info: Image.info
+        case .success: Image.success
         }
     }
 }
