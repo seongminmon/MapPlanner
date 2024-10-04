@@ -112,6 +112,7 @@ struct EditDiaryView: View {
                 Button("삭제", role: .destructive) {
                     selectedPhoto = nil
                     uiImage = nil
+                    ImageFileManager.shared.deleteImageFile(filename: "\(diary?.id ?? "")")
                 }
             }
             Button("취소", role: .cancel) {}
