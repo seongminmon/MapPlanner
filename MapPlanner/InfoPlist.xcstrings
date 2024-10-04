@@ -41,7 +41,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "location please"
+            "value" : "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다."
           }
         },
         "ko" : {
@@ -58,7 +58,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "location please"
+            "value" : "지도에 사용자 위치를 표시하고, 근처에 내가 남긴 기록을 쉽게 보게 하기 위해 사용자 위치 접근 권한이 필요합니다."
           }
         },
         "ko" : {
