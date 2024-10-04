@@ -19,6 +19,9 @@
 		2421E7922C9C080F00A4E607 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E7912C9C080F00A4E607 /* Date+.swift */; };
 		245C30612CAFB995000AE9E7 /* ToastWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */; };
 		245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30622CAFBA87000AE9E7 /* Literal.swift */; };
+		245C30682CAFC186000AE9E7 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */; };
+		245C30692CAFC186000AE9E7 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30662CAFC186000AE9E7 /* GmarketSansBold.otf */; };
+		245C306A2CAFC186000AE9E7 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
@@ -87,6 +90,9 @@
 		2421E7912C9C080F00A4E607 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindowManager.swift; sourceTree = "<group>"; };
 		245C30622CAFBA87000AE9E7 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
+		245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
+		245C30662CAFC186000AE9E7 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
+		245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -279,6 +285,9 @@
 			children = (
 				24CA38492C9410EB00B873E7 /* Image+.swift */,
 				24DD06C32C9FE39B00883F33 /* Font+.swift */,
+				245C30662CAFC186000AE9E7 /* GmarketSansBold.otf */,
+				245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */,
+				245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -420,7 +429,10 @@
 				24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */,
 				241A58902C91BBD300232D8B /* Preview Assets.xcassets in Resources */,
 				241A58972C91BC3F00232D8B /* .gitignore in Resources */,
+				245C30692CAFC186000AE9E7 /* GmarketSansBold.otf in Resources */,
 				24FB3FCA2CAD66EC00DC8087 /* LaunchScreen.storyboard in Resources */,
+				245C30682CAFC186000AE9E7 /* GmarketSansMedium.otf in Resources */,
+				245C306A2CAFC186000AE9E7 /* GmarketSansLight.otf in Resources */,
 				24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */,
 				241A588D2C91BBD300232D8B /* Assets.xcassets in Resources */,
 			);

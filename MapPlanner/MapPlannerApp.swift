@@ -19,23 +19,21 @@ struct MapPlannerApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ZStack {
-                RootView()
-//            }
-            .onAppear {
-                debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
-                // NotificationCenter 구독
-                NotificationCenter.default.addObserver(
-                    forName: Notification.Name(NotificationName.showToast.rawValue),
-                    object: nil,
-                    queue: .main
-                ) { notification in
-                    if let userInfo = notification.userInfo, let toast = userInfo[NotificationUserInfo.toast.rawValue] as? Toast {
-                        self.toast = toast
-                        ToastWindowManager.shared.showToast(toast: self.$toast)
+            RootView()
+                .onAppear {
+                    debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+                    // NotificationCenter 구독
+                    NotificationCenter.default.addObserver(
+                        forName: Notification.Name(NotificationName.showToast.rawValue),
+                        object: nil,
+                        queue: .main
+                    ) { notification in
+                        if let userInfo = notification.userInfo, let toast = userInfo[NotificationUserInfo.toast.rawValue] as? Toast {
+                            self.toast = toast
+                            ToastWindowManager.shared.showToast(toast: self.$toast)
+                        }
                     }
                 }
-            }
         }
     }
 }

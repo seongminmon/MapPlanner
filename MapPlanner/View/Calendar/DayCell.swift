@@ -94,7 +94,7 @@ struct DayCell: View {
                 Image.calendar
                     .foregroundStyle(Color(.appPrimary))
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .background(Color(.appSecondary))
+                    .background(Color(.lightSecondary))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
