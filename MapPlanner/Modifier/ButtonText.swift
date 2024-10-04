@@ -18,3 +18,10 @@ struct ButtonText: ViewModifier {
             .padding()
     }
 }
+
+struct NavigationBar: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+        
+    }
+}

@@ -100,6 +100,7 @@ extension Coordinator: CLLocationManagerDelegate {
     
     // 권한 변경 시점
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        print(#function)
         checkLocationAuthorization()
     }
     
@@ -126,8 +127,10 @@ extension Coordinator: CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
             print("위치 정보 접근이 제한되었습니다.")
+            cameraUpdate(lat: Location.defaultLat, lng: Location.defaultLng)
         case .denied:
             print("위치 정보 접근을 거절했습니다. 설정에 가서 변경하세요.")
+            cameraUpdate(lat: Location.defaultLat, lng: Location.defaultLng)
         case .authorizedAlways, .authorizedWhenInUse:
             print("위치 권한 O")
             print("유저 위치로 이동하기")
@@ -140,7 +143,7 @@ extension Coordinator: CLLocationManagerDelegate {
     private func fetchUserLocation() {
         guard let locationManager = locationManager else { return }
         let lat = locationManager.location?.coordinate.latitude ?? Location.defaultLat
-        let lng = locationManager.location?.coordinate.longitude ?? Location.defaultLat
+        let lng = locationManager.location?.coordinate.longitude ?? Location.defaultLng
         cameraUpdate(lat: lat, lng: lng)
     }
 }
