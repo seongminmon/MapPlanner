@@ -11,6 +11,7 @@ import NMapsMap
 struct MapView: View {
     
     // TODO: - 지도 처음 띄울때 오래 걸리는 문제 -> 로딩 뷰 보이기
+    // 시점 -> 지도뷰 띄워질때
     
     @StateObject private var diaryManager = DiaryManager()
     @StateObject var coordinator: Coordinator = Coordinator.shared

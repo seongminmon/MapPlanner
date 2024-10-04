@@ -35,7 +35,7 @@ struct DiaryDetailView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 15, height: 15)
-                            .foregroundStyle(Color(.white))
+                            .foregroundStyle(.white)
                             .onTapGesture {
                                 dismiss()
                             }
@@ -44,7 +44,7 @@ struct DiaryDetailView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 23, height: 23)
-                            .foregroundStyle(Color(.white))
+                            .foregroundStyle(.white)
                             .onTapGesture {
                                 showActionSheet.toggle()
                             }
@@ -61,7 +61,7 @@ struct DiaryDetailView: View {
                 } label: {
                     Text("수정")
                 }
-                .foregroundStyle(Color(.appPrimary))
+                .foregroundStyle(.appPrimary)
                 Button("삭제", role: .destructive) {
                     showDeleteAlert.toggle()
                 }
@@ -94,8 +94,8 @@ struct DiaryDetailView: View {
                     .frame(width: 80, height: 80)
                     .offset(y: 20)
                     .frame(width: geometry.size.width, height: 350)
-                    .foregroundStyle(Color(.appPrimary))
-                    .background(Color(.appSecondary))
+                    .foregroundStyle(.appPrimary)
+                    .background(.appSecondary)
             }
         }
     }
@@ -103,24 +103,24 @@ struct DiaryDetailView: View {
     private func descriptionView() -> some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(diary.title)
-                .font(.bold20)
+                .asTextModifier(font: .bold20, color: .appPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
                 Image.calendar
                 Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
+                    .asTextModifier(font: .bold15, color: .appPrimary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
             if !diary.contents.isEmpty {
                 Text(diary.contents)
-                    .font(.regular14)
-                    .foregroundColor(Color(.appPrimary))
+                    .asTextModifier(font: .regular14, color: .black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(Color(.lightSecondary))
+                            .fill(.lightSecondary)
                     )
             }
             
@@ -129,8 +129,6 @@ struct DiaryDetailView: View {
                 locationView()
             }
         }
-        .font(.bold15)
-        .foregroundStyle(Color(.appPrimary))
         .padding()
     }
     
@@ -140,9 +138,9 @@ struct DiaryDetailView: View {
                 Image.location
                 VStack(alignment: .leading) {
                     Text(diary.placeName)
+                        .asTextModifier(font: .bold15, color: .appPrimary)
                     Text(diary.addressName)
-                        .font(.regular12)
-                        .foregroundStyle(Color(.appSecondary))
+                        .asTextModifier(font: .regular12, color: .appSecondary)
                 }
             }
             

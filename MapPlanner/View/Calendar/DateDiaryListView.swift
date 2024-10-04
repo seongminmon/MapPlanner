@@ -20,7 +20,7 @@ struct DateDiaryListView: View {
     var body: some View {
         VStack {
             Text(date.toString(DateFormat.untilDay))
-                .font(.bold18)
+                .asTextModifier(font: .bold18, color: .appPrimary)
                 .padding(.top, 10)
             ScrollView {
                 VStack {

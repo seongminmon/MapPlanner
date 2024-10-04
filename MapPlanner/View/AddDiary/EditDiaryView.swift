@@ -11,6 +11,7 @@ import PhotosUI
 struct EditDiaryView: View {
     
     // TODO: - 작성된 내용이 있을때 dismiss시 확인 Alert 띄우기
+    // 백 제스처 이동시 고려
     
     // MARK: - diary == nil ? 추가 : 수정
     var diary: Diary?
@@ -76,7 +77,6 @@ struct EditDiaryView: View {
             }
             .padding(.bottom, 80)
         }
-        .scrollIndicators(.never)
         // 네비게이션
         .navigationTitle(diary == nil ? "기록 추가" : "수정하기")
         .navigationBarTitleDisplayMode(.inline)
@@ -88,7 +88,7 @@ struct EditDiaryView: View {
                 } label: {
                     Image.leftChevron
                 }
-                .foregroundStyle(Color(.appPrimary))
+                .foregroundStyle(.appPrimary)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
@@ -98,8 +98,7 @@ struct EditDiaryView: View {
                 } label: {
                     Text("저장")
                 }
-                .foregroundStyle(Color(.appPrimary))
-                .buttonStyle(PlainButtonStyle())
+                .foregroundStyle(.appPrimary)
                 .disabled(disabled)
             }
         }
@@ -157,8 +156,8 @@ struct EditDiaryView: View {
                         .resizable()
                         .frame(width: 50, height: 40)
                         .frame(width: geometry.size.width, height: 250)
-                        .foregroundStyle(Color(.appPrimary))
-                        .background(Color(.appSecondary))
+                        .foregroundStyle(.appPrimary)
+                        .background(.appSecondary)
                 }
             }
         }
@@ -167,10 +166,11 @@ struct EditDiaryView: View {
     private func titleTextField() -> some View {
         VStack {
             Text("제목 *")
-                .font(.bold15)
+                .asTextModifier(font: .bold15, color: .appPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("기록 제목", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .asTextModifier(font: .regular14, color: .appPrimary)
         }
     }
     
@@ -180,16 +180,42 @@ struct EditDiaryView: View {
             showDatePicker.toggle()
         } label: {
             Text(selectedDate.toString(DateFormat.untilWeekDay))
-                .font(.bold18)
+                .asTextModifier(font: .bold18, color: .appPrimary)
             Spacer()
             Image.rightChevron
                 .bold()
         }
-        .foregroundStyle(Color(.appPrimary))
+        .foregroundStyle(.appPrimary)
+    }
+    
+    private func showTimePickerButton() -> some View {
+        Button {
+            showTimePicker.toggle()
+        } label: {
+            if isTimeIncluded {
+                Text(selectedDate.toString(DateFormat.time))
+                    .asTextModifier(font: .bold18, color: .appPrimary)
+            } else {
+                Text("시간 선택")
+                    .asTextModifier(font: .bold18, color: .appPrimary)
+            }
+            Spacer()
+            if isTimeIncluded {
+                Button {
+                    isTimeIncluded = false
+                } label: {
+                    Image.xmark
+                }
+            } else {
+                Image.rightChevron
+                    .bold()
+            }
+        }
+        .foregroundStyle(.appPrimary)
     }
     
     private func datePickerSheetView() -> some View {
-        VStack(spacing: 20) {
+        VStack {
             Spacer()
             DatePicker(
                 "",
@@ -206,47 +232,15 @@ struct EditDiaryView: View {
                 showDatePicker = false
             } label: {
                 Text("저장")
-                    .font(.bold18)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .foregroundColor(Color(.background))
-                    .background(Color(.button))
-                    .clipShape(.capsule)
-                    .padding()
+                    .asButtonText()
             }
         }
         .background(Color.clear)
         .presentationDetents([.fraction(0.4)])
     }
     
-    private func showTimePickerButton() -> some View {
-        Button {
-            showTimePicker.toggle()
-        } label: {
-            if isTimeIncluded {
-                Text(selectedDate.toString(DateFormat.time))
-                    .font(.bold18)
-            } else {
-                Text("시간 선택")
-                    .font(.bold18)
-            }
-            Spacer()
-            if isTimeIncluded {
-                Button {
-                    isTimeIncluded = false
-                } label: {
-                    Image.xmark
-                }
-            } else {
-                Image.rightChevron
-                    .bold()
-            }
-        }
-        .foregroundStyle(Color(.appPrimary))
-    }
-    
     private func timePickerSheetView() -> some View {
-        VStack(spacing: 20) {
+        VStack {
             Spacer()
             DatePicker(
                 "",
@@ -267,13 +261,7 @@ struct EditDiaryView: View {
                 showTimePicker = false
             } label: {
                 Text("저장")
-                    .font(.bold15)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .foregroundColor(Color(.background))
-                    .background(Color(.button))
-                    .clipShape(.capsule)
-                    .padding()
+                    .asButtonText()
             }
         }
         .background(Color.clear)
@@ -288,15 +276,13 @@ struct EditDiaryView: View {
                 if let location {
                     VStack(alignment: .leading) {
                         Text(location.placeName)
-                            .font(.bold18)
-                            .foregroundStyle(Color(.appPrimary))
+                            .asTextModifier(font: .bold18, color: .appPrimary)
                         Text(location.addressName)
-                            .font(.regular15)
-                            .foregroundStyle(Color(.appSecondary))
+                            .asTextModifier(font: .regular15, color: .appPrimary)
                     }
                 } else {
                     Text("장소 선택")
-                        .font(.bold18)
+                        .asTextModifier(font: .regular15, color: .appPrimary)
                 }
                 Spacer()
                 if location != nil {
@@ -311,17 +297,18 @@ struct EditDiaryView: View {
                 }
             }
         }
-        .foregroundStyle(Color(.appPrimary))
+        .foregroundStyle(.appPrimary)
     }
     
     private func contentsTextField() -> some View {
         VStack {
             Text("내용")
-                .font(.bold15)
+                .asTextModifier(font: .bold15, color: .appPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextEditor(text: $contents)
                 .customStyleEditor(placeholder: "내용을 입력해주세요", userInput: $contents)
+            
                 .frame(height: 200)
         }
     }

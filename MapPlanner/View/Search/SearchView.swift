@@ -15,6 +15,7 @@ struct SearchView: View {
     
     @State private var query = ""
     
+    // TODO: - 공백만 있을땐 안보이도록 처리
     // 제목 / 내용 / 장소명 / 주소명으로 검색
     private var filteredDiaryList: [Diary] {
         diaryManager.searchedDiaryList(query)
@@ -25,10 +26,10 @@ struct SearchView: View {
             SearchBar(query: $query, placeholder: "기록을 검색해보세요")
             if filteredDiaryList.isEmpty {
                 Text("검색 결과가 없습니다.")
-                    .font(.bold20)
+                    .asTextModifier(font: .bold20, color: .appPrimary)
                     // 키보드 내리기
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(.background))
+                    .background(.background)
                     .onTapGesture {
                         hideKeyboard()
                     }
@@ -59,7 +60,7 @@ struct SearchView: View {
                 } label: {
                     Image.leftChevron
                 }
-                .foregroundStyle(Color(.appPrimary))
+                .foregroundStyle(.appPrimary)
             }
         }
     }

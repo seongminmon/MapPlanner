@@ -24,11 +24,13 @@ struct CalendarView: View {
         .contentShape(Rectangle())
         .gesture(
             DragGesture().onEnded { value in
-                if value.translation.width < -100 {
-                    viewModel.input.changeMonthButtonTap.send(1)
-                } else if value.translation.width > 100 {
-                    viewModel.input.changeMonthButtonTap.send(-1)
-                }
+//                withAnimation {
+                    if value.translation.width < -100 {
+                        viewModel.input.changeMonthButtonTap.send(1)
+                    } else if value.translation.width > 100 {
+                        viewModel.input.changeMonthButtonTap.send(-1)
+                    }
+//                }
             }
         )
         .sheet(isPresented: $viewModel.output.showDatePicker) {
@@ -53,9 +55,9 @@ struct CalendarView: View {
                     viewModel.input.showDatePickerButtonTap.send(())
                 } label: {
                     Text(viewModel.output.currentDate.toString(DateFormat.untilMonth))
-                        .font(.bold20)
+                        .asTextModifier(font: .bold18, color: .appPrimary)
                 }
-                .foregroundStyle(Color(.appPrimary))
+                .foregroundStyle(.appPrimary)
                 
                 // 다음 달 이동 버튼
                 changeMonthButton(
@@ -72,8 +74,7 @@ struct CalendarView: View {
                         viewModel.input.refreshButtonTap.send(())
                     } label: {
                         Text("오늘")
-                            .font(.bold18)
-                            .foregroundStyle(Color(.darkTheme))
+                            .asTextModifier(font: .bold18, color: .darkTheme)
                             .padding(.trailing, 12)
                     }
                 }
@@ -87,7 +88,7 @@ struct CalendarView: View {
             viewModel.input.changeMonthButtonTap.send(direction)
         } label: {
             image
-                .foregroundColor(canMove ? Color(.appPrimary) : Color(.appSecondary))
+                .foregroundColor(canMove ? .appPrimary : .appSecondary)
         }
         .disabled(!canMove)
     }
@@ -96,7 +97,7 @@ struct CalendarView: View {
         HStack {
             ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { symbol in
                 Text(symbol.uppercased())
-                    .foregroundColor(Color(.appSecondary))
+                    .asTextModifier(font: .regular14, color: .appSecondary)
                     .frame(maxWidth: .infinity)
             }
         }
@@ -110,6 +111,7 @@ struct CalendarView: View {
                 Picker("연도", selection: $viewModel.output.selectedYear) {
                     ForEach(2020...2050, id: \.self) { year in
                         Text(String(format: "%d년", year))
+                            .asTextModifier(font: .regular18, color: .appPrimary)
                             .tag(year)
                     }
                 }
@@ -119,6 +121,7 @@ struct CalendarView: View {
                 Picker("월", selection: $viewModel.output.selectedMonth) {
                     ForEach(1...12, id: \.self) { month in
                         Text("\(month)월")
+                            .asTextModifier(font: .regular18, color: .appPrimary)
                             .tag(month)
                     }
                 }
@@ -130,13 +133,7 @@ struct CalendarView: View {
                 viewModel.input.moveDateButtonTap.send(())
             } label: {
                 Text("이동")
-                    .font(.bold15)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .foregroundColor(Color(.background))
-                    .background(Color(.button))
-                    .clipShape(.capsule)
-                    .padding()
+                    .asButtonText()
             }
         }
         .background(Color.clear)

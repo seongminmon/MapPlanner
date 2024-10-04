@@ -19,8 +19,7 @@ struct ToastView: View {
                 
                 VStack(alignment: .leading) {
                     Text(title)
-                        .font(.bold14)
-                        .foregroundColor(Color(.appPrimary))
+                        .asTextModifier(font: .bold14, color: .appPrimary)
                 }
                 
                 Spacer(minLength: 10)
@@ -28,7 +27,7 @@ struct ToastView: View {
             }
             .padding()
         }
-        .background(Color(.background))
+        .background(.appBackground)
         .overlay(
             Rectangle()
                 .fill(type.themeColor)

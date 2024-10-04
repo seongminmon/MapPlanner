@@ -31,21 +31,21 @@ struct DayCell: View {
     
     var textColor: Color {
         if clicked {
-            return Color(.background)
+            return .appBackground
         } else if isCurrentMonth {
-            return Color(.appPrimary)
+            return .appPrimary
         } else {
-            return Color(.lightSecondary)
+            return .lightSecondary
         }
     }
     
     var backgroundColor: Color {
         if clicked {
-            return Color(.appPrimary)
+            return .appPrimary
         } else if isToday {
-            return Color(.appSecondary)
+            return .appSecondary
         } else {
-            return Color(.background)
+            return .appBackground
         }
     }
     
@@ -59,12 +59,11 @@ struct DayCell: View {
                         if filteredDiaryList.count > 1 {
                             let displayCount = filteredDiaryList.count > 9 ? "9+" : "\(filteredDiaryList.count)"
                             Circle()
-                                .fill(Color(.appPrimary))
-                                .overlay {
+                                .fill(.appPrimary)
+                                .overlay(
                                     Text(displayCount)
-                                        .font(.regular12)
-                                        .foregroundStyle(Color(.background))
-                                }
+                                        .asTextModifier(font: .regular12, color: .appBackground)
+                                )
                                 .frame(width: 18, height: 18)
                                 .padding(4)
                         }
@@ -76,7 +75,10 @@ struct DayCell: View {
         } else {
             Circle()
                 .fill(backgroundColor)
-                .overlay(Text(String(day)))
+                .overlay(
+                    Text(String(day))
+                        .asTextModifier(font: .regular14, color: .appPrimary)
+                )
                 .foregroundColor(textColor)
         }
     }
@@ -92,9 +94,9 @@ struct DayCell: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             } else {
                 Image.calendar
-                    .foregroundStyle(Color(.appPrimary))
+                    .foregroundStyle(.appPrimary)
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .background(Color(.lightSecondary))
+                    .background(.lightSecondary)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }

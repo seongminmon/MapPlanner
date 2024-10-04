@@ -16,6 +16,9 @@ extension Font {
     static let bold13 = Font.custom("GmarketSansBold", size: 13)
     static let bold12 = Font.custom("GmarketSansBold", size: 12)
     
+    static let regular18 = Font.custom("GmarketSansMedium", size: 18)
+    static let regular17 = Font.custom("GmarketSansMedium", size: 17)
+    static let regular16 = Font.custom("GmarketSansMedium", size: 16)
     static let regular15 = Font.custom("GmarketSansMedium", size: 15)
     static let regular14 = Font.custom("GmarketSansMedium", size: 14)
     static let regular13 = Font.custom("GmarketSansMedium", size: 13)

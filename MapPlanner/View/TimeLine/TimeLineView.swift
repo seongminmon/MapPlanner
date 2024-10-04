@@ -19,7 +19,7 @@ struct TimeLineView: View {
         ZStack {
             if diaryDict.isEmpty {
                 Text("저장된 기록이 없습니다.")
-                    .font(.bold20)
+                    .asTextModifier(font: .bold20, color: .appPrimary)
             } else {
                 listView()
             }
@@ -34,8 +34,7 @@ struct TimeLineView: View {
                     VStack {
                         // 월 표시
                         Text(month)
-                            .font(.bold20)
-                            .foregroundStyle(Color(.darkTheme))
+                            .asTextModifier(font: .bold20, color: .darkTheme)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 16)

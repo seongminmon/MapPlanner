@@ -20,7 +20,7 @@ struct LocationDiaryListView: View {
     var body: some View {
         VStack {
             Text(location?.placeName ?? "장소 정보 없음")
-                .font(.bold18)
+                .asTextModifier(font: .bold18, color: .appPrimary)
                 .padding(.top, 10)
             ScrollView {
                 VStack {

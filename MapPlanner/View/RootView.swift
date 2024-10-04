@@ -23,8 +23,7 @@ struct RootView: View {
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             Text("Map Diary")
-                                .font(.boldTitle)
-                                .foregroundStyle(Color(.darkTheme))
+                                .asTextModifier(font: .boldTitle, color: .darkTheme)
                         }
                         ToolbarItem(placement: .topBarTrailing) {
                             NavigationLink {
@@ -32,7 +31,7 @@ struct RootView: View {
                             } label: {
                                 Image.search
                             }
-                            .foregroundStyle(Color(.appPrimary))
+                            .foregroundStyle(.appPrimary)
                         }
                     }
             }
@@ -57,8 +56,7 @@ struct RootView: View {
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             Text("Map Diary")
-                                .font(.boldTitle)
-                                .foregroundStyle(Color(.darkTheme))
+                                .asTextModifier(font: .boldTitle, color: .darkTheme)
                         }
                         ToolbarItem(placement: .topBarTrailing) {
                             NavigationLink {
@@ -66,7 +64,7 @@ struct RootView: View {
                             } label: {
                                 Image.search
                             }
-                            .foregroundStyle(Color(.appPrimary))
+                            .foregroundStyle(.appPrimary)
                         }
                     }
             }
@@ -76,6 +74,6 @@ struct RootView: View {
             }
             .tag(TabInfo.timeline)
         }
-        .tint(Color(.darkTheme))
+        .tint(.darkTheme)
     }
 }

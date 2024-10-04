@@ -27,10 +27,10 @@ struct AddLocationView: View {
             SearchBar(query: $query, placeholder: "장소를 검색해보세요")
             if locationList.isEmpty {
                 Text("검색 결과가 없습니다.")
-                    .font(.bold20)
+                    .asTextModifier(font: .bold20, color: .appPrimary)
                     // 키보드 내리기
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(.background))
+                    .background(.appBackground)
                     .onTapGesture {
                         hideKeyboard()
                     }
@@ -61,7 +61,7 @@ struct AddLocationView: View {
                 } label: {
                     Image.leftChevron
                 }
-                .foregroundStyle(Color(.appPrimary))
+                .foregroundStyle(.appPrimary)
             }
         }
         .onSubmit {
@@ -87,11 +87,9 @@ struct AddLocationView: View {
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 Text(location.placeName)
-                    .font(.bold15)
-                    .foregroundStyle(Color(.appPrimary))
+                    .asTextModifier(font: .bold15, color: .appPrimary)
                 Text(location.addressName)
-                    .font(.regular12)
-                    .foregroundStyle(Color(.appSecondary))
+                    .asTextModifier(font: .regular12, color: .appSecondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)

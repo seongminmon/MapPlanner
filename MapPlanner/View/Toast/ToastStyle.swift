@@ -17,10 +17,10 @@ enum ToastStyle {
 extension ToastStyle {
     var themeColor: Color {
         switch self {
-        case .error: Color(.toastError)
-        case .warning: Color(.toastWarning)
-        case .info: Color(.toastInfo)
-        case .success: Color(.darkTheme)
+        case .error: .toastError
+        case .warning: .toastWarning
+        case .info: .toastInfo
+        case .success: .darkTheme
         }
     }
     

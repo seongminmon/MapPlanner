@@ -18,24 +18,21 @@ struct CustomTextEditorStyle: ViewModifier {
             .background(alignment: .topLeading) {
                 if text.isEmpty {
                     Text(placeholder)
+                        .asTextModifier(font: .regular14, color: .appSecondary)
                         .lineSpacing(10)
                         .padding(20)
                         .padding(.top, 2)
-                        .font(.system(size: 14))
-                        .foregroundColor(Color(.appSecondary))
                 }
             }
+            .asTextModifier(font: .regular14, color: .appPrimary)
             .textInputAutocapitalization(.none)
             .autocorrectionDisabled()
-            .foregroundStyle(Color(.appPrimary))
-            .background(Color(.lightSecondary))
+            .background(.lightSecondary)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .scrollContentBackground(.hidden)
-            .font(.regular14)
             .overlay(alignment: .bottomTrailing) {
                 Text("\(text.count) / 200")
-                    .font(.regular12)
-                    .foregroundColor(Color(.appSecondary))
+                    .asTextModifier(font: .regular12, color: .appSecondary)
                     .padding(.trailing, 15)
                     .padding(.bottom, 15)
                     .onChange(of: text) { newValue in

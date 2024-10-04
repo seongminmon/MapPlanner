@@ -25,7 +25,7 @@ struct SearchBar: View {
                         .padding()
                         .offset(x: 10)
                 }
-                .foregroundStyle(Color(.appSecondary))
+                .foregroundStyle(.appSecondary)
                 .opacity(query.isEmpty ? 0 : 1)
             }
             .padding(.horizontal, 16)

@@ -41,27 +41,25 @@ struct DiaryCell: View {
                 .resizable()
                 .frame(width: 40, height: 40)
                 .frame(width: 100, height: 100)
-                .foregroundStyle(Color(.appPrimary))
-                .background(Color(.lightSecondary))
+                .foregroundStyle(.appPrimary)
+                .background(.lightSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
     
     private func descriptionView() -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(diary.title)
-                .font(.bold15)
+                .asTextModifier(font: .bold15, color: .appPrimary)
             Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
-                .font(.regular12)
-                .foregroundStyle(Color(.appSecondary))
+                .asTextModifier(font: .regular12, color: .appSecondary)
             Spacer()
             Text(diary.placeName)
+                .asTextModifier(font: .bold12, color: .appPrimary)
             Text(diary.addressName)
-                .font(.regular12)
-                .foregroundStyle(Color(.appSecondary))
+                .asTextModifier(font: .regular12, color: .appSecondary)
         }
-        .font(.bold14)
-        .foregroundStyle(Color(.appPrimary))
+        .lineLimit(1)
         .padding(.vertical, 4)
     }
 }
