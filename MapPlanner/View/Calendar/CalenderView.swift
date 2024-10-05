@@ -69,7 +69,7 @@ struct CalendarView: View {
                 Spacer()
                 
                 // 이번 달로 돌아오는 버튼
-                if !viewModel.output.currentDate.compareYearMonth(Date()) {
+                if !viewModel.output.currentDate.compareUntilMonth(Date()) {
                     Button {
                         viewModel.input.refreshButtonTap.send(())
                     } label: {
@@ -154,7 +154,7 @@ struct CalendarView: View {
             ForEach(-firstWeekday..<numberOfDaysInCurrentMonth + numberOfDaysInNextMonth, id: \.self) { index in
                 let date = viewModel.getDate(for: index)
                 let clicked = date == viewModel.output.clickedDate
-                let isCurrentMonth = date.compareYearMonth(viewModel.output.currentDate)
+                let isCurrentMonth = date.compareUntilMonth(viewModel.output.currentDate)
                 
                 DayCell(
                     date: date,

@@ -16,9 +16,10 @@ struct AddDiaryButton: View {
             EditDiaryView(diary: nil, selectedDate: date)
         } label: {
             Image.plus
-                .foregroundStyle(.appBackground)
-                .padding()
+                .resizable()
+                .frame(width: 20, height: 20)
                 .frame(width: 50, height: 50)
+                .foregroundStyle(.white)
                 .background(.darkTheme)
                 .clipShape(Circle())
         }

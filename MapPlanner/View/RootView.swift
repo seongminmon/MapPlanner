@@ -19,21 +19,7 @@ struct RootView: View {
         TabView(selection: $viewModel.output.selectedTab) {
             NavigationStack {
                 CalendarView()
-                // 네비게이션 바
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Text("Map Diary")
-                                .asTextModifier(font: .boldTitle, color: .darkTheme)
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink {
-                                SearchView()
-                            } label: {
-                                Image.search
-                            }
-                            .foregroundStyle(.appPrimary)
-                        }
-                    }
+                    .asRootNavigationBar()
             }
             .tabItem {
                 Image.calendar
@@ -52,21 +38,7 @@ struct RootView: View {
             
             NavigationStack {
                 TimeLineView()
-                // 네비게이션 바
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Text("Map Diary")
-                                .asTextModifier(font: .boldTitle, color: .darkTheme)
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink {
-                                SearchView()
-                            } label: {
-                                Image.search
-                            }
-                            .foregroundStyle(.appPrimary)
-                        }
-                    }
+                    .asRootNavigationBar()
             }
             .tabItem {
                 Image.list

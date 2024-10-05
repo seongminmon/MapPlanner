@@ -39,7 +39,7 @@ final class DiaryManager: ObservableObject {
     
     func dateFilteredDiaryList(_ date: Date) -> [Diary] {
         return diaryList
-            .filter { $0.date.compareYearMonthDay(date) }
+            .filter { $0.date.compareUntilDay(date) }
             .sorted { $0.savedDate > $1.savedDate }
     }
     
@@ -60,7 +60,8 @@ final class DiaryManager: ObservableObject {
                 $0.title.contains(query) ||
                 $0.contents.contains(query) ||
                 $0.placeName.contains(query) ||
-                $0.addressName.contains(query)
+                $0.addressName.contains(query) ||
+                $0.category.contains(query)
             }
             .sorted {
                 if $0.date == $1.date {

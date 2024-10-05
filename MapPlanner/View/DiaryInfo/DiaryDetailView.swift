@@ -134,11 +134,15 @@ struct DiaryDetailView: View {
     
     private func locationView() -> some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(spacing: 8) {
                 Image.location
-                VStack(alignment: .leading) {
-                    Text(diary.placeName)
-                        .asTextModifier(font: .bold15, color: .appPrimary)
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 8) {
+                        Text(diary.placeName)
+                            .asTextModifier(font: .bold15, color: .appPrimary)
+                        Text(CategoryName(rawValue: diary.category) == nil ? "기타" : diary.category)
+                            .asTextModifier(font: .regular14, color: .lightSecondary)
+                    }
                     Text(diary.addressName)
                         .asTextModifier(font: .regular12, color: .appSecondary)
                 }

@@ -26,44 +26,22 @@ struct AddLocationView: View {
         VStack {
             SearchBar(query: $query, placeholder: "장소를 검색해보세요")
             if locationList.isEmpty {
-                Text("검색 결과가 없습니다.")
-                    .asTextModifier(font: .bold20, color: .appPrimary)
-                    // 키보드 내리기
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.appBackground)
-                    .onTapGesture {
-                        hideKeyboard()
-                    }
+                SearchEmptyView()
             } else {
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack {
                         ForEach(locationList, id: \.id) { item in
                             locationCell(item)
                         }
                     }
                 }
                 // 키보드 내리기
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture {
-                    hideKeyboard()
-                }
-                .scrollDismissesKeyboard(.immediately)
+                .asHideKeyboardModifier()
             }
         }
         // 네비게이션 바
         .navigationTitle("장소 검색")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image.leftChevron
-                }
-                .foregroundStyle(.appPrimary)
-            }
-        }
+        .asBasicNavigationBar()
         .onSubmit {
             guard !query.isEmpty && query != recentQuery else { return }
             recentQuery = query
@@ -86,12 +64,20 @@ struct AddLocationView: View {
             dismiss()
         } label: {
             VStack(alignment: .leading, spacing: 8) {
-                Text(location.placeName)
-                    .asTextModifier(font: .bold15, color: .appPrimary)
+                HStack(spacing: 8) {
+                    Text(location.placeName)
+                        .asTextModifier(font: .bold15, color: .appPrimary)
+                    Text(CategoryName(rawValue: location.category) == nil ? "기타" : location.category)
+                        .asTextModifier(font: .regular14, color: .lightSecondary)
+                }
                 Text(location.addressName)
                     .asTextModifier(font: .regular12, color: .appSecondary)
+                Rectangle()
+                    .fill(.appSecondary)
+                    .frame(height: 1)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 8)
             .padding(.horizontal, 16)
         }
     }

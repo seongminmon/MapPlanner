@@ -11,7 +11,6 @@ import RealmSwift
 struct SearchView: View {
     
     @StateObject private var diaryManager = DiaryManager()
-    @Environment(\.dismiss) private var dismiss
     
     @State private var query = ""
     
@@ -25,14 +24,7 @@ struct SearchView: View {
         VStack {
             SearchBar(query: $query, placeholder: "기록을 검색해보세요")
             if filteredDiaryList.isEmpty {
-                Text("검색 결과가 없습니다.")
-                    .asTextModifier(font: .bold20, color: .appPrimary)
-                    // 키보드 내리기
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.background)
-                    .onTapGesture {
-                        hideKeyboard()
-                    }
+                SearchEmptyView()
             } else {
                 ScrollView {
                     VStack(spacing: 10) {
@@ -42,26 +34,11 @@ struct SearchView: View {
                     }
                 }
                 // 키보드 내리기
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture {
-                    hideKeyboard()
-                }
-                .scrollDismissesKeyboard(.immediately)
+                .asHideKeyboardModifier()
             }
         }
         // 네비게이션 바
         .navigationTitle("기록 검색")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image.leftChevron
-                }
-                .foregroundStyle(.appPrimary)
-            }
-        }
+        .asBasicNavigationBar()
     }
 }

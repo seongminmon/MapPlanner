@@ -35,7 +35,6 @@ struct TimeLineView: View {
                         // 월 표시
                         Text(month)
                             .asTextModifier(font: .bold20, color: .darkTheme)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 16)
                             .padding(.top, 8)

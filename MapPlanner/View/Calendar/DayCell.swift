@@ -22,7 +22,7 @@ struct DayCell: View {
     @State private var showDiaryListView = false
     
     var isToday: Bool {
-        return date.compareYearMonthDay(Date())
+        return date.compareUntilDay(Date())
     }
     
     var day: Int {
@@ -77,9 +77,8 @@ struct DayCell: View {
                 .fill(backgroundColor)
                 .overlay(
                     Text(String(day))
-                        .asTextModifier(font: .regular14, color: .appPrimary)
+                        .asTextModifier(font: .regular14, color: textColor)
                 )
-                .foregroundColor(textColor)
         }
     }
     

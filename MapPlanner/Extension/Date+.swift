@@ -31,9 +31,15 @@ extension Date {
     }
     
     /// 달의 첫 날짜 얻기
-    func getFirstDate() -> Date? {
+    func firstDayOfMonth() -> Date? {
         let components = Calendar.current.dateComponents([.year, .month], from: self)
         return Calendar.current.date(from: components)
+    }
+    
+    /// 00:00:00시 얻기
+    func startOfDay() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        return Calendar.current.date(from: components) ?? self
     }
     
     /// 해당 월에 존재하는 일자 수
@@ -42,13 +48,13 @@ extension Date {
     }
     
     /// 연/월/일까지 비교
-    func compareYearMonthDay(_ target: Date?) -> Bool {
+    func compareUntilDay(_ target: Date?) -> Bool {
         guard let target else { return false }
         return Calendar.current.isDate(self, inSameDayAs: target)
     }
     
     /// 연/월까지 비교
-    func compareYearMonth(_ target: Date?) -> Bool {
+    func compareUntilMonth(_ target: Date?) -> Bool {
         guard let target else { return false }
         let year1 = Calendar.current.component(.year, from: self)
         let month1 = Calendar.current.component(.month, from: self)

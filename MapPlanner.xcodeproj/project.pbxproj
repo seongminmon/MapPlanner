@@ -24,6 +24,8 @@
 		245C306A2CAFC186000AE9E7 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */; };
 		245C306D2CAFCDEA000AE9E7 /* TextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C306C2CAFCDEA000AE9E7 /* TextModifier.swift */; };
 		245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C306E2CB00584000AE9E7 /* ButtonText.swift */; };
+		245C30712CB00F9B000AE9E7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30702CB00F9B000AE9E7 /* NavigationBar.swift */; };
+		245C30742CB012AC000AE9E7 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
@@ -97,6 +99,8 @@
 		245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		245C306C2CAFCDEA000AE9E7 /* TextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifier.swift; sourceTree = "<group>"; };
 		245C306E2CB00584000AE9E7 /* ButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonText.swift; sourceTree = "<group>"; };
+		245C30702CB00F9B000AE9E7 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -178,7 +182,8 @@
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
 				241A58AF2C92C87200232D8B /* Info.plist */,
-				245C306B2CAFCDD8000AE9E7 /* Modifier */,
+				245C30722CB012A1000AE9E7 /* CustomView */,
+				245C306B2CAFCDD8000AE9E7 /* CustomModifier */,
 				245C30642CAFBA98000AE9E7 /* Enum */,
 				24FB3FBB2CAA6E7000DC8087 /* Manager */,
 				24DD06DA2CA293D400883F33 /* Protocol */,
@@ -207,13 +212,22 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		245C306B2CAFCDD8000AE9E7 /* Modifier */ = {
+		245C306B2CAFCDD8000AE9E7 /* CustomModifier */ = {
 			isa = PBXGroup;
 			children = (
 				245C306C2CAFCDEA000AE9E7 /* TextModifier.swift */,
 				245C306E2CB00584000AE9E7 /* ButtonText.swift */,
+				245C30702CB00F9B000AE9E7 /* NavigationBar.swift */,
 			);
-			path = Modifier;
+			path = CustomModifier;
+			sourceTree = "<group>";
+		};
+		245C30722CB012A1000AE9E7 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		24CA38462C9409DD00B873E7 /* Map */ = {
@@ -501,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245C30742CB012AC000AE9E7 /* SearchEmptyView.swift in Sources */,
 				24FB3FC82CAC1E5F00DC8087 /* SubMapView.swift in Sources */,
 				245C306D2CAFCDEA000AE9E7 /* TextModifier.swift in Sources */,
 				24FB3FC62CAABC4200DC8087 /* SearchBar.swift in Sources */,
@@ -512,6 +527,7 @@
 				245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
+				245C30712CB00F9B000AE9E7 /* NavigationBar.swift in Sources */,
 				24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */,

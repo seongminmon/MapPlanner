@@ -132,8 +132,7 @@ extension Coordinator: CLLocationManagerDelegate {
             print("위치 정보 접근을 거절했습니다. 설정에 가서 변경하세요.")
             cameraUpdate(lat: Location.defaultLat, lng: Location.defaultLng)
         case .authorizedAlways, .authorizedWhenInUse:
-            print("위치 권한 O")
-            print("유저 위치로 이동하기")
+            print("위치 권한 O 유저 위치로 이동")
             fetchUserLocation()
         @unknown default:
             break

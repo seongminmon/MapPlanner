@@ -79,18 +79,8 @@ struct EditDiaryView: View {
         }
         // 네비게이션
         .navigationTitle(diary == nil ? "기록 추가" : "수정하기")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .asBasicNavigationBar()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image.leftChevron
-                }
-                .foregroundStyle(.appPrimary)
-            }
-            
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     diary == nil ? addDiary() : updateDiary()
@@ -98,7 +88,7 @@ struct EditDiaryView: View {
                 } label: {
                     Text("저장")
                 }
-                .foregroundStyle(.appPrimary)
+                .foregroundStyle(disabled ? .appSecondary : .appPrimary)
                 .disabled(disabled)
             }
         }
@@ -131,11 +121,7 @@ struct EditDiaryView: View {
             timePickerSheetView()
         }
         // 키보드 내리기
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            hideKeyboard()
-        }
-        .scrollDismissesKeyboard(.immediately)
+        .asHideKeyboardModifier()
     }
     
     // MARK: - View Components
@@ -275,14 +261,18 @@ struct EditDiaryView: View {
             HStack {
                 if let location {
                     VStack(alignment: .leading) {
-                        Text(location.placeName)
-                            .asTextModifier(font: .bold18, color: .appPrimary)
+                        HStack(spacing: 8) {
+                            Text(location.placeName)
+                                .asTextModifier(font: .bold18, color: .appPrimary)
+                            Text(CategoryName(rawValue: location.category) == nil ? "기타" : location.category)
+                                .asTextModifier(font: .regular16, color: .lightSecondary)
+                        }
                         Text(location.addressName)
                             .asTextModifier(font: .regular15, color: .appPrimary)
                     }
                 } else {
                     Text("장소 선택")
-                        .asTextModifier(font: .regular15, color: .appPrimary)
+                        .asTextModifier(font: .bold18, color: .appPrimary)
                 }
                 Spacer()
                 if location != nil {
@@ -316,7 +306,7 @@ struct EditDiaryView: View {
     private func addDiary() {
         let diary = RealmDiary(
             title: title,
-            date: selectedDate,
+            date: isTimeIncluded ? selectedDate : selectedDate.startOfDay(),
             isTimeIncluded: isTimeIncluded,
             contents: contents,
             locationID: location?.id ?? "",
@@ -326,6 +316,7 @@ struct EditDiaryView: View {
             lng: location?.lng,
             category: location?.category ?? ""
         )
+        print("저장된 날짜", diary.date)
         diaryManager.addDiary(diary: diary, image: uiImage)
     }
     

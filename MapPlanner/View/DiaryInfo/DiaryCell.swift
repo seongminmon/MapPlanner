@@ -16,7 +16,7 @@ struct DiaryCell: View {
         Button {
             showDiaryDetailView.toggle()
         } label: {
-            HStack(alignment: .top) {
+            HStack(alignment: .top, spacing: 8) {
                 imageView()
                 descriptionView()
                 Spacer()
@@ -54,10 +54,17 @@ struct DiaryCell: View {
             Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
                 .asTextModifier(font: .regular12, color: .appSecondary)
             Spacer()
-            Text(diary.placeName)
-                .asTextModifier(font: .bold12, color: .appPrimary)
-            Text(diary.addressName)
-                .asTextModifier(font: .regular12, color: .appSecondary)
+            // 장소 정보 있을 때만 표시
+            if diary.lng != nil {
+                HStack(spacing: 8) {
+                    Text(diary.placeName)
+                        .asTextModifier(font: .bold12, color: .appPrimary)
+                    Text(CategoryName(rawValue: diary.category) == nil ? "기타" : diary.category)
+                        .asTextModifier(font: .regular12, color: .lightSecondary)
+                }
+                Text(diary.addressName)
+                    .asTextModifier(font: .regular12, color: .appSecondary)
+            }
         }
         .lineLimit(1)
         .padding(.vertical, 4)

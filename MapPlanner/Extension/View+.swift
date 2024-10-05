@@ -26,4 +26,16 @@ extension View {
     func asButtonText() -> some View {
         modifier(ButtonText())
     }
+    
+    func asRootNavigationBar() -> some View {
+        modifier(RootNavigationBar())
+    }
+    
+    func asBasicNavigationBar() -> some View {
+        modifier(BasicNavigationBar())
+    }
+    
+    func asHideKeyboardModifier() -> some View {
+        modifier(HideKeyboardModifier())
+    }
 }
