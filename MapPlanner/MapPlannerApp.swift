@@ -14,17 +14,12 @@ import RealmSwift
 @main
 struct MapPlannerApp: App {
     
-    @State private var toast: Toast? = nil {
-        didSet {
-            print("toast Did Set", toast ?? "토스트 없음")
-        }
-    }
+    @State private var toast: Toast? = nil
     
     var body: some Scene {
         WindowGroup {
             RootView()
                 .onAppear {
-                    debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
                     // NotificationCenter 구독
                     NotificationCenter.default.addObserver(
                         forName: Notification.Name(NotificationName.showToast.rawValue),

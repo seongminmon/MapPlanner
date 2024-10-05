@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 
 final class DiaryManager: ObservableObject {
+    
     @ObservedResults(RealmDiary.self) var realmDiaryList
     @Published var diaryList: [Diary] = []
     
@@ -33,7 +34,6 @@ final class DiaryManager: ObservableObject {
             }
         } catch let error {
             print("옵저버 세팅 실패")
-            print(error.localizedDescription)
         }
     }
     
@@ -156,7 +156,7 @@ final class DiaryManager: ObservableObject {
             } else {
                 ImageFileManager.shared.deleteImageFile(filename: diaryID)
             }
-            print("Realm 업데이트 성공")
+            print("Realm 수정 성공")
             
             let updateToast = Toast(type: .success, title: "수정되었습니다")
             NotificationCenter.default.post(
@@ -165,7 +165,7 @@ final class DiaryManager: ObservableObject {
                 userInfo: [NotificationUserInfo.toast.rawValue: updateToast]
             )
         } catch {
-            print("Realm 업데이트 실패 \(error)")
+            print("Realm 수정 실패 \(error)")
         }
     }
 }

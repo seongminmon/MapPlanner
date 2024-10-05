@@ -27,6 +27,7 @@
 		245C30712CB00F9B000AE9E7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30702CB00F9B000AE9E7 /* NavigationBar.swift */; };
 		245C30742CB012AC000AE9E7 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */; };
 		245C30762CB103F6000AE9E7 /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30752CB103F6000AE9E7 /* AddLocationViewModel.swift */; };
+		245C30782CB12021000AE9E7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30772CB12021000AE9E7 /* LoadingView.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
@@ -103,6 +104,7 @@
 		245C30702CB00F9B000AE9E7 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		245C30752CB103F6000AE9E7 /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		245C30772CB12021000AE9E7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */,
+				245C30772CB12021000AE9E7 /* LoadingView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				24FB3FBE2CAA74E300DC8087 /* ToastStyle.swift in Sources */,
 				24DD06E02CA298CC00883F33 /* CalendarViewModel.swift in Sources */,
 				24DD06DC2CA293DB00883F33 /* ViewModelType.swift in Sources */,
+				245C30782CB12021000AE9E7 /* LoadingView.swift in Sources */,
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
 				245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
@@ -696,7 +700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MapPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6H2JVV9PA;
 				ENABLE_PREVIEWS = YES;
@@ -718,7 +722,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksm.MapDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -738,7 +742,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MapPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6H2JVV9PA;
 				ENABLE_PREVIEWS = YES;
@@ -760,7 +764,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksm.MapDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

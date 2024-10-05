@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class NetworkManager {
     static let shared = NetworkManager()
@@ -14,9 +15,9 @@ final class NetworkManager {
     // 키워드로 장소 검색하기
     private let urlString = "https://dapi.kakao.com/v2/local/search/keyword"
     
-    func callRequest(_ query: String, page: Int = 1) async throws -> LocalResponse {
+    func callRequest(_ query: String, page: Int) -> AnyPublisher<LocalResponse, Error> {
         guard var urlComponents = URLComponents(string: urlString) else {
-            throw URLError(.badURL)
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
         
         // 쿼리 파라미터 추가
@@ -26,7 +27,7 @@ final class NetworkManager {
         ]
         
         guard let url = urlComponents.url else {
-            throw URLError(.badURL)
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
         
         // 헤더 추가
@@ -34,13 +35,10 @@ final class NetworkManager {
         request.httpMethod = "GET"
         request.addValue(APIKey.localSearchKey, forHTTPHeaderField: "Authorization")
         
-        let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
-            throw URLError(.badServerResponse)
-        }
-        
-        let decodedData = try JSONDecoder().decode(LocalResponse.self, from: data)
-        return decodedData
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: LocalResponse.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

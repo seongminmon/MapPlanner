@@ -19,7 +19,6 @@ struct MainMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {}
-    
 }
 
 final class Coordinator: NSObject, ObservableObject {
@@ -28,11 +27,7 @@ final class Coordinator: NSObject, ObservableObject {
     private let view = NMFNaverMapView(frame: .zero)
     private var locationManager: CLLocationManager?
     
-    var markersDict: [String: NMFMarker] = [:] {
-        didSet {
-            print("마커 갯수 \(markersDict.count)")
-        }
-    }
+    var markersDict: [String: NMFMarker] = [:]
     var didTapMap: (() -> Void)?
     
     private override init() {
@@ -102,7 +97,6 @@ extension Coordinator: CLLocationManagerDelegate {
     
     // 권한 변경 시점
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print(#function)
         checkLocationAuthorization()
     }
     
@@ -163,7 +157,6 @@ extension Coordinator: NMFMapViewCameraDelegate {
 // MARK: - 맵 터치 관련 Delegate
 extension Coordinator: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        print(#function, latlng)
         didTapMap?()
     }
 }

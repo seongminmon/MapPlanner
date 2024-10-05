@@ -120,7 +120,6 @@ struct EditDiaryView: View {
         .sheet(isPresented: $showTimePicker) {
             timePickerSheetView()
         }
-        // 키보드 내리기
         .asHideKeyboardModifier()
     }
     
@@ -316,7 +315,6 @@ struct EditDiaryView: View {
             lng: location?.lng,
             category: location?.category ?? ""
         )
-        print("저장된 날짜", diary.date)
         diaryManager.addDiary(diary: diary, image: uiImage)
     }
     

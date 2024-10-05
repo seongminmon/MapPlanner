@@ -32,7 +32,6 @@ struct DiarySearchView: View {
                         }
                     }
                 }
-                // 키보드 내리기
                 .asHideKeyboardModifier()
             }
         }
