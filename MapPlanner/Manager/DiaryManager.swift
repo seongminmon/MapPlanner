@@ -55,6 +55,8 @@ final class DiaryManager: ObservableObject {
     }
     
     func searchedDiaryList(_ query: String) -> [Diary] {
+        if query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return [] }
+        
         return diaryList
             .filter {
                 $0.title.contains(query) ||

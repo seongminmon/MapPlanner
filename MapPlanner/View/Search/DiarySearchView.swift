@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  DiarySearchView.swift
 //  MapPlanner
 //
 //  Created by 김성민 on 9/13/24.
@@ -8,14 +8,13 @@
 import SwiftUI
 import RealmSwift
 
-struct SearchView: View {
+struct DiarySearchView: View {
     
     @StateObject private var diaryManager = DiaryManager()
     
     @State private var query = ""
     
-    // TODO: - 공백만 있을땐 안보이도록 처리
-    // 제목 / 내용 / 장소명 / 주소명으로 검색
+    // 제목 / 내용 / 장소명 / 주소명 / 카테고리로 검색
     private var filteredDiaryList: [Diary] {
         diaryManager.searchedDiaryList(query)
     }

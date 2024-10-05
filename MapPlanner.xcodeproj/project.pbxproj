@@ -31,7 +31,7 @@
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
 		24CA38402C93FF0B00B873E7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */; };
 		24CA384A2C9410EB00B873E7 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38492C9410EB00B873E7 /* Image+.swift */; };
-		24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38542C942F9B00B873E7 /* SearchView.swift */; };
+		24CA38552C942F9B00B873E7 /* DiarySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA38542C942F9B00B873E7 /* DiarySearchView.swift */; };
 		24CA385A2C944E7100B873E7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; };
 		24CA385C2C944EA600B873E7 /* RealmDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA385B2C944EA600B873E7 /* RealmDiary.swift */; };
 		24CA385D2C94587300B873E7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 24CA38592C944E7100B873E7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -106,7 +106,7 @@
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		24CA38492C9410EB00B873E7 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
-		24CA38542C942F9B00B873E7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		24CA38542C942F9B00B873E7 /* DiarySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySearchView.swift; sourceTree = "<group>"; };
 		24CA385B2C944EA600B873E7 /* RealmDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDiary.swift; sourceTree = "<group>"; };
 		24DD06BF2C9EE35E00883F33 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		24DD06C32C9FE39B00883F33 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 		24CA38502C942F7A00B873E7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				24CA38542C942F9B00B873E7 /* SearchView.swift */,
+				24CA38542C942F9B00B873E7 /* DiarySearchView.swift */,
 				24FB3FC52CAABC4200DC8087 /* SearchBar.swift */,
 			);
 			path = Search;
@@ -531,7 +531,7 @@
 				24FB3FB62CA6841C00DC8087 /* Diary.swift in Sources */,
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */,
-				24CA38552C942F9B00B873E7 /* SearchView.swift in Sources */,
+				24CA38552C942F9B00B873E7 /* DiarySearchView.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
 				24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */,

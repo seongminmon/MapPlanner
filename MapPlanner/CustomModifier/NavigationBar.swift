@@ -17,7 +17,7 @@ struct RootNavigationBar: ViewModifier {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SearchView()
+                        DiarySearchView()
                     } label: {
                         Image.search
                     }

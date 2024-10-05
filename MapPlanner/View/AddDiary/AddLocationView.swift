@@ -43,7 +43,8 @@ struct AddLocationView: View {
         .navigationTitle("장소 검색")
         .asBasicNavigationBar()
         .onSubmit {
-            guard !query.isEmpty && query != recentQuery else { return }
+            guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                    query != recentQuery else { return }
             recentQuery = query
             Task {
                 do {

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// TODO: - 키보드 안 내려가는 문제
 struct SearchEmptyView: View {
     var body: some View {
         Text("검색 결과가 없습니다.")
