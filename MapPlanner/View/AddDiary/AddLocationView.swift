@@ -9,18 +9,24 @@ import SwiftUI
 
 struct AddLocationView: View {
     
-    // TODO: - 페이지네이션
-    // TODO: - API 통신 중 progressView 띄우기
-    // TODO: - 통신 실패 시 예외 처리
-    
     @Environment(\.dismiss) private var dismiss
+    
+    @Binding var selectedLocation: Location?
+    
+    @State private var response: LocalResponse?
+    @State private var locationList: [Location] = [] {
+        didSet {
+            print("검색 갯수", locationList.count)
+        }
+    }
     
     @State private var recentQuery = ""
     @State private var query = ""
-    @State private var response: LocalResponse?
-    @State private var locationList: [Location] = []
     
-    @Binding var selectedLocation: Location?
+    @State private var page = 1
+    @State private var isEnd = false
+    
+    @State private var isLoading = false
     
     var body: some View {
         VStack {
@@ -29,9 +35,14 @@ struct AddLocationView: View {
                 SearchEmptyView()
             } else {
                 ScrollView {
-                    VStack {
+                    LazyVStack {
                         ForEach(locationList, id: \.id) { item in
                             locationCell(item)
+                                .onAppear {
+                                    if locationList.last == item {
+                                        pagination()
+                                    }
+                                }
                         }
                     }
                 }
@@ -39,23 +50,18 @@ struct AddLocationView: View {
                 .asHideKeyboardModifier()
             }
         }
+        .overlay(
+            Group {
+                if isLoading {
+                    LoadingView() // 로딩 중일 때 로딩 뷰 표시
+                }
+            }
+        )
         // 네비게이션 바
         .navigationTitle("장소 검색")
         .asBasicNavigationBar()
         .onSubmit {
-            guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-                    query != recentQuery else { return }
-            recentQuery = query
-            Task {
-                do {
-                    let result = try await NetworkManager.shared.callRequest(query)
-                    locationList = result.documents.map { $0.toLocation() }
-                    response = result
-                    print("지역 검색 통신 성공")
-                } catch {
-                    print("에러 발생: \(error)")
-                }
-            }
+            search()
         }
     }
     
@@ -81,5 +87,77 @@ struct AddLocationView: View {
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
         }
+    }
+    
+    private func search() {
+        // 검색 시 새로운 통신
+        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                query != recentQuery else { return }
+        
+        recentQuery = query
+        page = 1
+        isEnd = false
+        response = nil
+        locationList.removeAll()
+        
+        isLoading = true
+        Task {
+            do {
+                let result = try await NetworkManager.shared.callRequest(query, page: page)
+                locationList = result.documents.map { $0.toLocation() }
+                response = result
+                print("지역 검색 성공")
+                
+                // 로딩 종료를 최소 0.5초 후에 진행
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isLoading = false
+                }
+            } catch {
+                print("지역 검색 에러 발생: \(error)")
+                isLoading = false
+            }
+        }
+
+    }
+    
+    private func pagination() {
+        if isEnd {
+            print("마지막 페이지")
+            return
+        }
+        
+        page += 1
+        isLoading = true
+        
+        Task {
+            do {
+                let result = try await NetworkManager.shared.callRequest(recentQuery, page: page)
+                let newLocationList = result.documents.map { $0.toLocation() }
+                locationList.append(contentsOf: newLocationList)
+                response = result
+                isEnd = result.meta.is_end
+                print("페이지네이션 통신 성공")
+                
+                // 로딩 종료를 최소 0.5초 후에 진행
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isLoading = false
+                }
+            } catch {
+                print("페이지네이션 에러 발생: \(error)")
+                isLoading = false
+            }
+        }
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        ProgressView()
+            .progressViewStyle(CircularProgressViewStyle())
+            .padding()
+            .frame(width: 100, height: 100)
+            .tint(.appSecondary)
+            .background(.appSecondary.opacity(0.3))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

@@ -24,7 +24,7 @@ struct CustomTextEditorStyle: ViewModifier {
                         .padding(.top, 2)
                 }
             }
-            .asTextModifier(font: .regular14, color: .appPrimary)
+            .asTextModifier(font: .regular14, color: .black)
             .textInputAutocapitalization(.none)
             .autocorrectionDisabled()
             .background(.lightSecondary)
