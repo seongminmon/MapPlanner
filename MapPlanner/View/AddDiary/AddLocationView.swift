@@ -62,9 +62,7 @@ struct AddLocationView: View {
                 }
                 Text(location.addressName)
                     .asTextModifier(font: .regular12, color: .appSecondary)
-                Rectangle()
-                    .fill(.appSecondary)
-                    .frame(height: 1)
+                Divider()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 8)
