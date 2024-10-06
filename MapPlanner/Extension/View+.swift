@@ -13,7 +13,7 @@ extension View {
     }
 }
 
-// MARK: - Modifier
+// MARK: - Custom Modifier
 extension View {
     func toastView(toast: Binding<Toast?>) -> some View {
         modifier(ToastModifier(toast: toast))

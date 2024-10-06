@@ -32,7 +32,7 @@ final class DiaryManager: ObservableObject {
                     self?.diaryList = results.map { $0.toDiary() }
                 }
             }
-        } catch let error {
+        } catch {
             print("옵저버 세팅 실패")
         }
     }

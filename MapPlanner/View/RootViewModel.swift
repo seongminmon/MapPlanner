@@ -11,6 +11,7 @@ enum TabInfo : String, CaseIterable {
     case calendar = "캘린더"
     case map = "지도"
     case timeline = "타임라인"
+    case setting = "설정"
 }
 
 final class RootViewModel: ViewModelType {

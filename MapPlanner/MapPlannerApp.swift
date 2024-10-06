@@ -10,6 +10,7 @@ import RealmSwift
 
 // TODO: - 사진 비율 조절 기능
 // TODO: - 좌표로 장소 추가 기능
+// TODO: - 길찾기 기능
 
 @main
 struct MapPlannerApp: App {

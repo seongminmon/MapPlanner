@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Back Gesture 적용
+// MARK: - Back Gesture 적용
 extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()

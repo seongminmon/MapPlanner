@@ -45,6 +45,15 @@ struct RootView: View {
                 Text(TabInfo.timeline.rawValue)
             }
             .tag(TabInfo.timeline)
+            
+            NavigationStack {
+                SettingView()
+            }
+            .tabItem {
+                Image.setting
+                Text(TabInfo.setting.rawValue)
+            }
+            .tag(TabInfo.setting)
         }
         .tint(.darkTheme)
     }
