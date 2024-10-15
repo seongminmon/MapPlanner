@@ -15,17 +15,18 @@ import NMapsMap
 struct SubMapView: UIViewRepresentable {
     let lat: Double
     let lng: Double
+    let placeName: String
 
     func makeUIView(context: Context) -> NMFMapView {
         let mapView = NMFMapView()
         let markerLocation = NMGLatLng(lat: lat, lng: lng)
         
         // 마커 추가
-        let marker = NMFMarker()
-        marker.iconImage = NMF_MARKER_IMAGE_BLUE
+        let marker = NMFMarker.customMarker
         marker.position = markerLocation
         marker.mapView = mapView
-
+        marker.captionText = placeName
+        
         // 마커 화면 중심으로 이동
         DispatchQueue.main.async {
             let cameraPosition = NMFCameraPosition(markerLocation, zoom: 15)

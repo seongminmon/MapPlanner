@@ -17,6 +17,7 @@
 		2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */; };
 		2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78F2C9C07BF00A4E607 /* CalenderView.swift */; };
 		2421E7922C9C080F00A4E607 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E7912C9C080F00A4E607 /* Date+.swift */; };
+		244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */; };
 		245C30612CAFB995000AE9E7 /* ToastWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */; };
 		245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30622CAFBA87000AE9E7 /* Literal.swift */; };
 		245C30682CAFC186000AE9E7 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */; };
@@ -98,6 +99,7 @@
 		2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		2421E78F2C9C07BF00A4E607 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		2421E7912C9C080F00A4E607 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NMFMarker+.swift"; sourceTree = "<group>"; };
 		245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindowManager.swift; sourceTree = "<group>"; };
 		245C30622CAFBA87000AE9E7 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
 		245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				24DD06BF2C9EE35E00883F33 /* View+.swift */,
 				24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */,
 				245FC5472CB2635D007E22BD /* UIDevice+.swift */,
+				244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				24DD06F32CA42A9800883F33 /* DiaryCell.swift in Sources */,
 				24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */,
 				245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */,
+				244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */,
 				245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */,
 				245C307B2CB24F87000AE9E7 /* SettingView.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */,

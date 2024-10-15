@@ -63,16 +63,14 @@ final class Coordinator: NSObject, ObservableObject {
         view.mapView.moveCamera(cameraUpdate)
     }
     
-    // TODO: - 지도 처음 띄울때 오래 걸리는 문제 -> 로딩 뷰 보이기
-    // 시점 -> 지도뷰 띄워질때
-    // TODO: - 커스텀 마커로 변경
     func addMarker(_ location: Location, touchHandler: NMFOverlayTouchHandler?) {
         // 이미 딕셔너리에 있는 경우는 패스
         guard markersDict[location.id] == nil else { return }
         
-        let marker = NMFMarker()
-        marker.iconImage = NMF_MARKER_IMAGE_BLUE
+        let marker = NMFMarker.customMarker
         marker.position = NMGLatLng(lat: location.lat, lng: location.lng)
+        marker.captionText = location.placeName
+        
         marker.mapView = view.mapView
         marker.touchHandler = { [weak self] overlay in
             guard self != nil else { return false }

@@ -150,7 +150,8 @@ struct DiaryDetailView: View {
             
             SubMapView(
                 lat: diary.lat ?? Location.defaultLat,
-                lng: diary.lng ?? Location.defaultLng
+                lng: diary.lng ?? Location.defaultLng,
+                placeName: diary.placeName
             )
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 200)
