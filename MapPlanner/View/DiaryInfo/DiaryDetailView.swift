@@ -146,6 +146,15 @@ struct DiaryDetailView: View {
                     Text(diary.addressName)
                         .asTextModifier(font: .regular12, color: .appSecondary)
                 }
+                Spacer()
+                Button {
+                    if let lat = diary.lat, let lng = diary.lng {
+                        Coordinator.openNaverMap(lat: lat, lng: lng, name: diary.addressName)
+                    }
+                } label: {
+                    Text("길찾기")
+                        .asTextModifier(font: .bold14, color: .appPrimary)
+                }
             }
             
             SubMapView(

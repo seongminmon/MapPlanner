@@ -90,17 +90,23 @@ final class Coordinator: NSObject, ObservableObject {
     }
     
     // 네이버 길찾기로 연결
-    func traceRoute(lat: Double, lng: Double) {
-        // URL Scheme을 사용하여 네이버맵 앱을 열고 자동차 경로 생성
-        guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&MapPlanner=kr.co.kepco.ElectricCar") else { return }
-        // 앱 스토어 URL을 설정합니다.
-        guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
-
+    static func openNaverMap(lat: Double, lng: Double, name: String) {
+        let urlString = "nmap://route/public?dlat=\(lat)&dlng=\(lng)&dname=\(name)&appname=com.ksm.MapDiary"
+        guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: encodedString),
+              let appStoreURL = URL(string: "itms-apps://itunes.apple.com/app/id311867728?mt=8") else {
+            print("네이버 길찾기 url 또는 앱스토어 url 없음")
+            return
+        }
+        
+        // TODO: - 도착지 입력이 안됨
         if UIApplication.shared.canOpenURL(url) {
-            // 네이버맵 앱이 설치되어 있는 경우 앱을 엽니다.
+            print("네이버 길찾기 연결")
+            print(url)
             UIApplication.shared.open(url)
         } else {
-            // 네이버맵 앱이 설치되어 있지 않은 경우 앱 스토어로 이동합니다.
+            print("앱 스토어 연결")
+            print(appStoreURL)
             UIApplication.shared.open(appStoreURL)
         }
     }
