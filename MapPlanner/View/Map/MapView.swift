@@ -19,7 +19,7 @@ struct MapView: View {
     var body: some View {
         ZStack {
             MainMapView()
-            .ignoresSafeArea(.all, edges: .top)
+                .ignoresSafeArea(.all, edges: .top)
             AddDiaryButton()
         }
         .onAppear {
