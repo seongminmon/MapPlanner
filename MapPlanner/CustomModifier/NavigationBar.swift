@@ -47,13 +47,3 @@ struct BasicNavigationBar: ViewModifier {
             }
     }
 }
-
-struct HideKeyboardModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.appBackground)
-            .onTapGesture { content.hideKeyboard() }
-            .scrollDismissesKeyboard(.immediately)
-    }
-}

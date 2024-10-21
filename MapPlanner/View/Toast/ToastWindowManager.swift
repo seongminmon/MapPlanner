@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - 최상단에 토스트 메시지 띄우기
-class ToastWindowManager {
+final class ToastWindowManager {
     static let shared = ToastWindowManager()
     private init() {}
     

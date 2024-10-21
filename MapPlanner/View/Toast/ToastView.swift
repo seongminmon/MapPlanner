@@ -60,13 +60,12 @@ struct ToastModifier: ViewModifier {
             }
     }
     
-    @ViewBuilder func mainToastView() -> some View {
+    @ViewBuilder
+    func mainToastView() -> some View {
         if let toast = toast {
             VStack {
                 Spacer()
-                ToastView(type: toast.type, title: toast.title) //{
-//                    dismissToast()
-//                }
+                ToastView(type: toast.type, title: toast.title)
             }
             .transition(.move(edge: .bottom))
         }

@@ -33,6 +33,7 @@
 		245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5472CB2635D007E22BD /* UIDevice+.swift */; };
 		245FC54A2CB26418007E22BD /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5492CB26418007E22BD /* MailView.swift */; };
 		245FC54C2CB27881007E22BD /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */; };
+		24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
 		24CA383E2C93F77000B873E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA383D2C93F77000B873E7 /* MapView.swift */; };
@@ -115,6 +116,7 @@
 		245FC5472CB2635D007E22BD /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		245FC5492CB26418007E22BD /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardModifier.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		24CA383D2C93F77000B873E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				245C306C2CAFCDEA000AE9E7 /* TextModifier.swift */,
 				245C306E2CB00584000AE9E7 /* ButtonText.swift */,
 				245C30702CB00F9B000AE9E7 /* NavigationBar.swift */,
+				24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				241A58B12C92CC5700232D8B /* MainMapView.swift in Sources */,
 				24DD06F32CA42A9800883F33 /* DiaryCell.swift in Sources */,
 				24FB3FBA2CA9722900DC8087 /* LocationDiaryListView.swift in Sources */,
+				24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */,
 				245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */,
 				244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */,
 				245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */,

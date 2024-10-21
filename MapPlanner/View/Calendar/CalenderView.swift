@@ -24,13 +24,11 @@ struct CalendarView: View {
         .contentShape(Rectangle())
         .gesture(
             DragGesture().onEnded { value in
-//                withAnimation {
-                    if value.translation.width < -100 {
-                        viewModel.input.changeMonthButtonTap.send(1)
-                    } else if value.translation.width > 100 {
-                        viewModel.input.changeMonthButtonTap.send(-1)
-                    }
-//                }
+                if value.translation.width < -100 {
+                    viewModel.input.changeMonthButtonTap.send(1)
+                } else if value.translation.width > 100 {
+                    viewModel.input.changeMonthButtonTap.send(-1)
+                }
             }
         )
         .sheet(isPresented: $viewModel.output.showDatePicker) {
