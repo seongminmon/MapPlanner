@@ -149,7 +149,7 @@ struct DiaryDetailView: View {
                 Spacer()
                 Button {
                     if let lat = diary.lat, let lng = diary.lng {
-                        Coordinator.openNaverMap(lat: lat, lng: lng, name: diary.addressName)
+                        Coordinator.openNaverMap(lat: lat, lng: lng, name: diary.placeName)
                     }
                 } label: {
                     Text("길찾기")

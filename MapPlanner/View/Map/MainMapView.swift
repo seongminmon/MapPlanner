@@ -99,14 +99,12 @@ final class Coordinator: NSObject, ObservableObject {
             return
         }
         
-        // TODO: - 앱이 이미 실행 중일 때 도착지 입력이 안됨
+        // TODO: - 앱이 이미 실행 중일 때 도착지 입력이 안되는 문제
         if UIApplication.shared.canOpenURL(url) {
             print("네이버 길찾기 연결")
-            print(url)
             UIApplication.shared.open(url)
         } else {
             print("앱 스토어 연결")
-            print(appStoreURL)
             UIApplication.shared.open(appStoreURL)
         }
     }

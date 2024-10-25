@@ -28,7 +28,6 @@ struct MailView: UIViewControllerRepresentable {
             } else {
                 switch result {
                 case .sent:
-                    print("성공")
                     toast.type = .success
                     toast.title = "성공적으로 전송되었습니다"
                 case .cancelled:
