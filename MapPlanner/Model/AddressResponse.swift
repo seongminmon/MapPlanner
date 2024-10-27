@@ -17,7 +17,7 @@ struct AddressResponse: Decodable {
     
     struct Document: Decodable {
         let address: Address
-        let road_address: RoadAddress
+        let road_address: RoadAddress?
     }
     
     struct Address: Decodable {

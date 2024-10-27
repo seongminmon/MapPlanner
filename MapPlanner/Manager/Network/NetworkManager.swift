@@ -32,6 +32,14 @@ final class NetworkManager {
         return URLSession.shared.dataTaskPublisher(for: request)
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
+            .catch { error -> Fail<T, Error> in
+                if let decodingError = error as? DecodingError {
+                    print("디코딩 에러: \(decodingError)")
+                } else {
+                    print("에러: \(error.localizedDescription)")
+                }
+                return Fail(error: error)
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

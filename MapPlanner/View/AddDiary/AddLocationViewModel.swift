@@ -72,22 +72,25 @@ final class AddLocationViewModel: ViewModelType {
     private func fetchData(query: String, page: Int) {
         NetworkManager.shared.callRequest(.local(query: query, page: page), LocalResponse.self)
             .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    print("Finished")
+                case .failure(let error):
+                    // TODO: - 네트워크 에러 처리
+                    print("Error: \(error.localizedDescription)")
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                     self?.output.isLoading = false
                 }
-                if case .failure(let error) = completion {
-                    print("Error: \(error.localizedDescription)")
-                }
             }, receiveValue: { [weak self] result in
-                self?.response = result
-                self?.isEnd = result.meta.is_end
+                guard let self else { return }
+                response = result
+                isEnd = result.meta.is_end
                 let newLocationList = result.documents.map { $0.toLocation() }
-                DispatchQueue.main.async {
-                    if page == 1 {
-                        self?.output.locationList = newLocationList
-                    } else {
-                        self?.output.locationList.append(contentsOf: newLocationList)
-                    }
+                if page == 1 {
+                    output.locationList = newLocationList
+                } else {
+                    output.locationList.append(contentsOf: newLocationList)
                 }
             })
             .store(in: &cancellables)

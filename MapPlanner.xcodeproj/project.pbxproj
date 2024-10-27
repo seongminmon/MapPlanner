@@ -265,8 +265,8 @@
 		24ABE8B62CCE3747000E7EC5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
 				24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */,
+				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
