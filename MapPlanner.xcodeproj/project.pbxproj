@@ -34,6 +34,7 @@
 		245FC54A2CB26418007E22BD /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5492CB26418007E22BD /* MailView.swift */; };
 		245FC54C2CB27881007E22BD /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */; };
 		24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */; };
+		24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */; };
 		24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
@@ -118,6 +119,7 @@
 		245FC5492CB26418007E22BD /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResponse.swift; sourceTree = "<group>"; };
+		24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRouter.swift; sourceTree = "<group>"; };
 		24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardModifier.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -260,6 +262,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		24ABE8B62CCE3747000E7EC5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
+				24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		24CA38462C9409DD00B873E7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,7 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */,
-				24DD06E92CA3F1CB00883F33 /* NetworkManager.swift */,
+				24ABE8B62CCE3747000E7EC5 /* Network */,
 				24FB3FB32CA6722E00DC8087 /* DiaryManager.swift */,
 			);
 			path = Manager;
@@ -563,6 +574,7 @@
 				245C30782CB12021000AE9E7 /* LoadingView.swift in Sources */,
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
 				245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */,
+				24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
 				245C30762CB103F6000AE9E7 /* AddLocationViewModel.swift in Sources */,
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
