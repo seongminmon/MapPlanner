@@ -58,7 +58,7 @@ final class AddLocationViewModel: ViewModelType {
         response = nil
         output.locationList.removeAll()
         output.isLoading = true
-        callRequest(query: output.query, page: page)
+        fetchData(query: output.query, page: page)
     }
     
     private func paginationIfNeeded(item: Location) {
@@ -66,11 +66,11 @@ final class AddLocationViewModel: ViewModelType {
         
         page += 1
         output.isLoading = true
-        callRequest(query: recentQuery, page: page)
+        fetchData(query: recentQuery, page: page)
     }
     
-    private func callRequest(query: String, page: Int) {
-        NetworkManager.shared.callRequest(query, page: page)
+    private func fetchData(query: String, page: Int) {
+        NetworkManager.shared.callRequest(.local(query: query, page: page), LocalResponse.self)
             .sink(receiveCompletion: { [weak self] completion in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                     self?.output.isLoading = false

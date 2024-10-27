@@ -30,7 +30,7 @@ struct TimeLineView: View {
     private func listView() -> some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ForEach(diaryDict.sorted(by: { $0.key > $1.key }), id: \.key) { (month, diaries) in
+                ForEach(diaryDict.sorted(by: { $0.key > $1.key }), id: \.key) { month, diaries in
                     VStack {
                         // 월 표시
                         Text(month)

@@ -33,6 +33,7 @@
 		245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5472CB2635D007E22BD /* UIDevice+.swift */; };
 		245FC54A2CB26418007E22BD /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5492CB26418007E22BD /* MailView.swift */; };
 		245FC54C2CB27881007E22BD /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */; };
+		24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */; };
 		24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
@@ -116,6 +117,7 @@
 		245FC5472CB2635D007E22BD /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		245FC5492CB26418007E22BD /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResponse.swift; sourceTree = "<group>"; };
 		24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardModifier.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				24DD06EB2CA3FB4D00883F33 /* LocalResponse.swift */,
+				24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */,
 				24DD06ED2CA4125C00883F33 /* Location.swift */,
 				24CA385B2C944EA600B873E7 /* RealmDiary.swift */,
 				24FB3FB52CA6841C00DC8087 /* Diary.swift */,
@@ -568,6 +571,7 @@
 				24DD06D72CA1AB3A00883F33 /* TimeLineView.swift in Sources */,
 				24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* DiarySearchView.swift in Sources */,
+				24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
 				24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */,
