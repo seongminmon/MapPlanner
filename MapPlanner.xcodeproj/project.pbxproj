@@ -35,6 +35,10 @@
 		245FC54C2CB27881007E22BD /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */; };
 		24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */; };
 		24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */; };
+		24ABE8E62CD399B6000E7EC5 /* MVIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E52CD399B6000E7EC5 /* MVIView.swift */; };
+		24ABE8E82CD3A2A9000E7EC5 /* MVIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */; };
+		24ABE8EA2CD3A2D9000E7EC5 /* MVIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E92CD3A2D9000E7EC5 /* MVIModel.swift */; };
+		24ABE8EC2CD3A2F5000E7EC5 /* MVIIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8EB2CD3A2F5000E7EC5 /* MVIIntent.swift */; };
 		24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
@@ -120,6 +124,10 @@
 		245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResponse.swift; sourceTree = "<group>"; };
 		24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRouter.swift; sourceTree = "<group>"; };
+		24ABE8E52CD399B6000E7EC5 /* MVIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIView.swift; sourceTree = "<group>"; };
+		24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIContainer.swift; sourceTree = "<group>"; };
+		24ABE8E92CD3A2D9000E7EC5 /* MVIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIModel.swift; sourceTree = "<group>"; };
+		24ABE8EB2CD3A2F5000E7EC5 /* MVIIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIIntent.swift; sourceTree = "<group>"; };
 		24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardModifier.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -206,7 +214,7 @@
 				245C306B2CAFCDD8000AE9E7 /* CustomModifier */,
 				245C30642CAFBA98000AE9E7 /* Enum */,
 				24FB3FBB2CAA6E7000DC8087 /* Manager */,
-				24DD06DA2CA293D400883F33 /* Protocol */,
+				24DD06DA2CA293D400883F33 /* Base */,
 				24DD06C22C9FE38B00883F33 /* Design */,
 				24CA385F2C9459DE00B873E7 /* Model */,
 				24CA384B2C94113700B873E7 /* Extension */,
@@ -271,6 +279,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		24ABE8DC2CD36790000E7EC5 /* MVIStudy */ = {
+			isa = PBXGroup;
+			children = (
+				24ABE8E52CD399B6000E7EC5 /* MVIView.swift */,
+				24ABE8E92CD3A2D9000E7EC5 /* MVIModel.swift */,
+				24ABE8EB2CD3A2F5000E7EC5 /* MVIIntent.swift */,
+			);
+			path = MVIStudy;
+			sourceTree = "<group>";
+		};
 		24CA38462C9409DD00B873E7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +313,7 @@
 		24CA38482C9409F500B873E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24ABE8DC2CD36790000E7EC5 /* MVIStudy */,
 				24FB3FC92CAD66EC00DC8087 /* LaunchScreen.storyboard */,
 				24DD06D12CA1A9FB00883F33 /* RootView.swift */,
 				24DD06DD2CA2940900883F33 /* RootViewModel.swift */,
@@ -385,12 +404,13 @@
 			path = TimeLine;
 			sourceTree = "<group>";
 		};
-		24DD06DA2CA293D400883F33 /* Protocol */ = {
+		24DD06DA2CA293D400883F33 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				24DD06DB2CA293DB00883F33 /* ViewModelType.swift */,
+				24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */,
 			);
-			path = Protocol;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		24FB3FBB2CAA6E7000DC8087 /* Manager */ = {
@@ -568,11 +588,14 @@
 				24FB3FC62CAABC4200DC8087 /* SearchBar.swift in Sources */,
 				24DD06EA2CA3F1CB00883F33 /* NetworkManager.swift in Sources */,
 				24FB3FBE2CAA74E300DC8087 /* ToastStyle.swift in Sources */,
+				24ABE8E62CD399B6000E7EC5 /* MVIView.swift in Sources */,
 				24DD06E02CA298CC00883F33 /* CalendarViewModel.swift in Sources */,
+				24ABE8E82CD3A2A9000E7EC5 /* MVIContainer.swift in Sources */,
 				245FC54A2CB26418007E22BD /* MailView.swift in Sources */,
 				24DD06DC2CA293DB00883F33 /* ViewModelType.swift in Sources */,
 				245C30782CB12021000AE9E7 /* LoadingView.swift in Sources */,
 				24DD06DE2CA2940900883F33 /* RootViewModel.swift in Sources */,
+				24ABE8EA2CD3A2D9000E7EC5 /* MVIModel.swift in Sources */,
 				245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */,
 				24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
@@ -584,6 +607,7 @@
 				24FB3FCC2CAD744500DC8087 /* CustomTextEditorStyle.swift in Sources */,
 				24CA38552C942F9B00B873E7 /* DiarySearchView.swift in Sources */,
 				24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */,
+				24ABE8EC2CD3A2F5000E7EC5 /* MVIIntent.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
 				24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */,
