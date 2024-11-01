@@ -39,6 +39,8 @@
 		24ABE8E82CD3A2A9000E7EC5 /* MVIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */; };
 		24ABE8EA2CD3A2D9000E7EC5 /* MVIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E92CD3A2D9000E7EC5 /* MVIModel.swift */; };
 		24ABE8EC2CD3A2F5000E7EC5 /* MVIIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8EB2CD3A2F5000E7EC5 /* MVIIntent.swift */; };
+		24ABE8EE2CD494FC000E7EC5 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8ED2CD494FC000E7EC5 /* SettingModel.swift */; };
+		24ABE8F02CD49513000E7EC5 /* SettingIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8EF2CD49513000E7EC5 /* SettingIntent.swift */; };
 		24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */; };
 		24CA383A2C93F13800B873E7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 24CA38392C93F13800B873E7 /* Localizable.xcstrings */; };
 		24CA383C2C93F2F600B873E7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CA383B2C93F2F600B873E7 /* Colors.xcassets */; };
@@ -128,6 +130,8 @@
 		24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIContainer.swift; sourceTree = "<group>"; };
 		24ABE8E92CD3A2D9000E7EC5 /* MVIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIModel.swift; sourceTree = "<group>"; };
 		24ABE8EB2CD3A2F5000E7EC5 /* MVIIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIIntent.swift; sourceTree = "<group>"; };
+		24ABE8ED2CD494FC000E7EC5 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		24ABE8EF2CD49513000E7EC5 /* SettingIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIntent.swift; sourceTree = "<group>"; };
 		24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardModifier.swift; sourceTree = "<group>"; };
 		24CA38392C93F13800B873E7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		24CA383B2C93F2F600B873E7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				245C307A2CB24F87000AE9E7 /* SettingView.swift */,
+				24ABE8ED2CD494FC000E7EC5 /* SettingModel.swift */,
+				24ABE8EF2CD49513000E7EC5 /* SettingIntent.swift */,
 				245FC5492CB26418007E22BD /* MailView.swift */,
 				245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */,
 			);
@@ -598,6 +604,7 @@
 				24ABE8EA2CD3A2D9000E7EC5 /* MVIModel.swift in Sources */,
 				245C306F2CB00584000AE9E7 /* ButtonText.swift in Sources */,
 				24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */,
+				24ABE8F02CD49513000E7EC5 /* SettingIntent.swift in Sources */,
 				24DD06E62CA2EEC400883F33 /* DayCell.swift in Sources */,
 				245C30762CB103F6000AE9E7 /* AddLocationViewModel.swift in Sources */,
 				24DD06EE2CA4125C00883F33 /* Location.swift in Sources */,
@@ -619,6 +626,7 @@
 				245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */,
 				244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */,
 				245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */,
+				24ABE8EE2CD494FC000E7EC5 /* SettingModel.swift in Sources */,
 				245C307B2CB24F87000AE9E7 /* SettingView.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */,
 				24FB3FC02CAA784A00DC8087 /* Toast.swift in Sources */,

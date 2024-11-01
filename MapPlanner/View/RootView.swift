@@ -47,7 +47,7 @@ struct RootView: View {
             .tag(TabInfo.timeline)
             
             NavigationStack {
-                SettingView()
+                SettingView.build()
             }
             .tabItem {
                 Image.setting

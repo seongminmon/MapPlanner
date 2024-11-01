@@ -6,19 +6,16 @@
 //
 
 import SwiftUI
-import MessageUI
 
 struct SettingView: View {
     
-    @State private var showMailView = false
-    @State private var showMailSettingAlert = false
-    private let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    @StateObject private var container: MVIContainer<SettingIntent, SettingModelStateProtocol>
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
                 mailButton()
-                PrivacyPolicyLink()
+                privacyPolicyLink()
                 versionView()
             }
             .padding()
@@ -26,15 +23,19 @@ struct SettingView: View {
         .navigationTitle("설정")
         .navigationBarTitleDisplayMode(.inline)
         // 메일 뷰
-        .sheet(isPresented: $showMailView) {
+        .sheet(isPresented: Binding(
+            get: { container.model.showMailView },
+            set: { _ in container.intent.performAction(.closeMailView) }
+        )) {
             MailView()
         }
         // 메일 설정 Alert
-        .alert("Mail 앱에서 사용자의 Email을 계정을 설정해 주세요.", isPresented: $showMailSettingAlert) {
+        .alert("Mail 앱에서 사용자의 Email을 계정을 설정해 주세요.", isPresented: Binding(
+            get: { container.model.showMailSettingAlert },
+            set: { _ in container.intent.performAction(.closeMailSettingAlert) }
+        )) {
             Button("설정") {
-                guard let mailSettingsURL = URL(string: UIApplication.openSettingsURLString + "&&path=MAIL"),
-                      UIApplication.shared.canOpenURL(mailSettingsURL) else { return }
-                UIApplication.shared.open(mailSettingsURL, options: [:], completionHandler: nil)
+                container.intent.performAction(.mailSettingButtonTap)
             }
             Button("취소", role: .cancel) {}
         }
@@ -42,11 +43,7 @@ struct SettingView: View {
     
     private func mailButton() -> some View {
         Button {
-            if MFMailComposeViewController.canSendMail() {
-                showMailView = true
-            } else {
-                showMailSettingAlert = true
-            }
+            container.intent.performAction(.mailButtonTap)
         } label: {
             HStack {
                 Text("문의하기")
@@ -58,7 +55,7 @@ struct SettingView: View {
         }
     }
     
-    private func PrivacyPolicyLink() -> some View {
+    private func privacyPolicyLink() -> some View {
         NavigationLink(destination: PrivacyPolicyView()) {
             HStack {
                 Text("개인정보 처리방침")
@@ -74,8 +71,21 @@ struct SettingView: View {
         HStack {
             Text("버전 정보")
             Spacer()
-            Text(version)
+            Text(container.model.version)
         }
         .asTextModifier(font: .regular15, color: .appPrimary)
+    }
+}
+
+extension SettingView {
+    static func build() -> some View {
+        let model = SettingModel()
+        let intent = SettingIntent(model: model)
+        let container = MVIContainer(
+            intent: intent,
+            model: model as SettingModelStateProtocol,
+            modelChangePublisher: model.objectWillChange
+        )
+        return SettingView(container: container)
     }
 }
