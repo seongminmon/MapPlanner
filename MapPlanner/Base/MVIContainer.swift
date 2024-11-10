@@ -19,7 +19,6 @@ final class MVIContainer<Intent, Model>: ObservableObject {
         self.intent = intent
         self.model = model
         
-        // 모델 변경을 감지해주는 녀석 (아마도)
         modelChangePublisher
             .receive(on: RunLoop.main)
             .sink(receiveValue: objectWillChange.send)

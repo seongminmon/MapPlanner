@@ -19,6 +19,7 @@ struct MapPlannerApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            CounterView()
             RootView()
                 .onAppear {
                     // NotificationCenter 구독
