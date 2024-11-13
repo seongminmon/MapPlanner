@@ -102,9 +102,9 @@ final class DiaryManager: ObservableObject {
         
         let addToast = Toast(type: .success, title: "기록이 추가되었습니다")
         NotificationCenter.default.post(
-            name: Notification.Name(NotificationName.showToast.rawValue),
+            name: .showToast,
             object: nil,
-            userInfo: [NotificationUserInfo.toast.rawValue: addToast]
+            userInfo: [Notification.UserInfoKey.toast: addToast]
         )
     }
     
@@ -122,9 +122,9 @@ final class DiaryManager: ObservableObject {
             
             let deleteToast = Toast(type: .success, title: "기록이 삭제되었습니다")
             NotificationCenter.default.post(
-                name: Notification.Name(NotificationName.showToast.rawValue),
+                name: .showToast,
                 object: nil,
-                userInfo: [NotificationUserInfo.toast.rawValue: deleteToast]
+                userInfo: [Notification.UserInfoKey.toast: deleteToast]
             )
         } catch {
             print("Realm 삭제 실패 \(error)")
@@ -160,9 +160,9 @@ final class DiaryManager: ObservableObject {
             
             let updateToast = Toast(type: .success, title: "수정되었습니다")
             NotificationCenter.default.post(
-                name: Notification.Name(NotificationName.showToast.rawValue),
+                name: .showToast,
                 object: nil,
-                userInfo: [NotificationUserInfo.toast.rawValue: updateToast]
+                userInfo: [Notification.UserInfoKey.toast: updateToast]
             )
         } catch {
             print("Realm 수정 실패 \(error)")

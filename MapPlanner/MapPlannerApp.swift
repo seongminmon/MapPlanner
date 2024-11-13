@@ -22,13 +22,13 @@ struct MapPlannerApp: App {
 //            CounterView()
             RootView()
                 .onAppear {
-                    // NotificationCenter 구독
+                    // Toast NotificationCenter 구독
                     NotificationCenter.default.addObserver(
-                        forName: Notification.Name(NotificationName.showToast.rawValue),
+                        forName: .showToast,
                         object: nil,
                         queue: .main
                     ) { notification in
-                        if let userInfo = notification.userInfo, let toast = userInfo[NotificationUserInfo.toast.rawValue] as? Toast {
+                        if let userInfo = notification.toast {
                             self.toast = toast
                             ToastWindowManager.shared.showToast(toast: self.$toast)
                         }

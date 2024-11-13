@@ -17,9 +17,9 @@
 		2421E78E2C9BF61500A4E607 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */; };
 		2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E78F2C9C07BF00A4E607 /* CalenderView.swift */; };
 		2421E7922C9C080F00A4E607 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421E7912C9C080F00A4E607 /* Date+.swift */; };
+		2447AB772CE4778D00399C4D /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447AB762CE4778D00399C4D /* Notification+.swift */; };
 		244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */; };
 		245C30612CAFB995000AE9E7 /* ToastWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */; };
-		245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C30622CAFBA87000AE9E7 /* Literal.swift */; };
 		245C30682CAFC186000AE9E7 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */; };
 		245C30692CAFC186000AE9E7 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30662CAFC186000AE9E7 /* GmarketSansBold.otf */; };
 		245C306A2CAFC186000AE9E7 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */; };
@@ -109,9 +109,9 @@
 		2421E78D2C9BF61500A4E607 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		2421E78F2C9C07BF00A4E607 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		2421E7912C9C080F00A4E607 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		2447AB762CE4778D00399C4D /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NMFMarker+.swift"; sourceTree = "<group>"; };
 		245C30602CAFB995000AE9E7 /* ToastWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastWindowManager.swift; sourceTree = "<group>"; };
-		245C30622CAFBA87000AE9E7 /* Literal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literal.swift; sourceTree = "<group>"; };
 		245C30652CAFC186000AE9E7 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		245C30662CAFC186000AE9E7 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		245C30672CAFC186000AE9E7 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
@@ -218,7 +218,6 @@
 				241A58AF2C92C87200232D8B /* Info.plist */,
 				245C30722CB012A1000AE9E7 /* CustomView */,
 				245C306B2CAFCDD8000AE9E7 /* CustomModifier */,
-				245C30642CAFBA98000AE9E7 /* Enum */,
 				24FB3FBB2CAA6E7000DC8087 /* Manager */,
 				24DD06DA2CA293D400883F33 /* Base */,
 				24DD06C22C9FE38B00883F33 /* Design */,
@@ -236,14 +235,6 @@
 				241A588F2C91BBD300232D8B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		245C30642CAFBA98000AE9E7 /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				245C30622CAFBA87000AE9E7 /* Literal.swift */,
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 		245C306B2CAFCDD8000AE9E7 /* CustomModifier */ = {
@@ -346,6 +337,7 @@
 				24DD06E72CA3E5A600883F33 /* UINavigationController+.swift */,
 				245FC5472CB2635D007E22BD /* UIDevice+.swift */,
 				244FB3E02CBE378C003B6F30 /* NMFMarker+.swift */,
+				2447AB762CE4778D00399C4D /* Notification+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -628,9 +620,9 @@
 				24C57F762CC6326F0034B18D /* HideKeyboardModifier.swift in Sources */,
 				245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */,
 				244FB3E12CBE378C003B6F30 /* NMFMarker+.swift in Sources */,
-				245C30632CAFBA87000AE9E7 /* Literal.swift in Sources */,
 				24ABE8EE2CD494FC000E7EC5 /* SettingModel.swift in Sources */,
 				245C307B2CB24F87000AE9E7 /* SettingView.swift in Sources */,
+				2447AB772CE4778D00399C4D /* Notification+.swift in Sources */,
 				24DD06CC2CA1A88400883F33 /* DateDiaryListView.swift in Sources */,
 				24FB3FC02CAA784A00DC8087 /* Toast.swift in Sources */,
 				2421E7902C9C07BF00A4E607 /* CalenderView.swift in Sources */,

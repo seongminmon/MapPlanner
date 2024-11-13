@@ -45,9 +45,9 @@ struct MailView: UIViewControllerRepresentable {
             }
             
             NotificationCenter.default.post(
-                name: Notification.Name(NotificationName.showToast.rawValue),
+                name: .showToast,
                 object: nil,
-                userInfo: [NotificationUserInfo.toast.rawValue: toast]
+                userInfo: [Notification.UserInfoKey.toast: toast]
             )
             parent.dismiss()
         }
