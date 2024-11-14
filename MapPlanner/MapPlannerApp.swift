@@ -11,6 +11,7 @@ import RealmSwift
 // TODO: - 사진 비율 조절 기능
 // TODO: - 다국어 대응
 // TODO: - 위젯 추가
+// TODO: - 테스트 코드 작성
 
 @main
 struct MapPlannerApp: App {
