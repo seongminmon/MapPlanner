@@ -297,7 +297,6 @@ struct EditDiaryView: View {
             
             TextEditor(text: $contents)
                 .customStyleEditor(placeholder: "내용을 입력해주세요", userInput: $contents)
-            
                 .frame(height: 200)
         }
     }
