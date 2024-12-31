@@ -15,6 +15,7 @@ struct Diary: Hashable, Identifiable {
     var date: Date
     var isTimeIncluded: Bool
     var contents: String
+    var rating: Double?
     
     var locationID: String
     var placeName: String

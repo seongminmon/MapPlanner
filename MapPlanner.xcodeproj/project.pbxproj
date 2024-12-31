@@ -235,6 +235,7 @@
 				245C306E2CB00584000AE9E7 /* ButtonText.swift */,
 				245C30702CB00F9B000AE9E7 /* NavigationBar.swift */,
 				24C57F752CC6326F0034B18D /* HideKeyboardModifier.swift */,
+				24FB3FCB2CAD744500DC8087 /* CustomTextEditorStyle.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -356,7 +357,6 @@
 			children = (
 				24DD06D32CA1AAA600883F33 /* AddDiaryButton.swift */,
 				24DD06CF2CA1A8B200883F33 /* EditDiaryView.swift */,
-				24FB3FCB2CAD744500DC8087 /* CustomTextEditorStyle.swift */,
 				2421E78B2C9BF2DB00A4E607 /* AddLocationView.swift */,
 				245C30752CB103F6000AE9E7 /* AddLocationViewModel.swift */,
 			);

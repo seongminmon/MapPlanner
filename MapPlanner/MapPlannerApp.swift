@@ -21,6 +21,10 @@ struct MapPlannerApp: App {
     
     @State private var toast: Toast? = nil
     
+    init() {
+        configureRealm()
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -38,5 +42,21 @@ struct MapPlannerApp: App {
                     }
                 }
         }
+    }
+    
+    private func configureRealm() {
+//        print("Realm file path: \(Realm.Configuration.defaultConfiguration.fileURL!)")
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 {
+                    // 별점 추가
+                    migration.enumerateObjects(ofType: RealmDiary.className()) { oldObject, newObject in
+                        newObject?["rating"] = nil
+                    }
+                }
+            }
+        )
+        Realm.Configuration.defaultConfiguration = config
     }
 }

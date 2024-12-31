@@ -142,6 +142,7 @@ final class DiaryManager: ObservableObject {
                     diary.date = newDiary.date
                     diary.isTimeIncluded = newDiary.isTimeIncluded
                     diary.contents = newDiary.contents
+                    diary.rating = newDiary.rating
                     diary.locationID = newDiary.locationID
                     diary.placeName = newDiary.placeName
                     diary.addressName = newDiary.addressName

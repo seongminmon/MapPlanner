@@ -42,6 +42,12 @@ struct EditDiaryView: View {
     // 장소
     @State private var location: Location?
     
+    // 별점
+    @State private var rating: Double?
+    @State private var showRatingView = false
+    @State private var pickedIntRating = 0
+    @State private var pickedDecimalRating = 0
+    
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {
         return title.isEmpty
@@ -60,6 +66,7 @@ struct EditDiaryView: View {
         self._isTimeIncluded = State(initialValue: diary.isTimeIncluded)
         self._contents = State(initialValue: diary.contents)
         self._location = State(initialValue: diary.toLocation())
+        self._rating = State(initialValue: diary.rating)
     }
     
     var body: some View {
@@ -72,6 +79,7 @@ struct EditDiaryView: View {
                     showDatePickerButton()
                     showTimePickerButton()
                     addLocationButton()
+                    showRatingButton()
                 }
                 .padding()
             }
@@ -92,7 +100,14 @@ struct EditDiaryView: View {
                 .disabled(disabled)
             }
         }
+        
         // PhotoPicker
+        .task(id: selectedPhoto) {
+            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
+               let uiImage = UIImage(data: data) {
+                self.uiImage = uiImage
+            }
+        }
         .confirmationDialog("", isPresented: $showImageActionSheet) {
             Button("앨범") {
                 showPhotosPicker.toggle()
@@ -106,12 +121,7 @@ struct EditDiaryView: View {
             Button("취소", role: .cancel) {}
         }
         .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhoto)
-        .task(id: selectedPhoto) {
-            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
-               let uiImage = UIImage(data: data) {
-                self.uiImage = uiImage
-            }
-        }
+        
         // DatePicker
         .sheet(isPresented: $showDatePicker) {
             datePickerSheetView()
@@ -119,6 +129,10 @@ struct EditDiaryView: View {
         // TimePicker
         .sheet(isPresented: $showTimePicker) {
             timePickerSheetView()
+        }
+        // RatingView
+        .sheet(isPresented: $showRatingView) {
+            ratingPickerSheetView()
         }
         .asHideKeyboardModifier()
     }
@@ -159,6 +173,18 @@ struct EditDiaryView: View {
         }
     }
     
+    private func contentsTextField() -> some View {
+        VStack {
+            Text("내용")
+                .asTextModifier(font: .bold15, color: .appPrimary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            TextEditor(text: $contents)
+                .customStyleEditor(placeholder: "내용을 입력해주세요", userInput: $contents)
+                .frame(height: 200)
+        }
+    }
+    
     private func showDatePickerButton() -> some View {
         Button {
             datePickerDate = selectedDate
@@ -188,6 +214,93 @@ struct EditDiaryView: View {
             if isTimeIncluded {
                 Button {
                     isTimeIncluded = false
+                } label: {
+                    Image.xmark
+                }
+            } else {
+                Image.rightChevron
+                    .bold()
+            }
+        }
+        .foregroundStyle(.appPrimary)
+    }
+    
+    private func addLocationButton() -> some View {
+        NavigationLink {
+            AddLocationView(selectedLocation: $location)
+        } label: {
+            HStack {
+                if let location {
+                    VStack(alignment: .leading) {
+                        HStack(spacing: 8) {
+                            Text(location.placeName)
+                                .asTextModifier(font: .bold18, color: .appPrimary)
+                            Text(CategoryName(rawValue: location.category) == nil ? "기타" : location.category)
+                                .asTextModifier(font: .regular16, color: .lightSecondary)
+                        }
+                        Text(location.addressName)
+                            .asTextModifier(font: .regular15, color: .appPrimary)
+                    }
+                } else {
+                    Text("장소 선택")
+                        .asTextModifier(font: .bold18, color: .appPrimary)
+                }
+                Spacer()
+                if location != nil {
+                    Button {
+                        self.location = nil
+                    } label: {
+                        Image.xmark
+                    }
+                } else {
+                    Image.rightChevron
+                        .bold()
+                }
+            }
+        }
+        .foregroundStyle(.appPrimary)
+    }
+    
+    private func showRatingButton() -> some View {
+        Button {
+            pickedIntRating = Int(rating ?? 0)
+            pickedDecimalRating = Int((rating ?? 0) / 10)
+            showRatingView.toggle()
+        } label: {
+            if let rating {
+                Text(String(format: "%.1f", rating))
+                    .asTextModifier(font: .bold18, color: .appPrimary)
+//                HStack(spacing: 5) {
+//                    ForEach(0..<5, id: \.self) { index in
+//                        let number = index + 1
+//                        let value = Double(number)
+//                        if value <= rating {
+//                            Image.starFill
+//                                .resizable()
+//                                .frame(width: 30, height: 30)
+//                                .foregroundColor(.yellow)
+//                        } else if value - 0.5 <= rating {
+//                            Image.halfStar
+//                                .resizable()
+//                                .frame(width: 30, height: 30)
+//                                .foregroundColor(.yellow)
+//                        } else {
+//                            Image.emptyStar
+//                                .resizable()
+//                                .frame(width: 30, height: 30)
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//                    Text(String(format: "%.1f", rating))
+//                }
+            } else {
+                Text("평가하기")
+                    .asTextModifier(font: .bold18, color: .appPrimary)
+            }
+            Spacer()
+            if rating != nil {
+                Button {
+                    rating = nil
                 } label: {
                     Image.xmark
                 }
@@ -253,60 +366,50 @@ struct EditDiaryView: View {
         .presentationDetents([.fraction(0.4)])
     }
     
-    private func addLocationButton() -> some View {
-        NavigationLink {
-            AddLocationView(selectedLocation: $location)
-        } label: {
+    private func ratingPickerSheetView() -> some View {
+        VStack {
+            Spacer()
             HStack {
-                if let location {
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 8) {
-                            Text(location.placeName)
-                                .asTextModifier(font: .bold18, color: .appPrimary)
-                            Text(CategoryName(rawValue: location.category) == nil ? "기타" : location.category)
-                                .asTextModifier(font: .regular16, color: .lightSecondary)
-                        }
-                        Text(location.addressName)
-                            .asTextModifier(font: .regular15, color: .appPrimary)
+                Picker("", selection: $pickedIntRating) {
+                    ForEach(0...10, id: \.self) { number in
+                        Text("\(number)").tag(number)
                     }
-                } else {
-                    Text("장소 선택")
-                        .asTextModifier(font: .bold18, color: .appPrimary)
                 }
-                Spacer()
-                if location != nil {
-                    Button {
-                        self.location = nil
-                    } label: {
-                        Image.xmark
+                .pickerStyle(.wheel)
+                .labelsHidden()
+                Text(".")
+                    .bold()
+                Picker("", selection: $pickedDecimalRating) {
+                    ForEach(0...9, id: \.self) { number in
+                        Text("\(number)").tag(number)
                     }
-                } else {
-                    Image.rightChevron
-                        .bold()
                 }
+                .pickerStyle(.wheel)
+                .labelsHidden()
+            }
+            
+            // 저장 버튼
+            Button {
+                rating = Double(pickedIntRating) + Double(pickedDecimalRating) / 10
+                showRatingView = false
+            } label: {
+                Text("저장")
+                    .asButtonText()
             }
         }
-        .foregroundStyle(.appPrimary)
+        .background(Color.clear)
+        .presentationDetents([.fraction(0.4)])
     }
-    
-    private func contentsTextField() -> some View {
-        VStack {
-            Text("내용")
-                .asTextModifier(font: .bold15, color: .appPrimary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            TextEditor(text: $contents)
-                .customStyleEditor(placeholder: "내용을 입력해주세요", userInput: $contents)
-                .frame(height: 200)
-        }
-    }
-    
+}
+
+extension EditDiaryView {
     private func addDiary() {
         let diary = RealmDiary(
             title: title,
             date: isTimeIncluded ? selectedDate : selectedDate.startOfDay(),
             isTimeIncluded: isTimeIncluded,
             contents: contents,
+            rating: rating,
             locationID: location?.id ?? "",
             placeName: location?.placeName ?? "",
             addressName: location?.addressName ?? "",
@@ -327,6 +430,7 @@ struct EditDiaryView: View {
             date: selectedDate,
             isTimeIncluded: isTimeIncluded,
             contents: contents,
+            rating: rating,
             locationID: location?.id ?? "",
             placeName: location?.placeName ?? "",
             addressName: location?.addressName ?? "",

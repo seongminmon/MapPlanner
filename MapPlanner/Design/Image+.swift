@@ -26,6 +26,9 @@ extension Image {
     static let ellipsis = Image(systemName: "ellipsis")
     static let setting = Image(systemName: "gearshape")
     static let map = Image(systemName: "map")
+    static let starFill = Image(systemName: "star.fill")
+    static let starHalf = Image(systemName: "star.leadinghalf.filled")
+    static let starEmpty = Image(systemName: "star")
     
     static let info = Image(systemName: "info.circle.fill")
     static let warning = Image(systemName: "exclamationmark.triangle.fill")
