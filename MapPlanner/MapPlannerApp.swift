@@ -14,6 +14,8 @@ import RealmSwift
 // TODO: - Push Notification 추가
 // TODO: - 테스트 코드 작성
 
+// TODO: - 별점 기능 추가
+
 @main
 struct MapPlannerApp: App {
     
@@ -29,7 +31,7 @@ struct MapPlannerApp: App {
                         object: nil,
                         queue: .main
                     ) { notification in
-                        if let userInfo = notification.toast {
+                        if notification.toast != nil {
                             self.toast = toast
                             ToastWindowManager.shared.showToast(toast: self.$toast)
                         }

@@ -203,19 +203,18 @@
 			children = (
 				241A589A2C91BE5400232D8B /* APIInfo.swift */,
 				241A58882C91BBD200232D8B /* MapPlannerApp.swift */,
+				24CA385F2C9459DE00B873E7 /* Model */,
+				24FB3FBB2CAA6E7000DC8087 /* Manager */,
+				24DD06DA2CA293D400883F33 /* Base */,
+				24CA384B2C94113700B873E7 /* Extension */,
+				248C62902D2404C8004FA0C1 /* Component */,
+				24CA38482C9409F500B873E7 /* View */,
+				241A58AF2C92C87200232D8B /* Info.plist */,
 				24CA38392C93F13800B873E7 /* Localizable.xcstrings */,
 				24CA383F2C93FF0B00B873E7 /* InfoPlist.xcstrings */,
 				24CA383B2C93F2F600B873E7 /* Colors.xcassets */,
 				241A588C2C91BBD300232D8B /* Assets.xcassets */,
-				241A58AF2C92C87200232D8B /* Info.plist */,
-				245C30722CB012A1000AE9E7 /* CustomView */,
-				245C306B2CAFCDD8000AE9E7 /* CustomModifier */,
-				24FB3FBB2CAA6E7000DC8087 /* Manager */,
-				24DD06DA2CA293D400883F33 /* Base */,
 				24DD06C22C9FE38B00883F33 /* Design */,
-				24CA385F2C9459DE00B873E7 /* Model */,
-				24CA384B2C94113700B873E7 /* Extension */,
-				24CA38482C9409F500B873E7 /* View */,
 				241A588E2C91BBD300232D8B /* Preview Content */,
 			);
 			path = MapPlanner;
@@ -259,6 +258,15 @@
 				245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		248C62902D2404C8004FA0C1 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				245C30722CB012A1000AE9E7 /* CustomView */,
+				245C306B2CAFCDD8000AE9E7 /* CustomModifier */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		24ABE8B62CCE3747000E7EC5 /* Network */ = {
