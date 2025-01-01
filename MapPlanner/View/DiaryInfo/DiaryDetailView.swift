@@ -110,6 +110,10 @@ struct DiaryDetailView: View {
                 Image.calendar
                 Text("\(diary.isTimeIncluded ? diary.date.toString(DateFormat.untilTime) : diary.date.toString(DateFormat.untilWeekDay))")
                     .asTextModifier(font: .bold15, color: .appPrimary)
+                Spacer()
+                if let rating = diary.rating {
+                    StarRatingDisplayView(rating: rating)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             

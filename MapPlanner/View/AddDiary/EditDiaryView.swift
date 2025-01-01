@@ -45,8 +45,8 @@ struct EditDiaryView: View {
     // 별점
     @State private var rating: Double?
     @State private var showRatingView = false
-    @State private var pickedIntRating = 0
-    @State private var pickedDecimalRating = 0
+    @State private var pickedRating = 0.0
+//    @State private var pickedDecimalRating = 0
     
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {
@@ -100,7 +100,6 @@ struct EditDiaryView: View {
                 .disabled(disabled)
             }
         }
-        
         // PhotoPicker
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self),
@@ -121,7 +120,6 @@ struct EditDiaryView: View {
             Button("취소", role: .cancel) {}
         }
         .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhoto)
-        
         // DatePicker
         .sheet(isPresented: $showDatePicker) {
             datePickerSheetView()
@@ -263,36 +261,11 @@ struct EditDiaryView: View {
     
     private func showRatingButton() -> some View {
         Button {
-            pickedIntRating = Int(rating ?? 0)
-            pickedDecimalRating = Int((rating ?? 0) / 10)
-            showRatingView.toggle()
+            pickedRating = rating ?? 0.0
+            showRatingView = true
         } label: {
             if let rating {
-                Text(String(format: "%.1f", rating))
-                    .asTextModifier(font: .bold18, color: .appPrimary)
-//                HStack(spacing: 5) {
-//                    ForEach(0..<5, id: \.self) { index in
-//                        let number = index + 1
-//                        let value = Double(number)
-//                        if value <= rating {
-//                            Image.starFill
-//                                .resizable()
-//                                .frame(width: 30, height: 30)
-//                                .foregroundColor(.yellow)
-//                        } else if value - 0.5 <= rating {
-//                            Image.halfStar
-//                                .resizable()
-//                                .frame(width: 30, height: 30)
-//                                .foregroundColor(.yellow)
-//                        } else {
-//                            Image.emptyStar
-//                                .resizable()
-//                                .frame(width: 30, height: 30)
-//                                .foregroundColor(.gray)
-//                        }
-//                    }
-//                    Text(String(format: "%.1f", rating))
-//                }
+                StarRatingDisplayView(rating: rating)
             } else {
                 Text("평가하기")
                     .asTextModifier(font: .bold18, color: .appPrimary)
@@ -369,28 +342,14 @@ struct EditDiaryView: View {
     private func ratingPickerSheetView() -> some View {
         VStack {
             Spacer()
-            HStack {
-                Picker("", selection: $pickedIntRating) {
-                    ForEach(0...10, id: \.self) { number in
-                        Text("\(number)").tag(number)
-                    }
-                }
-                .pickerStyle(.wheel)
-                .labelsHidden()
-                Text(".")
-                    .bold()
-                Picker("", selection: $pickedDecimalRating) {
-                    ForEach(0...9, id: \.self) { number in
-                        Text("\(number)").tag(number)
-                    }
-                }
-                .pickerStyle(.wheel)
-                .labelsHidden()
-            }
-            
+            StarRatingView(rating: $pickedRating)
+                .padding(.bottom, 20)
+            Text("\(String(format: "%.1f", pickedRating))")
+                .asTextModifier(font: .boldTitle, color: .appPrimary)
+            Spacer()
             // 저장 버튼
             Button {
-                rating = Double(pickedIntRating) + Double(pickedDecimalRating) / 10
+                rating = pickedRating
                 showRatingView = false
             } label: {
                 Text("저장")

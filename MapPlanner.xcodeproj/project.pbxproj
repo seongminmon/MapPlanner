@@ -33,6 +33,7 @@
 		245FC5482CB2635D007E22BD /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5472CB2635D007E22BD /* UIDevice+.swift */; };
 		245FC54A2CB26418007E22BD /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC5492CB26418007E22BD /* MailView.swift */; };
 		245FC54C2CB27881007E22BD /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */; };
+		248C62942D2508DE004FA0C1 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C62932D2508DE004FA0C1 /* StarRatingView.swift */; };
 		24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */; };
 		24ABE8B82CCE3750000E7EC5 /* LocalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */; };
 		24ABE8E82CD3A2A9000E7EC5 /* MVIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */; };
@@ -121,6 +122,7 @@
 		245FC5472CB2635D007E22BD /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		245FC5492CB26418007E22BD /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		245FC54B2CB27881007E22BD /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		248C62932D2508DE004FA0C1 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		24ABE8B42CCE30D3000E7EC5 /* AddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResponse.swift; sourceTree = "<group>"; };
 		24ABE8B72CCE3750000E7EC5 /* LocalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRouter.swift; sourceTree = "<group>"; };
 		24ABE8E72CD3A2A9000E7EC5 /* MVIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIContainer.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				245C30732CB012AC000AE9E7 /* SearchEmptyView.swift */,
 				245C30772CB12021000AE9E7 /* LoadingView.swift */,
+				248C62932D2508DE004FA0C1 /* StarRatingView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				24CA38552C942F9B00B873E7 /* DiarySearchView.swift in Sources */,
 				24ABE8B52CCE30D3000E7EC5 /* AddressResponse.swift in Sources */,
 				24DD06EC2CA3FB4D00883F33 /* LocalResponse.swift in Sources */,
+				248C62942D2508DE004FA0C1 /* StarRatingView.swift in Sources */,
 				24DD06C02C9EE35E00883F33 /* View+.swift in Sources */,
 				24DD06D42CA1AAA600883F33 /* AddDiaryButton.swift in Sources */,
 				24DD06E82CA3E5A600883F33 /* UINavigationController+.swift in Sources */,

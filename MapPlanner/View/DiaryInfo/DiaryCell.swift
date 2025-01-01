@@ -53,7 +53,10 @@ struct DiaryCell: View {
                 .asTextModifier(font: .bold15, color: .appPrimary)
             Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
                 .asTextModifier(font: .regular12, color: .appSecondary)
-            Spacer()
+            // 평점 정보 있을 때만 표시
+            if let rating = diary.rating {
+                StarRatingDisplayView(rating: rating)
+            }
             // 장소 정보 있을 때만 표시
             if diary.lng != nil {
                 HStack(spacing: 8) {
