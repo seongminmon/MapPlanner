@@ -112,7 +112,7 @@ struct DiaryDetailView: View {
                     .asTextModifier(font: .bold15, color: .appPrimary)
                 Spacer()
                 if let rating = diary.rating {
-                    StarRatingDisplayView(rating: rating)
+                    StarRatingDisplayView(rating: rating, starSpacing: 5, starSize: 20, font: .bold15)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

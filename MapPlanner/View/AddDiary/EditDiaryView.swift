@@ -44,9 +44,8 @@ struct EditDiaryView: View {
     
     // 별점
     @State private var rating: Double?
-    @State private var showRatingView = false
     @State private var pickedRating = 0.0
-//    @State private var pickedDecimalRating = 0
+    @State private var showRatingView = false
     
     // 유효성 검사: 제목 + 날짜 필수
     private var disabled: Bool {

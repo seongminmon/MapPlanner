@@ -51,12 +51,16 @@ struct DiaryCell: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(diary.title)
                 .asTextModifier(font: .bold15, color: .appPrimary)
-            Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
-                .asTextModifier(font: .regular12, color: .appSecondary)
-            // 평점 정보 있을 때만 표시
-            if let rating = diary.rating {
-                StarRatingDisplayView(rating: rating)
+            HStack {
+                Text(diary.date.toString(diary.isTimeIncluded ? DateFormat.untilTime : DateFormat.untilDay))
+                    .asTextModifier(font: .regular12, color: .appSecondary)
+                Spacer()
+                // 평점 정보 있을 때만 표시
+                if let rating = diary.rating {
+                    StarRatingDisplayView(rating: rating, starSpacing: 3, starSize: 15, font: .regular12)
+                }
             }
+            Spacer()
             // 장소 정보 있을 때만 표시
             if diary.lng != nil {
                 HStack(spacing: 8) {
